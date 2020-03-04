@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="想入坑Arch好久了，但是有很多次都因为在解决引导的时候就卡了，最后一直没能装上。经过上次制作启动盘的经验，对于grub有了更多的了解。这次再次尝试安装，虽然经历了一些挫折，但还是成功了。下面是具体的安装过程。 首先用u盘引导系统，接下来就进入了arch的Live CD模式（雾）。这也是arch linux最劝退的一步，很多人看到装个系统都要命令行，就退了.。其实用命令行装系统才能真正在装系统的同">
+<meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习总结第三十五天——arch Linux安装">
+<meta property="og:url" content="http://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/index.html">
+<meta property="og:site_name" content="KosWu &#39;s blog">
+<meta property="og:description" content="想入坑Arch好久了，但是有很多次都因为在解决引导的时候就卡了，最后一直没能装上。经过上次制作启动盘的经验，对于grub有了更多的了解。这次再次尝试安装，虽然经历了一些挫折，但还是成功了。下面是具体的安装过程。 首先用u盘引导系统，接下来就进入了arch的Live CD模式（雾）。这也是arch linux最劝退的一步，很多人看到装个系统都要命令行，就退了.。其实用命令行装系统才能真正在装系统的同">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习总结第三十五天——arch Linux安装">
+<meta name="twitter:description" content="想入坑Arch好久了，但是有很多次都因为在解决引导的时候就卡了，最后一直没能装上。经过上次制作启动盘的经验，对于grub有了更多的了解。这次再次尝试安装，虽然经历了一些挫折，但还是成功了。下面是具体的安装过程。 首先用u盘引导系统，接下来就进入了arch的Live CD模式（雾）。这也是arch linux最劝退的一步，很多人看到装个系统都要命令行，就退了.。其实用命令行装系统才能真正在装系统的同">
+
+<link rel="canonical" href="http://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>学习总结第三十五天——arch Linux安装 | KosWu 's blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
+    <script pjax>
+      var host = window.location.hostname;
+      if (host !== "localhost" || !true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '145864234');
+      }
+    </script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KosWu 's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">一个普通技术宅的点点滴滴</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/KosWu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          学习总结第三十五天——arch Linux安装
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-01-07 02:26:20" itemprop="dateCreated datePublished" datetime="2018-01-07T02:26:20+08:00">2018-01-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>想入坑<a href="https://wiki.archlinux.org/index.php/Arch_Linux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)" title="Arch" target="_blank" rel="noopener">Arch</a>好久了，但是有很多次都因为在解决引导的时候就卡了，最后一直没能装上。经过上次制作启动盘的经验，对于grub有了更多的了解。这次再次尝试安装，虽然经历了一些挫折，但还是成功了。下面是具体的安装过程。</p>
+<p>首先用u盘引导系统，接下来就进入了arch的Live CD模式（雾）。这也是arch linux最劝退的一步，很多人看到装个系统都要命令行，就退了.。其实用命令行装系统才能真正在装系统的同时学习到知识。</p>
+<h2 id="同步时间"><a href="#同步时间" class="headerlink" title="同步时间"></a>同步时间</h2><p>由于arch采用网络安装的方式，所以先让计算机连接上网络，并执行</p>
+<pre><code>timedatectl set-ntp true</code></pre><h2 id="硬盘分区"><a href="#硬盘分区" class="headerlink" title="硬盘分区"></a>硬盘分区</h2><p>对硬盘进行分区</p>
+<pre><code>fdisk /dev/sdY</code></pre><p>需要注意的是，如果电脑为UEFI引导的，需要将硬盘设置为GPT分区，否则为传统MBR模式。由于我装双系统，所以就只分了一个分区作为根目录，一个分区作为交换分区。<br>交换分区记得将分区的类型设置为82,这样可以让systemd自动发现并挂载。</p>
+<p>格式化交换分区</p>
+<pre><code>mkswap /sdYM</code></pre><p>格式化主分区</p>
+<pre><code>mkfs.ext4 /sdYN</code></pre><p>将主分区挂载至/mnt，将EFI分区挂载至/mnt/boot</p>
+<pre><code>mount /dev/sdYN /mnt #挂载主分区
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot #挂载EFI分区</code></pre><p>安装系统文件</p>
+<pre><code>pacstrap /mnt base base-devel</code></pre><p>生成fstab文件并检查</p>
+<pre><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+cat /mnt/etc/fstab</code></pre><p>添加swap分区的UUID到fstab</p>
+<pre><code>echo &quot;#/dev/sdYM swap \n UUID=`lsblk -no UUID /dev/sdYM` none swap defaults 0 0&quot; &gt;&gt; /mnt/etc/fstab</code></pre><p>chroot到新的系统目录，由于普通的chroot容器有一些问题，所以我们采用专门开发的arch-chroot</p>
+<pre><code>arch-chroot /mnt</code></pre><p>设置时区</p>
+<pre><code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+hwclock --systohc --utc</code></pre><p>设置本地化信息，打开/etc/locale.gen，取消以下几行的注释</p>
+<pre><code>en_US.UTF-8 UTF-8
+zh_CN.UTF-8 UTF-8
+zh_TW.UTF-8 UTF-8</code></pre><p>运行</p>
+<pre><code>locale-gen</code></pre><p>以生成本地化配置文件</p>
+<p>在hosts中设置localhost，如果不设置也行，但会造成firefox打开慢等问题</p>
+<pre><code>#在/etc/hosts中加入
+127.0.0.1     localhost</code></pre><p>设置root密码</p>
+<pre><code>passwd</code></pre><p>如果使用intel处理器，安装intel-ucode以启用微码更新</p>
+<pre><code>pacman -S intel-ucode</code></pre><hr>
+<p>下面进入第二阶段，安装开机引导</p>
+<p>安装grub</p>
+<pre><code>pacman -S grub
+grub-insatll --efi-directory=/boot</code></pre><p>配置grub<br>    pacman os-prober<br>    mkdir /mnt/windows<br>    mount /dev/sda2 /mnt/windows#挂载其他系统的磁盘<br>    grub-mkconfig -o /boot/grub/gurb.cfg</p>
+<p>至此就可以正常进入系统了，重启</p>
+<pre><code>exit
+umount -R /mnt
+reboot</code></pre><p>如果仍然进入windows的话，在windows借助一些工具，如bootice来修改UEFI启动顺序，将arch放到第一个。</p>
+<hr>
+<p>第三阶段，安装GNOME桌面</p>
+<p>首先解决显卡驱动的问题,以英特尔和英伟达双显卡驱动为例，安装相关驱动和humblebee——实现显卡交火的工具</p>
+<pre><code>sudo pacman -S humblebee mesa xf86-video-intel nvidia primus</code></pre><p>安装后系统命令将默认用集成显卡运行，如果需要使用独显运行，使用</p>
+<pre><code>primusrun 命令</code></pre><p>曾经linux下主流的显示协议是X11，现在GNOME已经切换到了效率更高的Wayland，直接安装gnome软件组来获取所有套件</p>
+<pre><code>sudo pacman -S gnome</code></pre><p>如果需要其他的gnome软件包的话运行</p>
+<pre><code>sudo pacman -S gnome-extra</code></pre><p>开启gdm</p>
+<pre><code>systemctl enable gdm</code></pre><p>重启系统，就这样，基本的arch linux就安装好了</p>
+<p>贴一张安装好的截图：<br><a href="/attachment/img/arch_screen.png">!安装后</a></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>KosWu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/" title="学习总结第三十五天——arch Linux安装">http://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/" rel="next" title="学习总结第三十四天——记一次USB启动盘的制作">
+                  <i class="fa fa-chevron-left"></i> 学习总结第三十四天——记一次USB启动盘的制作
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/" rel="prev" title="学习总结第三十六天——余弦定理判断文章相似度">
+                  学习总结第三十六天——余弦定理判断文章相似度 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#同步时间"><span class="nav-number">1.</span> <span class="nav-text">同步时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬盘分区"><span class="nav-number">2.</span> <span class="nav-text">硬盘分区</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="KosWu"
+    src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">KosWu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KosWu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      element.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
+      repo: 'gitalk',
+      owner: 'Koswu',
+      admin: ['Koswu'],
+      id: '0f54c718f34be31c055a26bbbc6e03dd',
+        language: '',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="我们都知道，在计算机中都是使用二进制来表示整数，但是很少有人深入理解计算机具体是怎么去表示的，认为其不重要，然而事实恰恰相反，许多知名的漏洞利用的都是人们不熟悉或者疏忽了计算机里具体执行的运算。所以对于了解二进制数是怎么存储在计算机里是很有必要的。 一个n位的十进制无符号数,其每个位可以看作一个n维向量中的带有权重的维，而其权重也与位置相关，以1234为例，4的权重为10^0，3的权重为10^1，">
+<meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习总结第三十三天——二进制的表示">
+<meta property="og:url" content="http://koswu.github.io/2017/12/24/archive/学习总结第三十三天——二进制的表示/index.html">
+<meta property="og:site_name" content="KosWu &#39;s blog">
+<meta property="og:description" content="我们都知道，在计算机中都是使用二进制来表示整数，但是很少有人深入理解计算机具体是怎么去表示的，认为其不重要，然而事实恰恰相反，许多知名的漏洞利用的都是人们不熟悉或者疏忽了计算机里具体执行的运算。所以对于了解二进制数是怎么存储在计算机里是很有必要的。 一个n位的十进制无符号数,其每个位可以看作一个n维向量中的带有权重的维，而其权重也与位置相关，以1234为例，4的权重为10^0，3的权重为10^1，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-04T03:05:54.860Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习总结第三十三天——二进制的表示">
+<meta name="twitter:description" content="我们都知道，在计算机中都是使用二进制来表示整数，但是很少有人深入理解计算机具体是怎么去表示的，认为其不重要，然而事实恰恰相反，许多知名的漏洞利用的都是人们不熟悉或者疏忽了计算机里具体执行的运算。所以对于了解二进制数是怎么存储在计算机里是很有必要的。 一个n位的十进制无符号数,其每个位可以看作一个n维向量中的带有权重的维，而其权重也与位置相关，以1234为例，4的权重为10^0，3的权重为10^1，">
+
+<link rel="canonical" href="http://koswu.github.io/2017/12/24/archive/学习总结第三十三天——二进制的表示/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>学习总结第三十三天——二进制的表示 | KosWu 's blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
+    <script pjax>
+      var host = window.location.hostname;
+      if (host !== "localhost" || !true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '145864234');
+      }
+    </script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KosWu 's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">一个普通技术宅的点点滴滴</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/KosWu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/12/24/archive/学习总结第三十三天——二进制的表示/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          学习总结第三十三天——二进制的表示
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-12-24 20:26:48" itemprop="dateCreated datePublished" datetime="2017-12-24T20:26:48+08:00">2017-12-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>我们都知道，在计算机中都是使用二进制来表示整数，但是很少有人深入理解计算机具体是怎么去表示的，认为其不重要，然而事实恰恰相反，许多知名的漏洞利用的都是人们不熟悉或者疏忽了计算机里具体执行的运算。所以对于了解二进制数是怎么存储在计算机里是很有必要的。</p>
+<p>一个n位的十进制无符号数,其每个位可以看作一个n维向量中的带有权重的维，而其权重也与位置相关，以1234为例，4的权重为10^0，3的权重为10^1，2的权重为10^2，而1的权重为10^3，其数值即为各维的长度乘以该维的权重之和，即1×10^3+2<em>10^2+3</em>10^1+4*10^0=1234。</p>
+<p>二进制无符号数同理，其每一位的权重即为2^n，以1010(2)为例，其可看作一个四维向量，各维的权重从左到右依次是2^3，2^2，2^1，2^0。在计算机中表示二进制数时，是以字节为单位存储的。其有两种存储方式，大端法和小端法，区别在于每个数存储方式是从高地址位还是低地址位存储。如一个数为0x1234，有两个字节，如果在一个16位的机器上，分配两个内存地址分别为0x00和0x01的字节存储，在采用大端法时，内存地址0x00中存储的是0x12,0x11中存储的是0x34;而小端法相反，在0x00中存储的是0x34,0x11中存储的是0x12。这就造成了在不同的机器中，同一段代码可能会有不同的结果。下面这段代码就利用这一点，检测了运行的机器采用的是大端法还是小端法。</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+typedef unsigned char* byte_pointer;
+
+int islittle_indian()
+{
+  int i=0xFF;
+  byte_pointer ptr = (byte_pointer)&amp;i;
+  if ((*ptr) == 0xFF)
+  {
+    return 1;
+  }
+  if ((*ptr) == 0x00)
+  {
+    return 0;
+  }
+  else
+  {
+    return -1;
+  }
+}
+
+int main(int argc, char const *argv[])
+{
+  printf(&quot;%d\n&quot;,islittle_indian());
+  return 0;
+}</code></pre><p>这段代码在采用大端法的机器上运行的时候，输出0,在小端法的机器上运行的时候，便会输出1。尽管现在我们身边采用大端法的机器不多了，但是仍然需要了解。</p>
+<p>说了这么多，表示范围仍然在无符号数内，而要扩展到有符号数，就不得不提目前大部分计算机都在采用的有符号数表示方法——补码，许多国内教科书介绍补码时，总是提到将最高位表示符号即原码，原码取反加1就是补码，但是完全没说补码的定义。其实如果了解到无符号数可以看作n维向量这一点，就很好理解补码了。</p>
+<blockquote>
+<p>补码就是将最高位的权重变为负值的表示方式</p>
+</blockquote>
+<p>如1010(2)，如果我们按照无符号数的解读方式去乘相关的权重的话，会得到1<em>2^3+1*2^1=10。而如果我们当成补码去解读的话，就是1</em>(-2^3)+2*2^1 = -6，这也得以说明为什么补码中负数的表示范围要比正数大1。补码有很多优点，如进行减法的运算和加法一样，在正数范围内与无符号数表示方法一样等等。虽然补码很方便，但是也要注意与无符号数混用时，经常会产生难以发现且严重的bug。</p>
+<p>写了这么多，全面了解计算机系统对于写出健壮程序的重要性可见一斑，今后也应当多留心这方面的东西，才能更好地理解自己写出的程序。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>KosWu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://koswu.github.io/2017/12/24/archive/学习总结第三十三天——二进制的表示/" title="学习总结第三十三天——二进制的表示">http://koswu.github.io/2017/12/24/archive/学习总结第三十三天——二进制的表示/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/" rel="next" title="学习总结第三十二天——从树结构到堆排序">
+                  <i class="fa fa-chevron-left"></i> 学习总结第三十二天——从树结构到堆排序
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/" rel="prev" title="学习总结第三十四天——记一次USB启动盘的制作">
+                  学习总结第三十四天——记一次USB启动盘的制作 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="KosWu"
+    src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">KosWu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KosWu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      element.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
+      repo: 'gitalk',
+      owner: 'Koswu',
+      admin: ['Koswu'],
+      id: '5b383c388709f7e29326dab1fd68cda8',
+        language: '',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    </div>
+</body>
+</html>

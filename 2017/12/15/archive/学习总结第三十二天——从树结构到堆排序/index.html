@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。  在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&amp;gt;0）个有限节点组成一个具有层次关系的集合。  节点的度：一个节点含有的子树的">
+<meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习总结第三十二天——从树结构到堆排序">
+<meta property="og:url" content="http://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/index.html">
+<meta property="og:site_name" content="KosWu &#39;s blog">
+<meta property="og:description" content="树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。  在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&amp;gt;0）个有限节点组成一个具有层次关系的集合。  节点的度：一个节点含有的子树的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://koswu.github.io/attachment/img/300px-Binary_tree.svg.png">
+<meta property="og:updated_time" content="2020-03-04T03:05:54.860Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习总结第三十二天——从树结构到堆排序">
+<meta name="twitter:description" content="树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。  在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&amp;gt;0）个有限节点组成一个具有层次关系的集合。  节点的度：一个节点含有的子树的">
+<meta name="twitter:image" content="http://koswu.github.io/attachment/img/300px-Binary_tree.svg.png">
+
+<link rel="canonical" href="http://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>学习总结第三十二天——从树结构到堆排序 | KosWu 's blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
+    <script pjax>
+      var host = window.location.hostname;
+      if (host !== "localhost" || !true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '145864234');
+      }
+    </script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KosWu 's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">一个普通技术宅的点点滴滴</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/KosWu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          学习总结第三十二天——从树结构到堆排序
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-12-15 22:55:42" itemprop="dateCreated datePublished" datetime="2017-12-15T22:55:42+08:00">2017-12-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。</p>
+<blockquote>
+<p>在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&gt;0）个有限节点组成一个具有层次关系的集合。</p>
+<ul>
+<li>节点的度：一个节点含有的子树的个数称为该节点的度；</li>
+<li>树的度：一棵树中，最大的节点的度称为树的度；</li>
+<li>叶节点或终端节点：度为零的节点；</li>
+<li>非终端节点或分支节点：度不为零的节点；</li>
+<li>父亲节点或父节点：若一个节点含有子节点，则这个节点称为其子节点的父节点；</li>
+<li>孩子节点或子节点：一个节点含有的子树的根节点称为该节点的子节点；</li>
+<li>兄弟节点：具有相同父节点的节点互称为兄弟节点；</li>
+<li>节点的层次：从根开始定义起，根为第1层，根的子节点为第2层，以此类推；</li>
+<li>深度：对于任意节点n,n的深度为从根到n的唯一路径长，根的深度为0；</li>
+<li>高度：对于任意节点n,n的高度为从n到一片树叶的最长路径长，所有树叶的高度为0；</li>
+<li>堂兄弟节点：父节点在同一层的节点互为堂兄弟；</li>
+<li>节点的祖先：从根到该节点所经分支上的所有节点；</li>
+<li>子孙：以某节点为根的子树中任一节点都称为该节点的子孙。</li>
+<li>森林：由m（m&gt;=0）棵互不相交的树的集合称为森林；</li>
+</ul>
+</blockquote>
+<p>而每个节点最多含有两个子树的树又被称为二叉树，下图为一颗二叉树的结构<br><img src="/attachment/img/300px-Binary_tree.svg.png" alt="由Derrick Coetzee - 自己的作品，公有领域，https://commons.wikimedia.org/w/index.php?curid=488419"></p>
+<p>明白了二叉树以后，我们便可以来实现一种特殊的二叉树——“二叉堆”。<br>想象一下我们堆东西时的情景，大的物体堆在下层，小的堆在上层。二叉堆同理，父节点的键值总是保持固定的序关系于任何一个子节点的键值，且每个节点的左子树和右子树都是一个二叉堆。</p>
+<p>当父节点的键值总是大于或等于任何一个子节点的键值时为最大堆，相反，当父节点的键值总是小于或等于任何一个子节点的键值时为最小堆。</p>
+<p>二叉堆一般采用数组来实现，并且舍弃了下标为0的值，这样的话便可以满足关系：元素i的子节点为2i和2i+1。可以方便的遍历一个二叉堆。同时我们应该实现两个方法，让二叉堆在从堆顶移除元素和在堆底添加元素后，能够恢复二叉堆原来的性质。</p>
+<p>我们一般将这两个方法命名为sink()和swim()，这个过程可以看作，减少一个元素，就要让最后的元素补上开头的位置，再让这个元素下沉(sink)到合适的位置，增加一个元素，就要在堆的最后插入元素，再将这个元素上浮(swim)到合适的位置。</p>
+<p>利用我们所实现二叉堆的两个方法，我们可以实现一个优先队列，有限队列与队列有些像，但是其返回值永远为队列中的最大/最小值。目前已知的有限队列的实现方法中，二叉堆是最实用的，因为其将入列和出列操作都限制在O(nlgn)的时间复杂度之内。</p>
+<p>以下为一个返回最大值的优先队列实现：</p>
+<pre><code>template &lt;typename T&gt;void swap(T &amp;a, T&amp;b)
+{
+  T temp = a;
+  a = b;
+  b = temp;
+}
+
+template &lt;typename T&gt;class MaxPQ
+{
+private:
+  T *datas;
+  int pqsize;
+  int pqcount;
+  void swim(int k);
+  void sink(int k);
+public:
+  MaxPQ ();
+  MaxPQ (int max);
+  MaxPQ (T d[], int size);
+  void insert(T v);
+  T max();
+  T delmax();
+  bool isEmpty();
+  int size();
+  void resize(int size);
+  virtual ~MaxPQ ();
+};
+
+template &lt;typename T&gt;void MaxPQ&lt;T&gt;::swim(int k)
+{
+  while (k &gt; 1 &amp;&amp; this-&gt;datas[k&gt;&gt;1] &lt; this-&gt;datas[k])
+  {
+    swap(this-&gt;datas[k&gt;&gt;1],this-&gt;datas[k]);
+    k&gt;&gt;=1;
+  }
+}
+
+template &lt;typename T&gt;void MaxPQ&lt;T&gt;::sink(int k)
+{
+  while (k&lt;&lt;1 &lt;= this-&gt;pqcount)
+  {
+    int j = k&lt;&lt;1;
+    if (j &lt; this-&gt;pqcount &amp;&amp; this-&gt;datas[j+1] &gt; this-&gt;datas[j])
+    {
+      j++;
+    }
+    if (this-&gt;datas[j] &gt; this-&gt;datas[k])
+    {
+      swap(this-&gt;datas[j],this-&gt;datas[k]);
+    }
+    k = j;
+  }
+}
+
+template &lt;typename T&gt;MaxPQ&lt;T&gt;::MaxPQ():pqsize(4),pqcount(0)
+{
+  this-&gt;datas = new T[pqsize];
+}
+
+template &lt;typename T&gt;MaxPQ&lt;T&gt;::MaxPQ(int max):pqsize(max),pqcount(0)
+{
+  this-&gt;datas = new T[pqsize];
+}
+
+template &lt;typename T&gt;MaxPQ&lt;T&gt;::MaxPQ(T d[], int size):pqsize(size+1),pqcount(0)
+{
+  this-&gt;datas = new T[pqsize];
+  for (int i = 0;i &lt; size;i++)
+  {
+    this-&gt;insert(d[i]);
+  }
+}
+
+template &lt;typename T&gt;T MaxPQ&lt;T&gt;::max()
+{
+  if (this-&gt;pqcount &gt; 0)
+  {
+    return this-&gt;datas[1];
+  }
+  return (T)NULL;
+}
+
+template &lt;typename T&gt;T MaxPQ&lt;T&gt;::delmax()
+{
+  if (this-&gt;pqcount &gt; 0)
+  {
+    T max = this-&gt;datas[1];
+    //this-&gt;pqcount--;
+    if (this-&gt;pqcount &gt; 0)
+    {
+      this-&gt;datas[1] = this-&gt;datas[pqcount];
+      this-&gt;pqcount--;
+      sink(1);
+    }
+    return max;
+  }
+  return (T)NULL;
+}
+
+template &lt;typename T&gt;bool MaxPQ&lt;T&gt;::isEmpty()
+{
+  return this-&gt;pqcount == 0;
+}
+
+template &lt;typename T&gt;int MaxPQ&lt;T&gt;::size()
+{
+  return this-&gt;pqcount;
+}
+
+
+template &lt;typename T&gt;void MaxPQ&lt;T&gt;::resize(int size)
+{
+  T *new_data = new T[size];
+  for (int i = 0;i &lt;= this-&gt;pqcount;i++)
+  {
+    new_data[i] = this-&gt;datas[i];
+  }
+  delete this-&gt;datas;
+  this-&gt;datas = new_data;
+}
+
+template &lt;typename T&gt;void MaxPQ&lt;T&gt;::insert(T v)
+{
+  if (this-&gt;pqcount+1 &gt;= this-&gt;pqsize)
+  {
+    pqsize &lt;&lt;= 1;
+    this-&gt;resize(pqsize);
+  }
+  this-&gt;datas[++this-&gt;pqcount] = v;
+  this-&gt;swim(this-&gt;pqcount);
+}
+
+template &lt;typename T&gt;MaxPQ&lt;T&gt;::~MaxPQ()
+{
+  delete this-&gt;datas;
+}
+
+int main(int argc, char const *argv[])
+{
+  MaxPQ&lt;int&gt; a;
+  //int input_value;
+  a.insert(3);
+  a.insert(3);
+  a.insert(234);
+  a.insert(2341);
+  a.insert(9999);
+  std::cout &lt;&lt; a.delmax() &lt;&lt; &apos; &apos; &lt;&lt; a.delmax() &lt;&lt; std::endl;
+  std::cout &lt;&lt; a.delmax() &lt;&lt; &apos; &apos; &lt;&lt; a.delmax() &lt;&lt; std::endl;
+  std::cout &lt;&lt; a.delmax() &lt;&lt; std::endl;
+  return 0;
+}</code></pre><p>堆排序，在实现了优先队列的基础上，就并不难了，只要数组先构建为有限队列，然后在依次执行出列操作，得到的一组数据就已经排序，同时我们还可以进一步简化，只用sink()方法就可以来构建一个堆，下面是一个堆排序的实现：</p>
+<pre><code>#include &lt;iostream&gt;
+
+template &lt;typename T&gt;void sink(T *datas,int index,int size)
+{
+  T new_node = datas[index];
+  while (index&lt;&lt;1 &lt;= size)
+  {
+    int j = index&lt;&lt;1;
+    if (j &lt; size &amp;&amp; datas[j] &lt; datas[j+1])
+    {
+      j++;
+    }
+    if (new_node &gt; datas[j])
+    {
+      break;
+    }
+    datas[index] = datas[j];
+    index = j;
+  }
+  datas[index] =new_node;
+}
+
+template &lt;typename T&gt;void heap_sort(T datas, int size)
+{
+  //构造二叉堆
+  for (int k = size&lt;&lt;1;k&gt;0;k--)
+  {
+    sink(datas, k, size);
+  }
+  //排序
+  while(size &gt; 1)
+  {
+    std::swap(datas[1],datas[size--]);//取出最大值
+    sink(datas, 1, size);//重新构造二叉堆
+  }
+}
+
+
+int main(int argc, char const *argv[])
+{
+  int a[5] = {0,1,3,4,1};
+  heap_sort(a,5);
+  for (auto i:a)
+  {
+    std::cout &lt;&lt; i  &lt;&lt; std::endl;
+  }
+  return 0;
+}</code></pre>
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>KosWu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/" title="学习总结第三十二天——从树结构到堆排序">http://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/" rel="next" title="学习总结第三十一天——快速排序与union-find算法">
+                  <i class="fa fa-chevron-left"></i> 学习总结第三十一天——快速排序与union-find算法
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2017/12/24/archive/学习总结第三十三天——二进制的表示/" rel="prev" title="学习总结第三十三天——二进制的表示">
+                  学习总结第三十三天——二进制的表示 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="KosWu"
+    src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">KosWu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KosWu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      element.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
+      repo: 'gitalk',
+      owner: 'Koswu',
+      admin: ['Koswu'],
+      id: 'e7aa4b912c063140a88e832310c40265',
+        language: '',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    </div>
+</body>
+</html>

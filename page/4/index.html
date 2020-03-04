@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KosWu &#39;s blog">
+<meta property="og:url" content="http://koswu.github.io/page/4/index.html">
+<meta property="og:site_name" content="KosWu &#39;s blog">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KosWu &#39;s blog">
+
+<link rel="canonical" href="http://koswu.github.io/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>KosWu 's blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
+    <script pjax>
+      var host = window.location.hostname;
+      if (host !== "localhost" || !true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '145864234');
+      }
+    </script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KosWu 's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">一个普通技术宅的点点滴滴</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/KosWu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/11/05/archive/学习总结第十九天/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/05/archive/学习总结第十九天/" class="post-title-link" itemprop="url">学习总结第十九天</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-05 20:51:08" itemprop="dateCreated datePublished" datetime="2017-11-05T20:51:08+08:00">2017-11-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这个星期又入了几本书，<del>开坑就没好好填完</del>。</p>
+<p>首先是学习C艹方面，C艹对于类的学习算是告一段落了。C艹到目前为止，给我的一种感觉就是很繁琐。我想可能这也是为什么C艹没能完全取代C语言的地方。</p>
+<p>然后开坑算法学习，目前我认为应当打好一些算法的基础，以后对于实际项目会有一定帮助，入了一本《算法》慢慢啃。也许现在的重心还是应当回到对算法的学习上，因为已经有C语言基础的前提下，并不给与去学习C++，并且如果学习以后又用不上就很容易遗忘。</p>
+<p>最后是一些其他闲书，一是对ruby语言很感兴趣，可以在闲暇之余了解一番，然后看了一点《数学之美》，就我目前接触到的书而言，吴军博士的书质量都是值得一读的，读了《数学之美》后才明白，原来数学是可以这样使用的，真是有种醍醐灌顶的感觉。��都是值得一读的，读了《数学之美》后才明白，原来数学是可以这样使用的，真是有种醍醐灌顶的感觉。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/31/archive/学习总结第十八天_C++类默认构造函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/31/archive/学习总结第十八天_C++类默认构造函数/" class="post-title-link" itemprop="url">学习总结第十八天_C++类默认构造函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-31 11:54:08" itemprop="dateCreated datePublished" datetime="2017-10-31T11:54:08+08:00">2017-10-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在继续对《C++ Primer》今天对于C++类的默认构造函数有了新的了解。</p>
+<blockquote>
+<p>默认构造函数是什么？</p>
+</blockquote>
+<p>默认构造函数，就是不包含任何参数，或者所有参数均提供了初始值的构造函数。</p>
+<blockquote>
+<p>什么时候会执行默认构造函数？</p>
+</blockquote>
+<p>当对象被默认初始化或者值初始化时会自动执行默认构造函数。</p>
+<p>在很多时候，我们都会用到默认构造函数，而不仅仅是进行默认初始化的时候，所以如果定义了其他构造函数，最好也提供一个默认构造函数，即使这个类并没有一个合法的默认值。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/29/archive/学习总结第十七天_类的作用域/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/29/archive/学习总结第十七天_类的作用域/" class="post-title-link" itemprop="url">学习总结第十七天_类的作用域</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-29 00:03:48" itemprop="dateCreated datePublished" datetime="2017-10-29T00:03:48+08:00">2017-10-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天基本上都在和DigitalOcean和AWS的客服周旋。。。所以没学什么，稍微了解了一下C++类的作用域。</p>
+<p>每个类都会定义它自己的作用域。在类的作用域外，普通的数据和函数成员只能由对象，引用或者指针使用成员运算符访问。</p>
+<p>如在Screen类中使用</p>
+<pre><code>using pos=int;</code></pre><p>的话，在外部就需要用</p>
+<pre><code>Screen::pos i;</code></pre><p>来声明变量</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/" class="post-title-link" itemprop="url">学习总结第十六天_开启全站HTTPS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-28 01:46:28" itemprop="dateCreated datePublished" datetime="2017-10-28T01:46:28+08:00">2017-10-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天学习的内容是给自己的网站开启全站HTTPS。如果你是在我的博客阅读这篇文章的话，可能已经注意到，我的博客已经开启了全站HTTPS。虽然只是多少了一个S，但是传输过程区别很大。</p>
+<blockquote>
+<p>为什么要切换到全站HTTPS？</p>
+</blockquote>
+<p>因为HTTP是一种明文传输协议，非常容易被截获和修改，为了避免第三方对我们访问网站造成的影响，所以目前国际上都在推广HTTPS，可见HTTPS取代HTTP将是未来的大势所趋。所以我也不例外，加入了这个安全化的浪潮。有的人可能会觉得，不重要的网站不用开启HTTPS，但是无论网站重要与否，当用户访问的时候被恶意修改为钓鱼网站都是我们不想见到的。况且现在升级HTTPS成本很低了，有的机构SSL证书可以直接免费领取，所以升级HTTPS才是正解。</p>
+<blockquote>
+<p>切换HTTPS的步骤</p>
+</blockquote>
+<p>首先申请一个SSL证书，这里既可以选择收费的也可以选择免费的，我推荐使用<a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s encrypt</a>的免费证书，这个证书可以到官网申请。</p>
+<p>将这个SSL证书部署到你的服务器上，由于我用的是云空间，直接填写证书和私钥就可以了。</p>
+<p>这时就可以通过https访问网站了，但是如果使用HTTP的话，还是能够进入网站，这时我们可以在服务器的Apache配置文件（.htaccess)下对HTTP访问设置301返回，就可以实现强制HTTPS,在文件后加入这几行:</p>
+<pre><code>RewriteBase /
+RewriteCond %{HTTP:KERSSL} !on
+RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre><p>做完这些工作,一般来说已经完成了,但是由于现在用的都是各种建站系统,里面的主题插件什么的难免用到外链HTTP资源.所以我们还需要将这些资源文件移动到自己的主机上.<br>开启浏览器的安全例外,然后在开发者控制台里的”网络”一栏对HTTP请求进行分析(记得禁用缓存),将其中的HTTP外链资源移到本地,再在相应的文件里面修改资源获取地址.就可以真正做到全站HTTPS啦!<br><img src="/attachment/img/https_analsis.png" alt="HTTP资源文件分析"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/27/archive/学习总结第十五天_github学生包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/27/archive/学习总结第十五天_github学生包/" class="post-title-link" itemprop="url">学习总结第十五天_github学生包</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-27 01:02:48" itemprop="dateCreated datePublished" datetime="2017-10-27T01:02:48+08:00">2017-10-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天虽然放假了，但是却没怎么看书，因为今天几乎都把时间花在了对github学生包的申请上了。<del>咸</del>由于这个过程着实踩了不少坑，就在今天的总结分享一下过程。</p>
+<blockquote>
+<p>Github学生包是什么？</p>
+</blockquote>
+<p><a href="https://education.github.com/pack" target="_blank" rel="noopener">Github学生包</a>是一个由github免费提供给学生的福利，里面包括了计算机专业可能用到的很多付费资源，通过认证后即可领取。</p>
+<blockquote>
+<p>怎么通过认证？</p>
+</blockquote>
+<p>Github提供了两种认证方式，一是edu邮箱认证，二是证件认证。作为天朝的学校，基本上是没有edu邮箱的，而即使有edu.cn的邮箱，通过率也很低。所以一般我们使用证件认证。打开github学生包页面，点击”Get your pack”按钮，然后下面会有提示让你进行登陆github账户和学生认证，只要上传你的学生证或者录取通知书就可以了。</p>
+<blockquote>
+<p>领取的学生包都有什么？</p>
+</blockquote>
+<ul>
+<li>Atom:这个本来就是一个开源的免费编辑器，写代码和markdown挺好用的。</li>
+<li>AWS educate:这个是亚马逊为学生提供的学生包，可以提供一个110刀的云服务器的额度。由于需要二次验证，所以我目前为止没有领取。</li>
+<li>Bitnami:这是一个一键部署云应用的平台</li>
+<li>CARTO:大数据可视化分析平台</li>
+<li>Crowdflower:一个通过人工智能机器学习等来完善数据，增强数据的平台</li>
+<li>Datadog:也是大数据相关</li>
+<li>DigitalOcean:这个是一个AWS类似的云主机平台，但是由于之前学生优惠被滥用，所以现在不仅将100刀的优惠降为了50刀，并且对于学生资格审查很严格，通过了github认证以后，还要进行paypal或者信用卡认证，甚至可能要求你发身份证自拍照(没错就是我)。</li>
+<li>Flatron school:一个Web开发的学习平台</li>
+<li>Github:就读期间可以在Github无限制的创建私人项目</li>
+<li>Hackhands:一个可以为你提供编程学习在线支持的网站</li>
+<li>Microsoft Imgine:原来叫做DreamSpark，是微软做的一个学生免费计划，其中最有用的就是Azure云服务的100刀额度，可惜在中国不支持</li>
+<li>Namecheap：这个可以领取一年的免费.me域名和ssl证书</li>
+<li>Sendgrid:一个邮件发送平台</li>
+<li>Sentry:在线调试平台</li>
+<li>Stripe:支付平台</li>
+<li>Taplytics:一个移动端A/B测试平台</li>
+<li>Thinkful:也是一个Web技术学习平台</li>
+<li>Transifex:也是一个Web技术学习平台</li>
+<li>Travis CI:一个软件项目的集成整合平台</li>
+<li>Unreal Engine:大名顶顶的虚幻引擎，可以用来学学游戏制作</li>
+</ul>
+<blockquote>
+<p>应该怎样使用？<br>以上的这些东西，累计价值可能已经达到了上千刀，但是作为学生，我们没有精力也没有必要去全部都使用，而是选择自己感兴趣的，需要的东西去学习。</p>
+</blockquote>
+<p>最后，且用且珍惜，不要在让这些资源再次因为滥用而减少了。�了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/25/archive/学习总结第十四天_再探浮点数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/25/archive/学习总结第十四天_再探浮点数/" class="post-title-link" itemprop="url">学习总结第十四天_再探浮点数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-25 20:38:36" itemprop="dateCreated datePublished" datetime="2017-10-25T20:38:36+08:00">2017-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天上导论和C语言课的时候，都对于浮点数有讲解，虽然之前已经大概了解浮点数的内容，但是今天对其进行了一些深入的探究，才发现浮点数并没有我想象中那么简单。</p>
+<p>浮点数，很多人都只是把他当成一个普通的小数看待，在我之前的理解中，就是用类似科学计数法的方法去表示一个数。今天在通过翻阅wiki，才了解到浮点数的一些定义和奇特的性质，在下面做一些概括：</p>
+<p>wikipedia是这样描述浮点数的：</p>
+<blockquote>
+<p>在计算机科学中，浮点（英语：floating point，缩写为FP）是一种对于实数的近似值数值表现法，由一个有效数字（即尾数）加上幂数来表示，通常是乘以某个基数的整数次指数得到。以这种表示法表示的数值，称为浮点数（floating-point number）。利用浮点进行运算，称为浮点计算，这种运算通常伴随着因为无法精确表示而进行的近似或舍入。位（bit）是衡量浮点数所需存储空间的单位，通常为32位或64位，分别被叫作单精度和双精度。有一些计算机提供更大的浮点数，一个浮点数a由两个数m和e来表示：a = m * b^e</p>
+</blockquote>
+<p>举个例子，1.2345这个数的十进制的浮点数表示方法就是12345*10^-4，这个时候我们称10是十进制浮点数的基底，我们要保存这个浮点数，只需要将12345和-4保存下来，就相当于保存了这个数。而二进制的浮点数与这个类似，只是将基底为10换为基底为2罢了。</p>
+<p>需要特别说明的是，浮点数并不能精确表达所有实数，所以浮点数往往并不能精确计算。比如，二进制的浮点数中就不能精确的保存0.1这个十进制数，0.1的平方既不是准确的0.01，也不是最接近0.01的可表达的数。单精度（24比特）浮点数表示0.1的结果为</p>
+<blockquote>
+<p>e=-4,m= 110011001100110011001101 (2)</p>
+</blockquote>
+<p>即</p>
+<blockquote>
+<p>0.100000001490116119384765625</p>
+</blockquote>
+<p>此数的平方是</p>
+<blockquote>
+<p>0.010000000298023226097399174250313080847263336181640625</p>
+</blockquote>
+<p>但最接近0.01的可表达的数是</p>
+<blockquote>
+<p>0.009999999776482582092285156250</p>
+</blockquote>
+<p>所以我们在对于精度有特殊要求的时候应当避开使用浮点数。BTW，浮点加法和乘法不匹配结合律和分配律。</p>
+<p>说到浮点数，就不得不提一下目前浮点数的标准IEEE 754，IEEE 754的全称叫做“电气电子工程师学会二进制浮点数算术标准”，在六七十年代，各家厂商使用的浮点数标准是不同的，所以当时的各厂商的计算机之间的兼容性很差。为了改善这个情况，IEEE（电气电子工程师学会（英语：Institute of Electrical and Electronics Engineers，简称为IEEE，是一个建立于1963年1月1日的国际性电子技术与电子工程师协会，亦是世界上最大的专业技术组织之一，制定了许多国际标准）这个组织的浮点数专业小组于七十年代末期开始酝酿浮点数的标准。在1980年，英特尔公司推出了单片的8087浮点数协处理器，其浮点数表示法及定义的运算具有足够的合理性、先进性，于是被IEEE采用作为浮点数的标准，于1985年发布。<br><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/General_floating_point_frac.svg" alt="浮点数的表示图"></p>
+<p>如果有兴趣的话，可以到<a href="https://zh.wikipedia.org/wiki/IEEE_754" target="_blank" rel="noopener">这里</a>详细了解IEEE 754的具体定义<del>，原谅我懒Orz</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/25/archive/学习总结第十三天_类的私有功能函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/25/archive/学习总结第十三天_类的私有功能函数/" class="post-title-link" itemprop="url">学习总结第十三天_类的私有功能函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-25 16:11:28" itemprop="dateCreated datePublished" datetime="2017-10-25T16:11:28+08:00">2017-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天继续对C++类进行了学习，对于类的功能函数有了新的认识</p>
+<p>一般来说，类的功能函数应该声明为公共的，但是有时候不同，比如在这种情况</p>
+<pre><code>public:
+Screen&amp; display count (std::ostream &amp;os)
+{
+  //Some code
+  return *this;
+}</code></pre><p>这是一个类内的函数，其作用是输出类中的信息到指定的输出流中。这个函数实际对于类的成员变量并没有修改，所以我们一般会将其声明中加入count来保护，但是由于加入了count后，this是一个常量引用，所以无法正确返回，必须修改成这样。</p>
+<pre><code>public:
+count Screen&amp; display count (std::ostream &amp;os)
+{
+  //Some code
+  return *this;
+}</code></pre><p>但是，这样的话由于返回的对象是一个count，就无法再进行其他写入操作了，比如这样：</p>
+<pre><code>myscr.display(os).write(&apos; &apos;);</code></pre><p>我们如果又不想放弃count的保护特性的话，便可以这样处理:</p>
+<pre><code>public:
+Screen&amp; display(std::ostream &amp;os)
+{
+  do_display(os);
+  return *this;
+}
+const Screen &amp;display (std::ostream &amp;os) const
+{
+  do_display(os);
+  return *this;
+}
+private:
+void do_display (std::ostream &amp;os) const
+{
+    //Some code
+}</code></pre><p>这样做，可以在public中对display这个函数进行重载以适应不同的调用情况，同时，用一个私有成员函数进行进行代码复用，这样就可以避开将来修改时可能引入的许多bug。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/23/archive/学习总结第十二天_观《浪潮之巅》——风险投资/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/23/archive/学习总结第十二天_观《浪潮之巅》——风险投资/" class="post-title-link" itemprop="url">学习总结第十二天_观《浪潮之巅》——风险投资</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-23 21:44:22" itemprop="dateCreated datePublished" datetime="2017-10-23T21:44:22+08:00">2017-10-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天的课和作业比较多，没有进行额外技术方面的学习。但在零碎时间里用kindle看了《浪潮之巅》的“幕后的英雄——风险投资”这一章，对目前的IT的风投创业过程有了一定的了解，整体大致如下：</p>
+<blockquote>
+<p>风险投资是一种新型的投资方式，既不需要抵押，也不需要偿还，如果成功，风投资本家可以获得几倍、几十倍甚至上百倍的回报，如果不成功，钱也就打水漂了。</p>
+</blockquote>
+<ol>
+<li>创业者有一个好点子，认为这种技术很有前景，于是及时申请专利（关键，涉及知识产权）</li>
+<li>继续对这项技术对于原有技术的提高的数量级进行模拟测试（关键，将决定技术是革新性的还是革命性的）</li>
+<li>模拟将来可能的应用情景，补充相应的专利</li>
+<li>自己或者让合伙人一起制定一个商业计划描述商业情景（关键）</li>
+<li>找到对自己项目中意的天使投资人，让其对自己进行天使投资（PS：天使投资人，就是专门针对初创公司，进行项目评估并投资的一群人，这轮投资叫做天使轮）</li>
+<li>进行股权分配，继续运营，直到形成一定规模，需要更多资金注入时，找到风险投资公司，进行第N轮的投资，最终选择合适的时机上市</li>
+</ol>
+<p>（由于进行了多轮投资，此时创始人手中的股权已经被稀释得差不多了，一般来讲，一个创始人在公司上市时还拥有10%的股份就很不错了）</p>
+<p>这还只是非常简化的版本，实际创立一个公司要比上面的步骤复杂的多，可见创立一个公司，看起来容易，其实要做好的话，并不是拥有技术就能成功的。而一般来说，创始人到最后基本上已经不能控制公司了。创业水深，进入之前一定要做好十足的功课啊！前一定要做好十足的功课啊！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/22/archive/学习总结第十一天_C++ 类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/22/archive/学习总结第十一天_C++ 类/" class="post-title-link" itemprop="url">学习总结第十一天_C++ 类</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-22 22:03:56" itemprop="dateCreated datePublished" datetime="2017-10-22T22:03:56+08:00">2017-10-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天对C++的类的基础创建操作进行了学习，但今天让我印象最深刻的还是class与struct的区分</p>
+<p>学过C语言的人对于struct都应该印象深刻，如果没有接触C++的话可能会以为类只能用class来声明，但其实不然。<br>在C++中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。</p>
+<p>而struct和class的不同之处就在于struct成员的默认访问权限不同，struct是public，而class是private。换句话来说，下面两种形式的代码是等价的：</p>
+<pre><code>class cla
+{
+  //Nothing
+  private:
+  //Some code
+  public:
+  //Some code
+}</code></pre><p>和</p>
+<pre><code>struct cla
+{
+  //Nothing
+  private:
+  //Some code
+  public:
+  //Some code
+}</code></pre><p>由于class和struct的本质区别只有默认访问权限，所以如果我们自己再次进行定义访问权限的话，就不受到默认的影响了。所以，一般来说，用哪个都可以，但是为了代码的可读性，在定义的东西更接近于类的时候就用class，而接近于一个数据结构的话就用struct。话就用struct。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/22/archive/学习总结第十天_git的学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/22/archive/学习总结第十天_git的学习/" class="post-title-link" itemprop="url">学习总结第十天_git的学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-22 12:52:18" itemprop="dateCreated datePublished" datetime="2017-10-22T12:52:18+08:00">2017-10-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用github的人都知道git这个版本控制软件，我也不例外，但之前一直处于一个“够用就好”的状态，命令只认识clone add commit和push，今天对git的分支和回滚方面进行了进一步的了解</p>
+<p>git的详细指令可以</p>
+<pre><code>man git</code></pre><p>git的分支是用来标记特定的代码提交，每一个分支通过SHA1sum值来标识，所以对分支进行的操作是轻量级的，所改变的仅仅是SHA1sum值。分支可以合并，但合并后仍然可以在原来的几个分支上进行开发。</p>
+<p>今天还学到的是，最好不要用git pull，而是用git fetch和git merge代替之，因为git pull的问题是它把过程的细节都隐藏了起来，以至于你不用去了解git中各种类型分支的区别和使用方法。当然，多数时候这是没问题的，但一旦代码有问题，你很难找到出错的地方。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="KosWu"
+    src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">KosWu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KosWu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      element.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+
+    </div>
+</body>
+</html>
