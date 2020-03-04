@@ -60,7 +60,7 @@
 <meta property="og:site_name" content="KosWu &#39;s blog">
 <meta property="og:description" content="今天在C语言中实现了一个基于链表的栈，由于链表不需要像动态数组那样拷贝值，理论上来说在经常插入和删除较多数据时，其性能应该优于动态数组。但是在我的实际操作中发现，用链表实现的栈要比动态数组的实现低效很多。 经过一番查找后发现，链表拖慢的原因是频繁的malloc和free的开销太大，所以在实际使用中，很少有这样直接对链表的使用，而是采用内存池的策略。所谓内存池的策略，就是自己一次分配一块大内存空间，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-04T03:05:54.860Z">
+<meta property="og:updated_time" content="2020-03-04T03:50:02.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第二十三天——链表与动态数组的性能探讨">
 <meta name="twitter:description" content="今天在C语言中实现了一个基于链表的栈，由于链表不需要像动态数组那样拷贝值，理论上来说在经常插入和删除较多数据时，其性能应该优于动态数组。但是在我的实际操作中发现，用链表实现的栈要比动态数组的实现低效很多。 经过一番查找后发现，链表拖慢的原因是频繁的malloc和free的开销太大，所以在实际使用中，很少有这样直接对链表的使用，而是采用内存池的策略。所谓内存池的策略，就是自己一次分配一块大内存空间，">
@@ -234,7 +234,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-04 11:05:54" itemprop="dateModified" datetime="2020-03-04T11:05:54+08:00">2020-03-04</time>
+                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
               </span>
 
           
@@ -345,7 +345,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -357,7 +357,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

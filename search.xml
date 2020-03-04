@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>老文章迁移</title>
+      <link href="/2020/03/04/archivefix/"/>
+      <url>/2020/03/04/archivefix/</url>
+      
+        <content type="html"><![CDATA[<p>迁移到Github Page后，一直没有把之前文章的存档迁移到现在的平台。今天尝试写了一个python脚本批量转换了一下,遇到了一些问题，在此记录一下</p><a id="more"></a><p>首先由于之前是突然被删库的，很多文章都没来得及保存，这个找不回来了(sigh)。</p><p>然后是很多文章都没有保存时间，但是由于我保存的是独立文件的MarkDown档案，只需要使用python获取每个文件的创建时间就好了，然后hexo的标题机制也和之前的完全不一样，导致只能用一些手段把文章开头的MarkDown大标题去掉，直接找到第一组‘=’、‘-’这种特殊符号段删掉就好了，但是一开始对于一些没有标题的文章也会误伤，非常Hack。。。。</p><p>最后就是文章图片缺失标签缺失，分割缺失，这个就不是能够自动化解决的问题了，坑得一点点手动补上。</p><p>最后附上迁移的代码，以作备忘</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(<span class="string">'./'</span>):</span><br><span class="line">        title, extension = os.path.splitext(filename)</span><br><span class="line">        <span class="keyword">if</span> extension <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">'.md'</span>, <span class="string">'.MD'</span>]:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        mtime = os.path.getmtime(filename)</span><br><span class="line">        datestr = time.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>, time.localtime(mtime))</span><br><span class="line">        print(datestr)</span><br><span class="line">        <span class="keyword">with</span> open(filename, <span class="string">'r+'</span>) <span class="keyword">as</span> fd:</span><br><span class="line">            cont = fd.read()</span><br><span class="line">            fd.seek(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">            cont = cont.split(<span class="string">'==='</span>, <span class="number">1</span>)[<span class="number">-1</span>]</span><br><span class="line">            cont = cont.strip(<span class="string">'='</span>)</span><br><span class="line">            temp = cont.split(<span class="string">'---'</span>, <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> len(temp) &gt; <span class="number">1</span> <span class="keyword">and</span> len(temp[<span class="number">0</span>]) &lt; <span class="number">50</span>:</span><br><span class="line">                cont = temp[<span class="number">-1</span>]</span><br><span class="line">            cont = cont.strip(<span class="string">'-'</span>)</span><br><span class="line">            cont = cont.strip()</span><br><span class="line">            cont = <span class="string">"---\ntitle: %s\ndate: %s\n---\n"</span>%(title, datestr) + cont</span><br><span class="line">            fd.write(cont)</span><br><span class="line">    </span><br><span class="line">main()</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 管理 </tag>
+            
+            <tag> 迁移 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2019 ICPC南京站总结</title>
       <link href="/2019/10/27/icpc2019-nanjing/"/>
       <url>/2019/10/27/icpc2019-nanjing/</url>
