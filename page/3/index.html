@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -116,12 +116,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -196,6 +196,111 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/" class="post-title-link" itemprop="url">学习总结第三十一天——快速排序与union-find算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-12-07 17:53:08" itemprop="dateCreated datePublished" datetime="2017-12-07T17:53:08+08:00">2017-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>快速排序，听起来很高大上，其实快速排序并不总是能够实现最快的排序。但在大多数情况下，快速排序是一个优秀的排序算法，可以实现O(nlgn)（线性对数级别）的时间复杂度。</p>
+<p>快速排序的中心思想，也是分治法，其内容为：在这组数据中选取一个基准，将一组数据中大于这个基准的数作为一组，其余为另一组，再分别对两组数据进行排序。最后就可以得到已排序的数组。<br>快速排序在开始时，与归并排序一样需要许多额外的空间来分别存放大于基准的数和小于基准的数。后来人们提出了一个改进方法，将其可以成为一个原地算法，于是其优势便得以展现出来了，下面是一个原始版本的快速排序：<br>    #include <iostream><br><br>    using namespace std;<br><br>    template <typename t> void quick_sort(T *datas, int size)<br>    {<br>      if (size &lt; 2)<br>      {<br>        return;<br>      }<br>      T before[size], after[size], mid;//这里创建了两个数组<br>      int before_index = 0, after_index = 0, index = 0;<br>      mid = datas[index++];<br>      while (index&lt;size) {<br>        if (mid&gt;datas[index])<br>        {<br>          before[before_index++] = datas[index++];<br>        }<br>        else<br>        {<br>          after[after_index++] = datas[index++];<br>        }<br>      }<br>      quick_sort(before, before_index);<br>      quick_sort(after, after_index);<br>      index = 0;<br>      //int i = 0;<br>      for (int i = 0;i&lt;before_index;i++)<br>      {<br>        datas[index++] = before[i];<br>      }<br>      datas[index++] = mid;<br>      for (int i = 0;i&lt;after_index;i++)<br>      {<br>        datas[index++] = after[i];<br>      }<br>      return;<br>    }<br><br>    int main(int argc, char const *argv[]) {<br>      int a[]={234,234,61,12,5,31,6,3,2354,1,1243,63};<br>      quick_sort(a, sizeof(a)/sizeof(int));<br>      for (auto i:a)<br>      {<br>        std::cout &lt;&lt; i &lt;&lt; ‘ ‘;<br>      }<br>      std::cout &lt;&lt; std::endl;<br>      return 0;<br>    }</typename></iostream></p>
+<p>可以看到这个版本使用了两个数组，导致这个算法要求的空间复杂度很高，于是就有了下面这种原地版本的改进：</p>
+<pre><code>template &lt;typename T&gt;void swap(T &amp;a, T&amp;b)
+{
+  T temp = a;
+  a = b;
+  b = temp;
+}
+
+template &lt;typename T&gt; void quick_sort_inplace(T *datas, int size)
+{
+  if (size &lt; 2)
+  {
+    return;
+  }
+  int before_index = 0;
+  int mid = datas[size-1];
+  for (int i = 0;i&lt;size-1;i++)
+  {
+    if (datas[i] &gt; mid)
+    {
+      swap(datas[before_index++], datas[i]);
+    }
+  }
+  swap(datas[before_index], datas[size-1]);
+  quick_sort_inplace(datas, before_index);
+  quick_sort_inplace(datas+before_index+1, size-before_index-1);
+  return;
+}
+
+int main(int argc, char const *argv[]) {
+  int a[]={234,234,61,12,5,31,6,3,2354,1,1243,63};
+  quick_sort_inplace(a, sizeof(a)/sizeof(int));
+  for (auto i:a)
+  {
+    std::cout &lt;&lt; i &lt;&lt; &apos; &apos;;
+  }
+  std::cout &lt;&lt; std::endl;
+  return 0;
+}</code></pre><p>其不同之处就是，并不是使用创建两个新数组的方式来记录比基准大与比基准小的数值，而是选择最后一个数作为基准，然后将较大的值用交换的方法放在数组的前面，并用一个整型变量来记录这个值的大小。下图为一个原地版快速排序的图解：<br><img src="/attachment/img/Partition_example.svg" alt="快速排序"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -1442,84 +1547,6 @@ int StackMaxSize(stack *sta)
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/11/08/archive/学习总结第二十一天——互质的判断/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="KosWu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KosWu 's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/08/archive/学习总结第二十一天——互质的判断/" class="post-title-link" itemprop="url">学习总结第二十一天——互质的判断</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-08 12:24:26" itemprop="dateCreated datePublished" datetime="2017-11-08T12:24:26+08:00">2017-11-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天解决的算法题目是对于两个数互质的判断，原本我认为这个方法应该不难，但是真正实现起来还是思考良久。问题的关键还是之前我没有考虑其中一个数会等于零，所以导致了一直都不对。最后还是用一个类似欧几里得的递归方法解决了这个问题，C代码如下</p>
-<pre><code>bool isPrime (int p,int q)
-{
-  if (p==0)
-    return q==1?true:false;
-  if (q==0)
-    return p==1?true:false;
-  if (p==q)
-    return true;
-  if (p&gt;q)
-    return isPrime(p%q,q);
-  else
-  return isPrime(p,q%p);
-}</code></pre><p>明天学习背包，队列和栈，打算学写一个能够直接读取式子的计算器。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1570,7 +1597,7 @@ int StackMaxSize(stack *sta)
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1582,7 +1609,7 @@ int StackMaxSize(stack *sta)
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1742,6 +1769,6 @@ window.addEventListener('pjax:success', () => {
   
 
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
