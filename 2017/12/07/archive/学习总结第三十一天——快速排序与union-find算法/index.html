@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,69 +15,37 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-  <meta name="description" content="快速排序，听起来很高大上，其实快速排序并不总是能够实现最快的排序。但在大多数情况下，快速排序是一个优秀的排序算法，可以实现O(nlgn)（线性对数级别）的时间复杂度。 快速排序的中心思想，也是分治法，其内容为：在这组数据中选取一个基准，将一组数据中大于这个基准的数作为一组，其余为另一组，再分别对两组数据进行排序。最后就可以得到已排序的数组。快速排序在开始时，与归并排序一样需要许多额外的空间来分别存">
+  <meta name="description" content="快速排序，听起来很高大上，其实快速排序并不总是能够实现最快的排序。但在大多数情况下，快速排序是一个优秀的排序算法，可以实现O(nlgn)（线性对数级别）的时间复杂度。 快速排序的中心思想，也是分治法，其内容为：在这组数据中选取一个基准，将一组数据中大于这个基准的数作为一组，其余为另一组，再分别对两组数据进行排序。最后就可以得到已排序的数组。 快速排序在开始时，与归并排序一样需要许多额外的空间来分别">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第三十一天——快速排序与union-find算法">
-<meta property="og:url" content="http://koswu.github.io/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/index.html">
+<meta property="og:url" content="https://koswu.github.io/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="快速排序，听起来很高大上，其实快速排序并不总是能够实现最快的排序。但在大多数情况下，快速排序是一个优秀的排序算法，可以实现O(nlgn)（线性对数级别）的时间复杂度。 快速排序的中心思想，也是分治法，其内容为：在这组数据中选取一个基准，将一组数据中大于这个基准的数作为一组，其余为另一组，再分别对两组数据进行排序。最后就可以得到已排序的数组。快速排序在开始时，与归并排序一样需要许多额外的空间来分别存">
+<meta property="og:description" content="快速排序，听起来很高大上，其实快速排序并不总是能够实现最快的排序。但在大多数情况下，快速排序是一个优秀的排序算法，可以实现O(nlgn)（线性对数级别）的时间复杂度。 快速排序的中心思想，也是分治法，其内容为：在这组数据中选取一个基准，将一组数据中大于这个基准的数作为一组，其余为另一组，再分别对两组数据进行排序。最后就可以得到已排序的数组。 快速排序在开始时，与归并排序一样需要许多额外的空间来分别">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://koswu.github.io/attachment/img/Partition_example.svg">
+<meta property="og:image" content="https://koswu.github.io/attachment/img/Partition_example.svg">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第三十一天——快速排序与union-find算法">
-<meta name="twitter:description" content="快速排序，听起来很高大上，其实快速排序并不总是能够实现最快的排序。但在大多数情况下，快速排序是一个优秀的排序算法，可以实现O(nlgn)（线性对数级别）的时间复杂度。 快速排序的中心思想，也是分治法，其内容为：在这组数据中选取一个基准，将一组数据中大于这个基准的数作为一组，其余为另一组，再分别对两组数据进行排序。最后就可以得到已排序的数组。快速排序在开始时，与归并排序一样需要许多额外的空间来分别存">
-<meta name="twitter:image" content="http://koswu.github.io/attachment/img/Partition_example.svg">
+<meta name="twitter:description" content="快速排序，听起来很高大上，其实快速排序并不总是能够实现最快的排序。但在大多数情况下，快速排序是一个优秀的排序算法，可以实现O(nlgn)（线性对数级别）的时间复杂度。 快速排序的中心思想，也是分治法，其内容为：在这组数据中选取一个基准，将一组数据中大于这个基准的数作为一组，其余为另一组，再分别对两组数据进行排序。最后就可以得到已排序的数组。 快速排序在开始时，与归并排序一样需要许多额外的空间来分别">
+<meta name="twitter:image" content="https://koswu.github.io/attachment/img/Partition_example.svg">
 
-<link rel="canonical" href="http://koswu.github.io/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/">
+<link rel="canonical" href="https://koswu.github.io/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -85,16 +53,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -122,16 +87,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -145,11 +118,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -206,10 +176,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -251,7 +221,54 @@
 
       
         <p>快速排序，听起来很高大上，其实快速排序并不总是能够实现最快的排序。但在大多数情况下，快速排序是一个优秀的排序算法，可以实现O(nlgn)（线性对数级别）的时间复杂度。</p>
-<p>快速排序的中心思想，也是分治法，其内容为：在这组数据中选取一个基准，将一组数据中大于这个基准的数作为一组，其余为另一组，再分别对两组数据进行排序。最后就可以得到已排序的数组。<br>快速排序在开始时，与归并排序一样需要许多额外的空间来分别存放大于基准的数和小于基准的数。后来人们提出了一个改进方法，将其可以成为一个原地算法，于是其优势便得以展现出来了，下面是一个原始版本的快速排序：<br>    #include <iostream><br><br>    using namespace std;<br><br>    template <typename t> void quick_sort(T *datas, int size)<br>    {<br>      if (size &lt; 2)<br>      {<br>        return;<br>      }<br>      T before[size], after[size], mid;//这里创建了两个数组<br>      int before_index = 0, after_index = 0, index = 0;<br>      mid = datas[index++];<br>      while (index&lt;size) {<br>        if (mid&gt;datas[index])<br>        {<br>          before[before_index++] = datas[index++];<br>        }<br>        else<br>        {<br>          after[after_index++] = datas[index++];<br>        }<br>      }<br>      quick_sort(before, before_index);<br>      quick_sort(after, after_index);<br>      index = 0;<br>      //int i = 0;<br>      for (int i = 0;i&lt;before_index;i++)<br>      {<br>        datas[index++] = before[i];<br>      }<br>      datas[index++] = mid;<br>      for (int i = 0;i&lt;after_index;i++)<br>      {<br>        datas[index++] = after[i];<br>      }<br>      return;<br>    }<br><br>    int main(int argc, char const *argv[]) {<br>      int a[]={234,234,61,12,5,31,6,3,2354,1,1243,63};<br>      quick_sort(a, sizeof(a)/sizeof(int));<br>      for (auto i:a)<br>      {<br>        std::cout &lt;&lt; i &lt;&lt; ‘ ‘;<br>      }<br>      std::cout &lt;&lt; std::endl;<br>      return 0;<br>    }</typename></iostream></p>
+<p>快速排序的中心思想，也是分治法，其内容为：在这组数据中选取一个基准，将一组数据中大于这个基准的数作为一组，其余为另一组，再分别对两组数据进行排序。最后就可以得到已排序的数组。 快速排序在开始时，与归并排序一样需要许多额外的空间来分别存放大于基准的数和小于基准的数。后来人们提出了一个改进方法，将其可以成为一个原地算法，于是其优势便得以展现出来了，下面是一个原始版本的快速排序： #include <iostream></iostream></p>
+<pre><code>using namespace std;
+
+template &lt;typename T&gt; void quick_sort(T *datas, int size)
+{
+  if (size &lt; 2)
+  {
+    return;
+  }
+  T before[size], after[size], mid;//这里创建了两个数组
+  int before_index = 0, after_index = 0, index = 0;
+  mid = datas[index++];
+  while (index&lt;size) {
+    if (mid&gt;datas[index])
+    {
+      before[before_index++] = datas[index++];
+    }
+    else
+    {
+      after[after_index++] = datas[index++];
+    }
+  }
+  quick_sort(before, before_index);
+  quick_sort(after, after_index);
+  index = 0;
+  //int i = 0;
+  for (int i = 0;i&lt;before_index;i++)
+  {
+    datas[index++] = before[i];
+  }
+  datas[index++] = mid;
+  for (int i = 0;i&lt;after_index;i++)
+  {
+    datas[index++] = after[i];
+  }
+  return;
+}
+
+int main(int argc, char const *argv[]) {
+  int a[]={234,234,61,12,5,31,6,3,2354,1,1243,63};
+  quick_sort(a, sizeof(a)/sizeof(int));
+  for (auto i:a)
+  {
+    std::cout &lt;&lt; i &lt;&lt; &#39; &#39;;
+  }
+  std::cout &lt;&lt; std::endl;
+  return 0;
+}</code></pre>
 <p>可以看到这个版本使用了两个数组，导致这个算法要求的空间复杂度很高，于是就有了下面这种原地版本的改进：</p>
 <pre><code>template &lt;typename T&gt;void swap(T &amp;a, T&amp;b)
 {
@@ -286,11 +303,12 @@ int main(int argc, char const *argv[]) {
   quick_sort_inplace(a, sizeof(a)/sizeof(int));
   for (auto i:a)
   {
-    std::cout &lt;&lt; i &lt;&lt; &apos; &apos;;
+    std::cout &lt;&lt; i &lt;&lt; &#39; &#39;;
   }
   std::cout &lt;&lt; std::endl;
   return 0;
-}</code></pre><p>其不同之处就是，并不是使用创建两个新数组的方式来记录比基准大与比基准小的数值，而是选择最后一个数作为基准，然后将较大的值用交换的方法放在数组的前面，并用一个整型变量来记录这个值的大小。下图为一个原地版快速排序的图解：<br><img src="/attachment/img/Partition_example.svg" alt="快速排序"></p>
+}</code></pre>
+<p>其不同之处就是，并不是使用创建两个新数组的方式来记录比基准大与比基准小的数值，而是选择最后一个数作为基准，然后将较大的值用交换的方法放在数组的前面，并用一个整型变量来记录这个值的大小。下图为一个原地版快速排序的图解： <img src="/attachment/img/Partition_example.svg" alt="快速排序"></p>
 
     </div>
 
@@ -306,7 +324,7 @@ int main(int argc, char const *argv[]) {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/" title="学习总结第三十一天——快速排序与union-find算法">http://koswu.github.io/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/</a>
+    <a href="https://koswu.github.io/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/" title="学习总结第三十一天——快速排序与union-find算法">https://koswu.github.io/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -319,21 +337,18 @@ int main(int argc, char const *argv[]) {
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2017/11/30/archive/学习总结第三十天——归并排序与随机背包/" rel="next" title="学习总结第三十天——归并排序与随机背包">
-                  <i class="fa fa-chevron-left"></i> 学习总结第三十天——归并排序与随机背包
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/" rel="prev" title="学习总结第三十二天——从树结构到堆排序">
-                  学习总结第三十二天——从树结构到堆排序 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/11/30/archive/学习总结第三十天——归并排序与随机背包/" rel="prev" title="学习总结第三十天——归并排序与随机背包">
+      <i class="fa fa-chevron-left"></i> 学习总结第三十天——归并排序与随机背包
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/" rel="next" title="学习总结第三十二天——从树结构到堆排序">
+      学习总结第三十二天——从树结构到堆排序 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -347,6 +362,28 @@ int main(int argc, char const *argv[]) {
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -376,8 +413,6 @@ int main(int argc, char const *argv[]) {
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -405,7 +440,7 @@ int main(int argc, char const *argv[]) {
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -452,18 +487,13 @@ int main(int argc, char const *argv[]) {
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -507,7 +537,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -519,6 +549,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -545,36 +576,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: '19334352507fbd796e2ee6dbb0d3a424',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : '001cc6147705fbba27e2e2b07790469e',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

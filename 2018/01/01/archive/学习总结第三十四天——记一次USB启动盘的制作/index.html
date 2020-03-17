@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,67 +15,35 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-  <meta name="description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。  初拟需求当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系 Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的电脑装">
+  <meta name="description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。  初拟需求 当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系  Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的电">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第三十四天——记一次USB启动盘的制作">
-<meta property="og:url" content="http://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/index.html">
+<meta property="og:url" content="https://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。  初拟需求当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系 Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的电脑装">
+<meta property="og:description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。  初拟需求 当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系  Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的电">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第三十四天——记一次USB启动盘的制作">
-<meta name="twitter:description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。  初拟需求当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系 Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的电脑装">
+<meta name="twitter:description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。  初拟需求 当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系  Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的电">
 
-<link rel="canonical" href="http://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/">
+<link rel="canonical" href="https://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -83,16 +51,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -120,16 +85,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -143,11 +116,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -204,10 +174,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -250,45 +220,34 @@
       
         <p>由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。</p>
 <hr>
-<h2 id="初拟需求"><a href="#初拟需求" class="headerlink" title="初拟需求"></a>初拟需求</h2><p>当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统</p>
+<h2 id="初拟需求">初拟需求</h2>
+<p>当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统</p>
 <ul>
-<li>Win系<ul>
+<li>Win系
+<ul>
 <li>Windows XP (给各种可能遇到的老的电脑装机)</li>
 <li>Win 7 x64(给可能遇到兼容性问题的电脑装机)</li>
 <li>Win 10 x64(新电脑装机)</li>
-</ul>
-</li>
-<li>Linux系<ul>
+</ul></li>
+<li>Linux系
+<ul>
 <li>Arch Linux (即将给我的电脑换上的系统)</li>
 <li>CentOS (学习服务器运维可能会装到)</li>
 <li>Ubuntu (Linux新手必备)</li>
 <li>Kali Linux (安全工具可能用到，最好直接是Live CD)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先排除目前市面上常见的各种XX装机盘制作工具，这种工具制作出来的质量不说，里面有没有挂恶意程序也是未知的，所以一切最好采用开源工具和官方原版镜像制作。初拟采用grub2装入u盘做引导，然后提供选项进行选择进入。利用grub2的iso载入能力，将不同的镜像放到iso/目录里面。</p>
-<h2 id="操作与重改需求"><a href="#操作与重改需求" class="headerlink" title="操作与重改需求"></a>操作与重改需求</h2><p>操作过程中，发现grub对于win系没法直接载入iso，因为实质上grub是将kernel内核读入内存以后，再对内核传递参数告诉后面应该从iso去读。但是win毕竟不是linux，目前网上的解决方案里面要么只能支持老版本的winNT，要么需要将整个iso先读入内存，这对小内存机器极不友好。同时，Debian对于读入iso引导的方式支持性也很差。并且Cent OS完整版占用太大，对于兼容性好的FAT32放不下。</p>
-<p>解决方案：因为不常用去掉CentOS和Debian系的Kali，win可以采用分区+合盘的方案，将U盘借助工具分区为主分区(FAT32)和win分区(NTFS)，将win镜像解压到win分区里，并且将几个win的wim文件参照网上的教程合并为一个esd文件。xp的安装方式也和win7以后不一样，所以排除。<br>这时还剩下的系统有：</p>
-<ul>
-<li>Win系<ul>
-<li><del>Windows XP</del></li>
-<li>Win 7 x64</li>
-<li>Win 10 x64</li>
-</ul>
-</li>
-<li>Linux系<ul>
-<li>Arch Linux</li>
-<li><del>CentOS</del></li>
-<li>Ubuntu</li>
-<li><del>Kali Linux</del></li>
-</ul>
-</li>
-</ul>
-<p>实际制作：<br>  首先将U盘分区，然后将grub安装到u盘上</p>
+<h2 id="思路">思路</h2>
+<p>首先排除目前市面上常见的各种XX装机盘制作工具，这种工具制作出来的质量不说，里面有没有挂恶意程序也是未知的，所以一切最好采用开源工具和官方原版镜像制作。初拟采用grub2装入u盘做引导，然后提供选项进行选择进入。利用grub2的iso载入能力，将不同的镜像放到iso/目录里面。</p>
+<h2 id="操作与重改需求">操作与重改需求</h2>
+<p>操作过程中，发现grub对于win系没法直接载入iso，因为实质上grub是将kernel内核读入内存以后，再对内核传递参数告诉后面应该从iso去读。但是win毕竟不是linux，目前网上的解决方案里面要么只能支持老版本的winNT，要么需要将整个iso先读入内存，这对小内存机器极不友好。同时，Debian对于读入iso引导的方式支持性也很差。并且Cent OS完整版占用太大，对于兼容性好的FAT32放不下。</p>
+<p>解决方案：因为不常用去掉CentOS和Debian系的Kali，win可以采用分区+合盘的方案，将U盘借助工具分区为主分区(FAT32)和win分区(NTFS)，将win镜像解压到win分区里，并且将几个win的wim文件参照网上的教程合并为一个esd文件。xp的安装方式也和win7以后不一样，所以排除。 这时还剩下的系统有： * Win系 * <del>Windows XP</del> * Win 7 x64 * Win 10 x64 * Linux系 * Arch Linux * <del>CentOS</del> * Ubuntu * <del>Kali Linux</del></p>
+<p>实际制作： 首先将U盘分区，然后将grub安装到u盘上</p>
 <pre><code>sudo mkdir /mnt/usb
 sudo mount /dev/sdY /mnt/usb #挂载U盘
 sudo grub-install --target=i386-pc --boot-directory=/mnt/usb/boot --recheck /dev/sdY #安装BIOS支持
-sudo grub-insatall --target=x86_64-efi --efi-directory=/mnt/usb --boot-directory=/mnt/usb/boot #安装UEFI支持</code></pre><p>然后是grub.cfg配置文件</p>
+sudo grub-insatall --target=x86_64-efi --efi-directory=/mnt/usb --boot-directory=/mnt/usb/boot #安装UEFI支持</code></pre>
+<p>然后是grub.cfg配置文件</p>
 <pre><code>#加载模块
 insmod cat
 insmod gzio
@@ -299,7 +258,7 @@ insmod fat
 insmod part_msdos
 insmod loopback
 insmod iso9660
-if [ ${grub_platform} == &apos;efi&apos; ]
+if [ ${grub_platform} == &#39;efi&#39; ]
 then
 insmod efi_gop
 insmod efi_uga
@@ -327,7 +286,7 @@ set locale_dir=${prefix}/locale
 set lang=zh_CN
 
 #设置背景图片
-set root=&apos;hd0,1&apos;
+set root=&#39;hd0,1&#39;
 insmod jpeg
 background_image /boot/grub/images/anime1.jpg
 #设置未选中项颜色
@@ -343,14 +302,14 @@ search --set -f /iso
 
 menuentry &quot;安装WINDOWS&quot; {
 search --set -f /bootmgr#搜索根目录下有bootmgr的磁盘设定为root分区
-if [ ${grub_platform} == &apos;efi&apos; ]#efi采用链式引导
+if [ ${grub_platform} == &#39;efi&#39; ]#efi采用链式引导
 then
 insmod chain
-#echo &quot;it&apos;s efi&quot;
+#echo &quot;it&#39;s efi&quot;
 chainloader /efi/boot/bootx64.efi
 else#传统BIOS采用ntldr引导
 insmod ntldr
-#echo &quot;it&apos;s not efi&quot;
+#echo &quot;it&#39;s not efi&quot;
 ntldr /bootmgr
 fi
 }
@@ -378,7 +337,8 @@ reboot
 menuentry &quot;关机&quot;{
   echo &quot;Shuting down....&quot;
   halt
-}</code></pre><p>再将相关的iso放在主分区的/iso文件夹中，并将windows合盘后的镜像写入次分区。<br>制作大成功！</p>
+}</code></pre>
+<p>再将相关的iso放在主分区的/iso文件夹中，并将windows合盘后的镜像写入次分区。 制作大成功！</p>
 
     </div>
 
@@ -394,7 +354,7 @@ menuentry &quot;关机&quot;{
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/" title="学习总结第三十四天——记一次USB启动盘的制作">http://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/</a>
+    <a href="https://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/" title="学习总结第三十四天——记一次USB启动盘的制作">https://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -407,21 +367,18 @@ menuentry &quot;关机&quot;{
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2017/12/24/archive/学习总结第三十三天——二进制的表示/" rel="next" title="学习总结第三十三天——二进制的表示">
-                  <i class="fa fa-chevron-left"></i> 学习总结第三十三天——二进制的表示
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2018/01/07/archive/学习总结第三十五天——arch Linux安装/" rel="prev" title="学习总结第三十五天——arch Linux安装">
-                  学习总结第三十五天——arch Linux安装 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/12/24/archive/学习总结第三十三天——二进制的表示/" rel="prev" title="学习总结第三十三天——二进制的表示">
+      <i class="fa fa-chevron-left"></i> 学习总结第三十三天——二进制的表示
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/01/07/archive/学习总结第三十五天——arch Linux安装/" rel="next" title="学习总结第三十五天——arch Linux安装">
+      学习总结第三十五天——arch Linux安装 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -435,6 +392,28 @@ menuentry &quot;关机&quot;{
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -465,8 +444,6 @@ menuentry &quot;关机&quot;{
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -494,7 +471,7 @@ menuentry &quot;关机&quot;{
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -541,18 +518,13 @@ menuentry &quot;关机&quot;{
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -596,7 +568,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -608,6 +580,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -634,36 +607,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: 'ef1f94113bb0ef88b105e5f52d81c851',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : 'f512ace7fd75146526147d7e980c6acd',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,48 +15,18 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="想入坑Arch好久了，但是有很多次都因为在解决引导的时候就卡了，最后一直没能装上。经过上次制作启动盘的经验，对于grub有了更多的了解。这次再次尝试安装，虽然经历了一些挫折，但还是成功了。下面是具体的安装过程。 首先用u盘引导系统，接下来就进入了arch的Live CD模式（雾）。这也是arch linux最劝退的一步，很多人看到装个系统都要命令行，就退了.。其实用命令行装系统才能真正在装系统的同">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第三十五天——arch Linux安装">
-<meta property="og:url" content="http://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/index.html">
+<meta property="og:url" content="https://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
 <meta property="og:description" content="想入坑Arch好久了，但是有很多次都因为在解决引导的时候就卡了，最后一直没能装上。经过上次制作启动盘的经验，对于grub有了更多的了解。这次再次尝试安装，虽然经历了一些挫折，但还是成功了。下面是具体的安装过程。 首先用u盘引导系统，接下来就进入了arch的Live CD模式（雾）。这也是arch linux最劝退的一步，很多人看到装个系统都要命令行，就退了.。其实用命令行装系统才能真正在装系统的同">
 <meta property="og:locale" content="zh-CN">
@@ -65,17 +35,15 @@
 <meta name="twitter:title" content="学习总结第三十五天——arch Linux安装">
 <meta name="twitter:description" content="想入坑Arch好久了，但是有很多次都因为在解决引导的时候就卡了，最后一直没能装上。经过上次制作启动盘的经验，对于grub有了更多的了解。这次再次尝试安装，虽然经历了一些挫折，但还是成功了。下面是具体的安装过程。 首先用u盘引导系统，接下来就进入了arch的Live CD模式（雾）。这也是arch linux最劝退的一步，很多人看到装个系统都要命令行，就退了.。其实用命令行装系统才能真正在装系统的同">
 
-<link rel="canonical" href="http://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/">
+<link rel="canonical" href="https://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -83,16 +51,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -120,16 +85,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -143,11 +116,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -204,10 +174,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -250,48 +220,72 @@
       
         <p>想入坑<a href="https://wiki.archlinux.org/index.php/Arch_Linux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)" title="Arch" target="_blank" rel="noopener">Arch</a>好久了，但是有很多次都因为在解决引导的时候就卡了，最后一直没能装上。经过上次制作启动盘的经验，对于grub有了更多的了解。这次再次尝试安装，虽然经历了一些挫折，但还是成功了。下面是具体的安装过程。</p>
 <p>首先用u盘引导系统，接下来就进入了arch的Live CD模式（雾）。这也是arch linux最劝退的一步，很多人看到装个系统都要命令行，就退了.。其实用命令行装系统才能真正在装系统的同时学习到知识。</p>
-<h2 id="同步时间"><a href="#同步时间" class="headerlink" title="同步时间"></a>同步时间</h2><p>由于arch采用网络安装的方式，所以先让计算机连接上网络，并执行</p>
-<pre><code>timedatectl set-ntp true</code></pre><h2 id="硬盘分区"><a href="#硬盘分区" class="headerlink" title="硬盘分区"></a>硬盘分区</h2><p>对硬盘进行分区</p>
-<pre><code>fdisk /dev/sdY</code></pre><p>需要注意的是，如果电脑为UEFI引导的，需要将硬盘设置为GPT分区，否则为传统MBR模式。由于我装双系统，所以就只分了一个分区作为根目录，一个分区作为交换分区。<br>交换分区记得将分区的类型设置为82,这样可以让systemd自动发现并挂载。</p>
+<h2 id="同步时间">同步时间</h2>
+<p>由于arch采用网络安装的方式，所以先让计算机连接上网络，并执行</p>
+<pre><code>timedatectl set-ntp true</code></pre>
+<h2 id="硬盘分区">硬盘分区</h2>
+<p>对硬盘进行分区</p>
+<pre><code>fdisk /dev/sdY</code></pre>
+<p>需要注意的是，如果电脑为UEFI引导的，需要将硬盘设置为GPT分区，否则为传统MBR模式。由于我装双系统，所以就只分了一个分区作为根目录，一个分区作为交换分区。 交换分区记得将分区的类型设置为82,这样可以让systemd自动发现并挂载。</p>
 <p>格式化交换分区</p>
-<pre><code>mkswap /sdYM</code></pre><p>格式化主分区</p>
-<pre><code>mkfs.ext4 /sdYN</code></pre><p>将主分区挂载至/mnt，将EFI分区挂载至/mnt/boot</p>
+<pre><code>mkswap /sdYM</code></pre>
+<p>格式化主分区</p>
+<pre><code>mkfs.ext4 /sdYN</code></pre>
+<p>将主分区挂载至/mnt，将EFI分区挂载至/mnt/boot</p>
 <pre><code>mount /dev/sdYN /mnt #挂载主分区
 mkdir /mnt/boot
-mount /dev/sda1 /mnt/boot #挂载EFI分区</code></pre><p>安装系统文件</p>
-<pre><code>pacstrap /mnt base base-devel</code></pre><p>生成fstab文件并检查</p>
+mount /dev/sda1 /mnt/boot #挂载EFI分区</code></pre>
+<p>安装系统文件</p>
+<pre><code>pacstrap /mnt base base-devel</code></pre>
+<p>生成fstab文件并检查</p>
 <pre><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
-cat /mnt/etc/fstab</code></pre><p>添加swap分区的UUID到fstab</p>
-<pre><code>echo &quot;#/dev/sdYM swap \n UUID=`lsblk -no UUID /dev/sdYM` none swap defaults 0 0&quot; &gt;&gt; /mnt/etc/fstab</code></pre><p>chroot到新的系统目录，由于普通的chroot容器有一些问题，所以我们采用专门开发的arch-chroot</p>
-<pre><code>arch-chroot /mnt</code></pre><p>设置时区</p>
+cat /mnt/etc/fstab</code></pre>
+<p>添加swap分区的UUID到fstab</p>
+<pre><code>echo &quot;#/dev/sdYM swap \n UUID=`lsblk -no UUID /dev/sdYM` none swap defaults 0 0&quot; &gt;&gt; /mnt/etc/fstab</code></pre>
+<p>chroot到新的系统目录，由于普通的chroot容器有一些问题，所以我们采用专门开发的arch-chroot</p>
+<pre><code>arch-chroot /mnt</code></pre>
+<p>设置时区</p>
 <pre><code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-hwclock --systohc --utc</code></pre><p>设置本地化信息，打开/etc/locale.gen，取消以下几行的注释</p>
+hwclock --systohc --utc</code></pre>
+<p>设置本地化信息，打开/etc/locale.gen，取消以下几行的注释</p>
 <pre><code>en_US.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
-zh_TW.UTF-8 UTF-8</code></pre><p>运行</p>
-<pre><code>locale-gen</code></pre><p>以生成本地化配置文件</p>
+zh_TW.UTF-8 UTF-8</code></pre>
+<p>运行</p>
+<pre><code>locale-gen</code></pre>
+<p>以生成本地化配置文件</p>
 <p>在hosts中设置localhost，如果不设置也行，但会造成firefox打开慢等问题</p>
 <pre><code>#在/etc/hosts中加入
-127.0.0.1     localhost</code></pre><p>设置root密码</p>
-<pre><code>passwd</code></pre><p>如果使用intel处理器，安装intel-ucode以启用微码更新</p>
-<pre><code>pacman -S intel-ucode</code></pre><hr>
+127.0.0.1     localhost</code></pre>
+<p>设置root密码</p>
+<pre><code>passwd</code></pre>
+<p>如果使用intel处理器，安装intel-ucode以启用微码更新</p>
+<pre><code>pacman -S intel-ucode</code></pre>
+<hr>
 <p>下面进入第二阶段，安装开机引导</p>
 <p>安装grub</p>
 <pre><code>pacman -S grub
-grub-insatll --efi-directory=/boot</code></pre><p>配置grub<br>    pacman os-prober<br>    mkdir /mnt/windows<br>    mount /dev/sda2 /mnt/windows#挂载其他系统的磁盘<br>    grub-mkconfig -o /boot/grub/gurb.cfg</p>
+grub-insatll --efi-directory=/boot</code></pre>
+<p>配置grub pacman os-prober mkdir /mnt/windows mount /dev/sda2 /mnt/windows#挂载其他系统的磁盘 grub-mkconfig -o /boot/grub/gurb.cfg</p>
 <p>至此就可以正常进入系统了，重启</p>
 <pre><code>exit
 umount -R /mnt
-reboot</code></pre><p>如果仍然进入windows的话，在windows借助一些工具，如bootice来修改UEFI启动顺序，将arch放到第一个。</p>
+reboot</code></pre>
+<p>如果仍然进入windows的话，在windows借助一些工具，如bootice来修改UEFI启动顺序，将arch放到第一个。</p>
 <hr>
 <p>第三阶段，安装GNOME桌面</p>
 <p>首先解决显卡驱动的问题,以英特尔和英伟达双显卡驱动为例，安装相关驱动和humblebee——实现显卡交火的工具</p>
-<pre><code>sudo pacman -S humblebee mesa xf86-video-intel nvidia primus</code></pre><p>安装后系统命令将默认用集成显卡运行，如果需要使用独显运行，使用</p>
-<pre><code>primusrun 命令</code></pre><p>曾经linux下主流的显示协议是X11，现在GNOME已经切换到了效率更高的Wayland，直接安装gnome软件组来获取所有套件</p>
-<pre><code>sudo pacman -S gnome</code></pre><p>如果需要其他的gnome软件包的话运行</p>
-<pre><code>sudo pacman -S gnome-extra</code></pre><p>开启gdm</p>
-<pre><code>systemctl enable gdm</code></pre><p>重启系统，就这样，基本的arch linux就安装好了</p>
-<p>贴一张安装好的截图：<br><a href="/attachment/img/arch_screen.png">!安装后</a></p>
+<pre><code>sudo pacman -S humblebee mesa xf86-video-intel nvidia primus</code></pre>
+<p>安装后系统命令将默认用集成显卡运行，如果需要使用独显运行，使用</p>
+<pre><code>primusrun 命令</code></pre>
+<p>曾经linux下主流的显示协议是X11，现在GNOME已经切换到了效率更高的Wayland，直接安装gnome软件组来获取所有套件</p>
+<pre><code>sudo pacman -S gnome</code></pre>
+<p>如果需要其他的gnome软件包的话运行</p>
+<pre><code>sudo pacman -S gnome-extra</code></pre>
+<p>开启gdm</p>
+<pre><code>systemctl enable gdm</code></pre>
+<p>重启系统，就这样，基本的arch linux就安装好了</p>
+<p>贴一张安装好的截图： <a href="/attachment/img/arch_screen.png">!安装后</a></p>
 
     </div>
 
@@ -307,7 +301,7 @@ reboot</code></pre><p>如果仍然进入windows的话，在windows借助一些�
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/" title="学习总结第三十五天——arch Linux安装">http://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/</a>
+    <a href="https://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/" title="学习总结第三十五天——arch Linux安装">https://koswu.github.io/2018/01/07/archive/学习总结第三十五天——arch Linux安装/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -320,21 +314,18 @@ reboot</code></pre><p>如果仍然进入windows的话，在windows借助一些�
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/" rel="next" title="学习总结第三十四天——记一次USB启动盘的制作">
-                  <i class="fa fa-chevron-left"></i> 学习总结第三十四天——记一次USB启动盘的制作
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/" rel="prev" title="学习总结第三十六天——余弦定理判断文章相似度">
-                  学习总结第三十六天——余弦定理判断文章相似度 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/" rel="prev" title="学习总结第三十四天——记一次USB启动盘的制作">
+      <i class="fa fa-chevron-left"></i> 学习总结第三十四天——记一次USB启动盘的制作
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/" rel="next" title="学习总结第三十六天——余弦定理判断文章相似度">
+      学习总结第三十六天——余弦定理判断文章相似度 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -348,6 +339,28 @@ reboot</code></pre><p>如果仍然进入windows的话，在windows借助一些�
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -378,8 +391,6 @@ reboot</code></pre><p>如果仍然进入windows的话，在windows借助一些�
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -407,7 +418,7 @@ reboot</code></pre><p>如果仍然进入windows的话，在windows借助一些�
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -454,18 +465,13 @@ reboot</code></pre><p>如果仍然进入windows的话，在windows借助一些�
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -509,7 +515,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -521,6 +527,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -547,36 +554,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: '0f54c718f34be31c055a26bbbc6e03dd',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : '1ae0be3538e1de2f7bff633e0378c289',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

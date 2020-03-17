@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,48 +15,18 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="看了那么多天的算法，今天转变下心情，学习用python写了一个康威生命游戏（conway Game of Life)。  记得第一次接触到“康威生命游戏”是因为一部番《すべてがFになる THE PERFECT INSIDER》,作品用了很多计算机相关的事物，其中片尾曲的动态演化的康威生命游戏让我记忆犹新。其实所谓生命游戏，不过就是一些点在几条规则下进行演化罢了，但是能从简短的几条规则进行演化为如此">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第二十七天——康威生命游戏">
-<meta property="og:url" content="http://koswu.github.io/2017/11/16/archive/学习总结第二十七天——康威生命游戏/index.html">
+<meta property="og:url" content="https://koswu.github.io/2017/11/16/archive/学习总结第二十七天——康威生命游戏/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
 <meta property="og:description" content="看了那么多天的算法，今天转变下心情，学习用python写了一个康威生命游戏（conway Game of Life)。  记得第一次接触到“康威生命游戏”是因为一部番《すべてがFになる THE PERFECT INSIDER》,作品用了很多计算机相关的事物，其中片尾曲的动态演化的康威生命游戏让我记忆犹新。其实所谓生命游戏，不过就是一些点在几条规则下进行演化罢了，但是能从简短的几条规则进行演化为如此">
 <meta property="og:locale" content="zh-CN">
@@ -65,17 +35,15 @@
 <meta name="twitter:title" content="学习总结第二十七天——康威生命游戏">
 <meta name="twitter:description" content="看了那么多天的算法，今天转变下心情，学习用python写了一个康威生命游戏（conway Game of Life)。  记得第一次接触到“康威生命游戏”是因为一部番《すべてがFになる THE PERFECT INSIDER》,作品用了很多计算机相关的事物，其中片尾曲的动态演化的康威生命游戏让我记忆犹新。其实所谓生命游戏，不过就是一些点在几条规则下进行演化罢了，但是能从简短的几条规则进行演化为如此">
 
-<link rel="canonical" href="http://koswu.github.io/2017/11/16/archive/学习总结第二十七天——康威生命游戏/">
+<link rel="canonical" href="https://koswu.github.io/2017/11/16/archive/学习总结第二十七天——康威生命游戏/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -83,16 +51,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -120,16 +85,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -143,11 +116,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -204,10 +174,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/11/16/archive/学习总结第二十七天——康威生命游戏/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/11/16/archive/学习总结第二十七天——康威生命游戏/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -250,7 +220,129 @@
       
         <p>看了那么多天的算法，今天转变下心情，学习用python写了一个康威生命游戏（conway Game of Life)。</p>
 <hr>
-<p>记得第一次接触到“康威生命游戏”是因为一部番《<a href="http://bangumi.tv/subject/118783" target="_blank" rel="noopener">すべてがFになる THE PERFECT INSIDER</a>》,作品用了很多计算机相关的事物，其中片尾曲的动态演化的康威生命游戏让我记忆犹新。其实所谓生命游戏，不过就是一些点在几条规则下进行演化罢了，但是能从简短的几条规则进行演化为如此复杂的系统着实令人感到有趣。也许这个简单的数学游戏，也隐藏着很深刻的哲学意义。其表明了复杂的结构可以由简单的规则推进。下图为我运行一个”高斯帕斯卡机枪”的截图<br><a href="/attachment/img/conway.png">!img</a><br>代码如下：<br>    #!/usr/bin/python3<br>    #-<em>-coding:utf-8-</em>-<br><br>    import argparse<br>    import numpy as np<br>    import matplotlib.pyplot as plt<br>    import matplotlib.animation as animation<br><br><br>    ON = 255<br>    OFF = 0<br>    vals = [ON, OFF]<br><br>    def getGridStaus(i, j, glid, N):<br>        return int(glid[i%N][j%N])/ON<br><br>    def addGlider(i, j, glid):<br>        glider = np.array([[OFF, OFF, ON],<br>                           [ON, OFF, ON],<br>                           [OFF, ON, ON]])<br>        glid[i:i+3, j:j+3] = glider<br><br>    def addGosperGun(i, j, glid):<br>        gun = np.zeros(11<em>38).reshape(11, 38);<br>        gun[5][1] = gun[5][2] = 255<br>        gun[6][1] = gun[6][2] = 255<br><br>        gun[3][13] = gun[3][14] = 255<br>        gun[4][12] = gun[4][16] = 255<br>        gun[5][11] = gun[5][17] = 255<br>        gun[6][11] = gun[6][15] = gun[6][17] = gun[6][18] = 255<br>        gun[7][11] = gun[7][17] = 255<br>        gun[8][12] = gun[8][16] = 255<br>        gun[9][13] = gun[9][14] = 255<br><br>        gun[1][25] = 255<br>        gun[2][23] = gun[2][25] = 255<br>        gun[3][21] = gun[3][22] = 255<br>        gun[4][21] = gun[4][22] = 255<br>        gun[5][21] = gun[5][22] = 255<br>        gun[6][23] = gun[6][25] = 255<br>        gun[7][25] = 255<br><br>        gun[3][35] = gun[3][36] = 255<br>        gun[4][35] = gun[4][36] = 255<br><br>        glid[i:i+11, j:j+38]=gun<br><br>    def readPattern(file, N):<br>        content=file.read()<br>        return np.array(content.split()).astype(int).reshape(N, N)<br><br>    def randomGrid(N):<br>        return np.random.choice(vals, N</em>N, p=[0.2, 0.8]).reshape(N, N)<br><br>    def update(frameNum, img, grid, N):<br>        newGrid = grid.copy()<br>        for i in range(N):<br>            for j in range(N):<br>                total = 0<br>                #计算周围有几个激活的细胞<br>                for iOffset in range(-1, 1+1):<br>                    for jOffset in range(-1, 1+1):<br>                        if iOffset != 0 or jOffset != 0:<br>                            total = total+getGridStaus(i+iOffset, j+jOffset, grid, N)<br>                            #print (“x=%d,y=%d,io=%d,jo=%d,total=%d”%(i,j,iOffset,jOffset,total));<br>                if grid[i][j] == ON:<br>                    if total &lt; 2 or total &gt; 3:<br>                        newGrid[i][j] = OFF<br>                else:<br>                    if total == 3:<br>                        newGrid[i][j] = ON<br>        img.set_data(newGrid)<br>        grid[:] = newGrid[:]<br>        return img<br><br>    def main():<br>        #构造参数解析器<br>        parser = argparse.ArgumentParser(description=”Running for Conway’s Game of Life simulation”)<br>        #创建互斥参数组<br>        group = parser.add_mutually_exclusive_group()<br>        #解析参数<br>        parser.add_argument(‘–grid-size’, dest=’N’, type=int, required=False)<br>        parser.add_argument(‘–mov-file’, dest=’movfile’, required=False)<br>        group.add_argument(‘–pattern-file’, dest=’patternfile’, required=False)<br>        parser.add_argument(‘–interval’, dest=’interval’, required=False)<br>        group.add_argument(‘–glider’, action=’store_true’, required=False)<br>        group.add_argument(‘–gosper’, action=’store_true’, required=False)<br>        args = parser.parse_args()<br>        #设置模拟大小<br>        N = 100<br>        if args.N and int(args.N) &gt; 8:<br>            N = int(args.N)<br>        #设置更新间隔<br>        updateInterval = 50<br>        if args.interval:<br>            updateInterval = int(args.interval)<br>        #设置初始条件<br>        grid = np.array([])<br>        if args.glider:#当设置了glider标志位时使用滑翔机初始化<br>            grid = np.zeros(N<em>N).reshape(N, N)<br>            addGlider(1, 1, grid)<br>        elif args.gosper and N &gt; 40:#使用高斯帕滑翔机枪初始化<br>            grid= np.zeros(N</em>N).reshape(N,N)<br>            addGosperGun(1,1,grid)<br>        elif args.patternfile:#使用文件初始化<br>            file = open(args.patternfile)<br>            N = int(file.readline())<br>            grid=readPattern(file,N)<br>            #print (grid)<br>        else:#否则使用随机初始化<br>            grid = randomGrid(N)<br>        #设置动画<br>        fig, ax = plt.subplots()<br>        img = ax.imshow(grid, interpolation=’nearest’)<br>        ani = animation.FuncAnimation(fig, update,<br>                                      fargs=(img, grid, N, ),<br>                                      frames=10,<br>                                      interval=updateInterval,<br>                                      save_count=100)<br>        if args.movfile:<br>            ani.save(args.movfile, fps=30, extra_args=[‘-vcodec’, ‘libx264’])<br>        plt.show()<br>    if <strong>name</strong> == ‘<strong>main</strong>‘:<br>        main()</p>
+<p>记得第一次接触到“康威生命游戏”是因为一部番《<a href="http://bangumi.tv/subject/118783" target="_blank" rel="noopener">すべてがFになる THE PERFECT INSIDER</a>》,作品用了很多计算机相关的事物，其中片尾曲的动态演化的康威生命游戏让我记忆犹新。其实所谓生命游戏，不过就是一些点在几条规则下进行演化罢了，但是能从简短的几条规则进行演化为如此复杂的系统着实令人感到有趣。也许这个简单的数学游戏，也隐藏着很深刻的哲学意义。其表明了复杂的结构可以由简单的规则推进。下图为我运行一个”高斯帕斯卡机枪”的截图 <a href="/attachment/img/conway.png">!img</a> 代码如下： #!/usr/bin/python3 #-<em>-coding:utf-8-</em>-</p>
+<pre><code>import argparse
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+
+ON = 255
+OFF = 0
+vals = [ON, OFF]
+
+def getGridStaus(i, j, glid, N):
+    return int(glid[i%N][j%N])/ON
+
+def addGlider(i, j, glid):
+    glider = np.array([[OFF, OFF, ON],
+                       [ON, OFF, ON],
+                       [OFF, ON, ON]])
+    glid[i:i+3, j:j+3] = glider
+
+def addGosperGun(i, j, glid):
+    gun = np.zeros(11*38).reshape(11, 38);
+    gun[5][1] = gun[5][2] = 255
+    gun[6][1] = gun[6][2] = 255
+
+    gun[3][13] = gun[3][14] = 255
+    gun[4][12] = gun[4][16] = 255
+    gun[5][11] = gun[5][17] = 255
+    gun[6][11] = gun[6][15] = gun[6][17] = gun[6][18] = 255
+    gun[7][11] = gun[7][17] = 255
+    gun[8][12] = gun[8][16] = 255
+    gun[9][13] = gun[9][14] = 255
+
+    gun[1][25] = 255
+    gun[2][23] = gun[2][25] = 255
+    gun[3][21] = gun[3][22] = 255
+    gun[4][21] = gun[4][22] = 255
+    gun[5][21] = gun[5][22] = 255
+    gun[6][23] = gun[6][25] = 255
+    gun[7][25] = 255
+
+    gun[3][35] = gun[3][36] = 255
+    gun[4][35] = gun[4][36] = 255
+
+    glid[i:i+11, j:j+38]=gun
+
+def readPattern(file, N):
+    content=file.read()
+    return np.array(content.split()).astype(int).reshape(N, N)
+
+def randomGrid(N):
+    return np.random.choice(vals, N*N, p=[0.2, 0.8]).reshape(N, N)
+
+def update(frameNum, img, grid, N):
+    newGrid = grid.copy()
+    for i in range(N):
+        for j in range(N):
+            total = 0
+            #计算周围有几个激活的细胞
+            for iOffset in range(-1, 1+1):
+                for jOffset in range(-1, 1+1):
+                    if iOffset != 0 or jOffset != 0:
+                        total = total+getGridStaus(i+iOffset, j+jOffset, grid, N)
+                        #print (&quot;x=%d,y=%d,io=%d,jo=%d,total=%d&quot;%(i,j,iOffset,jOffset,total));
+            if grid[i][j] == ON:
+                if total &lt; 2 or total &gt; 3:
+                    newGrid[i][j] = OFF
+            else:
+                if total == 3:
+                    newGrid[i][j] = ON
+    img.set_data(newGrid)
+    grid[:] = newGrid[:]
+    return img
+
+def main():
+    #构造参数解析器
+    parser = argparse.ArgumentParser(description=&quot;Running for Conway&#39;s Game of Life simulation&quot;)
+    #创建互斥参数组
+    group = parser.add_mutually_exclusive_group()
+    #解析参数
+    parser.add_argument(&#39;--grid-size&#39;, dest=&#39;N&#39;, type=int, required=False)
+    parser.add_argument(&#39;--mov-file&#39;, dest=&#39;movfile&#39;, required=False)
+    group.add_argument(&#39;--pattern-file&#39;, dest=&#39;patternfile&#39;, required=False)
+    parser.add_argument(&#39;--interval&#39;, dest=&#39;interval&#39;, required=False)
+    group.add_argument(&#39;--glider&#39;, action=&#39;store_true&#39;, required=False)
+    group.add_argument(&#39;--gosper&#39;, action=&#39;store_true&#39;, required=False)
+    args = parser.parse_args()
+    #设置模拟大小
+    N = 100
+    if args.N and int(args.N) &gt; 8:
+        N = int(args.N)
+    #设置更新间隔
+    updateInterval = 50
+    if args.interval:
+        updateInterval = int(args.interval)
+    #设置初始条件
+    grid = np.array([])
+    if args.glider:#当设置了glider标志位时使用滑翔机初始化
+        grid = np.zeros(N*N).reshape(N, N)
+        addGlider(1, 1, grid)
+    elif args.gosper and N &gt; 40:#使用高斯帕滑翔机枪初始化
+        grid= np.zeros(N*N).reshape(N,N)
+        addGosperGun(1,1,grid)
+    elif args.patternfile:#使用文件初始化
+        file = open(args.patternfile)
+        N = int(file.readline())
+        grid=readPattern(file,N)
+        #print (grid)
+    else:#否则使用随机初始化
+        grid = randomGrid(N)
+    #设置动画
+    fig, ax = plt.subplots()
+    img = ax.imshow(grid, interpolation=&#39;nearest&#39;)
+    ani = animation.FuncAnimation(fig, update,
+                                  fargs=(img, grid, N, ),
+                                  frames=10,
+                                  interval=updateInterval,
+                                  save_count=100)
+    if args.movfile:
+        ani.save(args.movfile, fps=30, extra_args=[&#39;-vcodec&#39;, &#39;libx264&#39;])
+    plt.show()
+if __name__ == &#39;__main__&#39;:
+    main()</code></pre>
 
     </div>
 
@@ -266,7 +358,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2017/11/16/archive/学习总结第二十七天——康威生命游戏/" title="学习总结第二十七天——康威生命游戏">http://koswu.github.io/2017/11/16/archive/学习总结第二十七天——康威生命游戏/</a>
+    <a href="https://koswu.github.io/2017/11/16/archive/学习总结第二十七天——康威生命游戏/" title="学习总结第二十七天——康威生命游戏">https://koswu.github.io/2017/11/16/archive/学习总结第二十七天——康威生命游戏/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -279,21 +371,18 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2017/11/14/archive/学习总结第二十六天——基于栈的括号 匹配/" rel="next" title="学习总结第二十六天——基于栈的括号 匹配">
-                  <i class="fa fa-chevron-left"></i> 学习总结第二十六天——基于栈的括号 匹配
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2017/11/23/archive/学习总结第二十八天——中序表达式补全/" rel="prev" title="学习总结第二十八天——中序表达式补全">
-                  学习总结第二十八天——中序表达式补全 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/11/14/archive/学习总结第二十六天——基于栈的括号 匹配/" rel="prev" title="学习总结第二十六天——基于栈的括号 匹配">
+      <i class="fa fa-chevron-left"></i> 学习总结第二十六天——基于栈的括号 匹配
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/11/23/archive/学习总结第二十八天——中序表达式补全/" rel="next" title="学习总结第二十八天——中序表达式补全">
+      学习总结第二十八天——中序表达式补全 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -307,6 +396,28 @@
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -336,8 +447,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -365,7 +474,7 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -412,18 +521,13 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -467,7 +571,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -479,6 +583,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -505,36 +610,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: 'ab44725329201f3721334b5fd12e83b9',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : '52a5970ae6c4b2db86307526b03e34c9',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

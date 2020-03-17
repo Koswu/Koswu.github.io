@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,70 +15,38 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="透明代理，可以使得在代理后面的所有流量都经过代理，而发出流量的软件本身并不知道代理的存在。但网上大多配置教程都以iptables为主，由于本人用的是nftables，就尝试依葫芦画瓢搞了一个，同时也大概弄清除了其中的原理，供参考。">
 <meta name="keywords" content="代理,nftables,防火墙,路由,网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="包的路由转圈圈——谈谈使用nftables配置透明代理碰到的那些坑">
-<meta property="og:url" content="http://koswu.github.io/2019/08/19/tproxy-config-with-nftables/index.html">
+<meta property="og:url" content="https://koswu.github.io/2019/08/19/tproxy-config-with-nftables/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
 <meta property="og:description" content="透明代理，可以使得在代理后面的所有流量都经过代理，而发出流量的软件本身并不知道代理的存在。但网上大多配置教程都以iptables为主，由于本人用的是nftables，就尝试依葫芦画瓢搞了一个，同时也大概弄清除了其中的原理，供参考。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://koswu.github.io/2019/08/19/tproxy-config-with-nftables/package_lost.png">
-<meta property="og:image" content="http://koswu.github.io/2019/08/19/tproxy-config-with-nftables/nf-packet-flow.svg">
+<meta property="og:image" content="https://koswu.github.io/2019/08/19/tproxy-config-with-nftables/package_lost.png">
+<meta property="og:image" content="https://koswu.github.io/2019/08/19/tproxy-config-with-nftables/nf-packet-flow.svg">
 <meta property="og:updated_time" content="2019-10-27T13:59:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="包的路由转圈圈——谈谈使用nftables配置透明代理碰到的那些坑">
 <meta name="twitter:description" content="透明代理，可以使得在代理后面的所有流量都经过代理，而发出流量的软件本身并不知道代理的存在。但网上大多配置教程都以iptables为主，由于本人用的是nftables，就尝试依葫芦画瓢搞了一个，同时也大概弄清除了其中的原理，供参考。">
-<meta name="twitter:image" content="http://koswu.github.io/2019/08/19/tproxy-config-with-nftables/package_lost.png">
+<meta name="twitter:image" content="https://koswu.github.io/2019/08/19/tproxy-config-with-nftables/package_lost.png">
 
-<link rel="canonical" href="http://koswu.github.io/2019/08/19/tproxy-config-with-nftables/">
+<link rel="canonical" href="https://koswu.github.io/2019/08/19/tproxy-config-with-nftables/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -86,16 +54,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -123,16 +88,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -146,11 +119,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -207,10 +177,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2019/08/19/tproxy-config-with-nftables/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2019/08/19/tproxy-config-with-nftables/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -245,9 +215,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
-                  </a>
+                  <a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
                 </span>
             </span>
 
@@ -263,34 +231,27 @@
 
       
         <img src="/2019/08/19/tproxy-config-with-nftables/package_lost.png" title="灵魂画手上线">
-
 <p>透明代理，可以使得在代理后面的所有流量都经过代理，而发出流量的软件本身并不知道代理的存在。但网上大多配置教程都以iptables为主，由于本人用的是nftables，就尝试依葫芦画瓢搞了一个，同时也大概弄清除了其中的原理，供参考。</p>
 <a id="more"></a>
-
 <p>首先要准备一个透明代理客户端，如ss_redir，在PROXY_PORT进行监听。然后针对TCP和UDP设置不同的规则。</p>
 <hr>
-<h2 id="TCP部分"><a href="#TCP部分" class="headerlink" title="TCP部分"></a>TCP部分</h2><p>TCP是比较容易进行转发的，只需要在nftables里面进行设置forward就行了。<br>为了让配置文件看起来更直观，首先将需要绕过不走代理的ip（本地地址、远程代理服务器的地址等）放到一个文件里，这里以/etc/whitelist.ips为例子，文件结构如下所示。</p>
+<h2 id="tcp部分">TCP部分</h2>
+<p>TCP是比较容易进行转发的，只需要在nftables里面进行设置forward就行了。 为了让配置文件看起来更直观，首先将需要绕过不走代理的ip（本地地址、远程代理服务器的地址等）放到一个文件里，这里以/etc/whitelist.ips为例子，文件结构如下所示。</p>
 <p>PS:这里非常重要，必须配置对，否则会形成环路循环转发</p>
-<p><code>/etc/whitelist.ips</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">define whitelist = &#123;</span><br><span class="line">    127.0.0.1/24,</span><br><span class="line">    192.168.0.0/16,</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p><code>/etc/whitelist.ips</code> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">define whitelist = &#123;</span><br><span class="line">    127.0.0.1/24,</span><br><span class="line">    192.168.0.0/16,</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>注意这里不要出现有交集的ip区间，否则会报错。</p>
 <p>然后开始编辑nftables的配置文件（使用<code>nft</code>命令时，当priority为负值时会出错，遇到这种情况时需要直接编辑/etc/nftables.conf以后使用<code>nft flush ruleset &amp;&amp; nft -f /etc/nftables.conf</code>导入配置文件。</p>
 <p>首先在配置文件开头插入这一句，导入白名单文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include &quot;/etc/whitelist.ips&quot;</span><br></pre></td></tr></table></figure>
-
 <p>然后对应iptables的nat表，配置文件添加如下的一个nat表：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">table ip nat &#123;</span><br><span class="line">    set whitelistset &#123;</span><br><span class="line">        type ipv4_addr</span><br><span class="line">        flag interval</span><br><span class="line">        elements = $whitelist</span><br><span class="line">    &#125;</span><br><span class="line">    chain proxy &#123;</span><br><span class="line">        ip daddr @whitelist return</span><br><span class="line">        ip protocol tcp redirect to :[PROXY_PORT]</span><br><span class="line">    &#125;</span><br><span class="line">    chain output &#123;</span><br><span class="line">        type nat hook output priority filter; policy accept;</span><br><span class="line">        jump proxy</span><br><span class="line">    &#125;</span><br><span class="line">    chain prerouting &#123;</span><br><span class="line">        type nat hook output prerouting priority dstnat; policy accept;</span><br><span class="line">        jump proxy</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的PROXY_PORT换成你实际的透明代理的端口，可以看到这样会将这台机器上产生的流量（由output链控制）和经过这台机器路由的流量（比如这台机器是路由器，由prerouting链控制）转发到本地的PROXY_PORT端口。<br>在linux中，代理程序可以通过调用一些内核提供的API来获取TCP包转发前的目的地址和端口，这样的话直接转发给透明代理就可以很好的处理。但是UDP不能这样做，内核并不允许获取原来的这些信息。所以对于UDP，我们就需要用到另外一种方法。</p>
+<p>上面的PROXY_PORT换成你实际的透明代理的端口，可以看到这样会将这台机器上产生的流量（由output链控制）和经过这台机器路由的流量（比如这台机器是路由器，由prerouting链控制）转发到本地的PROXY_PORT端口。 在linux中，代理程序可以通过调用一些内核提供的API来获取TCP包转发前的目的地址和端口，这样的话直接转发给透明代理就可以很好的处理。但是UDP不能这样做，内核并不允许获取原来的这些信息。所以对于UDP，我们就需要用到另外一种方法。</p>
 <hr>
-<h2 id="UDP部分"><a href="#UDP部分" class="headerlink" title="UDP部分"></a>UDP部分</h2><p>UDP的透明代理，需要借助一个内核模块，叫做TPROXY，他可以在不改变数据包的目的地址的情况下进行路由转发，nftables中可以调用这个模块，在很多iptables配置的文章中也已经介绍过，这里不再展开做介绍。<br>同样的，编辑/etc/nftables.conf，对应iptables中的mangle表，添加如下配置的一个表：</p>
+<h2 id="udp部分">UDP部分</h2>
+<p>UDP的透明代理，需要借助一个内核模块，叫做TPROXY，他可以在不改变数据包的目的地址的情况下进行路由转发，nftables中可以调用这个模块，在很多iptables配置的文章中也已经介绍过，这里不再展开做介绍。 同样的，编辑/etc/nftables.conf，对应iptables中的mangle表，添加如下配置的一个表：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">table ip mangle&#123;</span><br><span class="line">    set whitelistset &#123;</span><br><span class="line">        type ipv4_addr</span><br><span class="line">        flags interval</span><br><span class="line">        elements = $whitelist</span><br><span class="line">    &#125;</span><br><span class="line">    chain output &#123;</span><br><span class="line">        type route hook output priority mangle;policy accept;</span><br><span class="line">        ip daddr @whitelistset return</span><br><span class="line">        ip protocol udp mark set 0x233</span><br><span class="line">    &#125;</span><br><span class="line">    chain prerouting &#123;</span><br><span class="line">        type filter hook prerouting priority mangle; policy accept;</span><br><span class="line">        ip daddr @whitelistset return</span><br><span class="line">        ip protocol udp tproxy to 127.0.0.1:PROXY_PORT</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面我们做的，在mangle表中创建了两条链，output链的type为route，这里的route就是对应了iptables的mangle表，但是route type只能hook output点，所以prerouting链的type就变成了filter。<br>由于TPROXY只能在prerouting链处理，在nftables的流向图中（文后附），output链之后，还跟了一个reroute的流程，要触发这个reroute，我们就需要给数据包头部打上标签（任意一个数值，这里是0x233）。这样在reroute阶段，系统会检测到数据包的头部发生了改变，于是数据包被打到prerouting的地方重新进行路由。<br>而在prerouting阶段，被reroute的数据包和经过本机路由的数据包一起，如过目的地址不在白名单中，就tproxy打到透明代理去。整个过程非常清晰明了。</p>
-<p>PS：在网上的许多教程中，都提到需要进行这样的两条操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip rule add fwmark 0x233 lookup 100</span><br><span class="line">ip route add local 0.0.0.0/0 dev lo table 100</span><br></pre></td></tr></table></figure>
-
+<p>上面我们做的，在mangle表中创建了两条链，output链的type为route，这里的route就是对应了iptables的mangle表，但是route type只能hook output点，所以prerouting链的type就变成了filter。 由于TPROXY只能在prerouting链处理，在nftables的流向图中（文后附），output链之后，还跟了一个reroute的流程，要触发这个reroute，我们就需要给数据包头部打上标签（任意一个数值，这里是0x233）。这样在reroute阶段，系统会检测到数据包的头部发生了改变，于是数据包被打到prerouting的地方重新进行路由。 而在prerouting阶段，被reroute的数据包和经过本机路由的数据包一起，如过目的地址不在白名单中，就tproxy打到透明代理去。整个过程非常清晰明了。</p>
+<p>PS：在网上的许多教程中，都提到需要进行这样的两条操作 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip rule add fwmark 0x233 lookup 100</span><br><span class="line">ip route add local 0.0.0.0/0 dev lo table 100</span><br></pre></td></tr></table></figure></p>
 <p>其作用是将标记为0x233，并且目标为本地地址的数据包经过回环网口送出，但是经过本人实际测试，加和不加并没有什么区别，我认为即使不配置，默认情况系统也应该已经能够知道这条规则，所以并不需要添加。如果有不对的地方，希望读者不吝赐教。</p>
 <img src="/2019/08/19/tproxy-config-with-nftables/nf-packet-flow.svg" title="附nftables流向图">
 
@@ -308,7 +269,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2019/08/19/tproxy-config-with-nftables/" title="包的路由转圈圈——谈谈使用nftables配置透明代理碰到的那些坑">http://koswu.github.io/2019/08/19/tproxy-config-with-nftables/</a>
+    <a href="https://koswu.github.io/2019/08/19/tproxy-config-with-nftables/" title="包的路由转圈圈——谈谈使用nftables配置透明代理碰到的那些坑">https://koswu.github.io/2019/08/19/tproxy-config-with-nftables/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -328,21 +289,18 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2019/08/19/blog_revive/" rel="next" title="博客重建">
-                  <i class="fa fa-chevron-left"></i> 博客重建
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2019/10/27/icpc2019-nanjing/" rel="prev" title="2019 ICPC南京站总结">
-                  2019 ICPC南京站总结 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/08/19/blog_revive/" rel="prev" title="博客重建">
+      <i class="fa fa-chevron-left"></i> 博客重建
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/10/27/icpc2019-nanjing/" rel="next" title="2019 ICPC南京站总结">
+      2019 ICPC南京站总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -356,6 +314,28 @@
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -380,14 +360,12 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP部分"><span class="nav-number">1.</span> <span class="nav-text">TCP部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UDP部分"><span class="nav-number">2.</span> <span class="nav-text">UDP部分</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp部分"><span class="nav-number">1.</span> <span class="nav-text">TCP部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#udp部分"><span class="nav-number">2.</span> <span class="nav-text">UDP部分</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -415,7 +393,7 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -462,18 +440,13 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -517,7 +490,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -529,6 +502,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -555,36 +529,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: 'd97cfe17387cdbd880361720f40135ef',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : 'd97cfe17387cdbd880361720f40135ef',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

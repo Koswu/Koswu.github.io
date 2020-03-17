@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,67 +15,35 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-  <meta name="description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）  什么是Echo ServerEcho Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机） Echo Server能用来做什么Echo Ser">
+  <meta name="description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）       ## 什么是Echo Server   Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）   ## Echo Serv">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="十分钟用Python创建一个Echo Server">
-<meta property="og:url" content="http://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/index.html">
+<meta property="og:url" content="https://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）  什么是Echo ServerEcho Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机） Echo Server能用来做什么Echo Ser">
+<meta property="og:description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）       ## 什么是Echo Server   Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）   ## Echo Serv">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="十分钟用Python创建一个Echo Server">
-<meta name="twitter:description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）  什么是Echo ServerEcho Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机） Echo Server能用来做什么Echo Ser">
+<meta name="twitter:description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）       ## 什么是Echo Server   Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）   ## Echo Serv">
 
-<link rel="canonical" href="http://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/">
+<link rel="canonical" href="https://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -83,16 +51,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -120,16 +85,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -143,11 +116,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -204,10 +174,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -249,22 +219,35 @@
 
       
         <p>近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）</p>
-<hr>
-<h2 id="什么是Echo-Server"><a href="#什么是Echo-Server" class="headerlink" title="什么是Echo Server"></a>什么是Echo Server</h2><p>Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）</p>
-<h2 id="Echo-Server能用来做什么"><a href="#Echo-Server能用来做什么" class="headerlink" title="Echo Server能用来做什么"></a>Echo Server能用来做什么</h2><p>Echo Server是最容易实现的网络服务之一，可以用来学习Socket编程的一些基本知识，还可以用来检测客户端与服务器之间的连通性，丢包率，连接速度和传输速度。</p>
-<hr>
-<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>一开始我觉得应该挺容易的，快速的从网上找到了一些相关的代码，采用Ctrl C V大法，但是却发现有很多问题，最终还是自己动手才写出一个像样的东西。</p>
+<table style="width:43%;">
+<colgroup>
+<col style="width: 43%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">## 什么是Echo Server</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">## Echo Server能用来做什么</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Echo Server是最容易实现的网络服务之一，可以用来学习Socket编程的一些基本知识，还可以用来检测客户端与服务器之间的连通性，丢包率，连接速度和传输速度。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="实现思路">实现思路</h1>
+<p>一开始我觉得应该挺容易的，快速的从网上找到了一些相关的代码，采用Ctrl C V大法，但是却发现有很多问题，最终还是自己动手才写出一个像样的东西。</p>
 <p>首先第一步，我们得监听一个端口，调用python的socket模块，让其绑定在一个端口，监听TCP连接。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用IPV4和TCP连接，监听端口程序</span></span><br><span class="line">tcpSocket = socket.Socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">tcpSocket.bind((HOST, PORT))</span><br></pre></td></tr></table></figure>
-
 <p>第二步，我们检测是否有客户端连接上，如果连接上了，就将对这个客户的处理逻辑单独放到一个线程里跑(这是坑最多的一部，看了网上很多代码，要么就是直接一个线程，无法处理多客户，要么就是所有客户端共用一个处理线程，当数据量较大时就会出现问题)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  clientSocket, clientAddr = tcpSocket.accept()</span><br><span class="line">  t = threading.Thread(target = handle, args = (clientSocket, clientAddr), daemon = <span class="literal">True</span>)</span><br><span class="line">  t.start()</span><br></pre></td></tr></table></figure>
-
 <p>最后我们只要在线程处理逻辑中，编写相关的回显逻辑，就可以了。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  data = clientSocket.recv(BUFSIZE)</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  clientSocket.send(data)</span><br><span class="line">clientSocket.close()</span><br></pre></td></tr></table></figure>
-
 <p>当然上面为了演示，对实际代码做了很多精简，完整的代码在下面（需要科学上网）:</p>
-<p><a href="https://gist.github.com/Koswu/f813aaf201212310733829b27c7db384" target="_blank" rel="noopener">服务端</a><br><a href="https://gist.github.com/Koswu/470cf2cfe924321cc7c10419f722157f" target="_blank" rel="noopener">客户端</a><br>(客户端为一个类似nc的小程序)</p>
+<p><a href="https://gist.github.com/Koswu/f813aaf201212310733829b27c7db384" target="_blank" rel="noopener">服务端</a> <a href="https://gist.github.com/Koswu/470cf2cfe924321cc7c10419f722157f" target="_blank" rel="noopener">客户端</a> (客户端为一个类似nc的小程序)</p>
 
     </div>
 
@@ -280,7 +263,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/" title="十分钟用Python创建一个Echo Server">http://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/</a>
+    <a href="https://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/" title="十分钟用Python创建一个Echo Server">https://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -293,21 +276,18 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2018/08/24/archive/哈希表的优势和实现/" rel="next" title="哈希表的优势和实现">
-                  <i class="fa fa-chevron-left"></i> 哈希表的优势和实现
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2019/01/30/archive/存储器的层次结构/" rel="prev" title="存储器的层次结构">
-                  存储器的层次结构 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/24/archive/哈希表的优势和实现/" rel="prev" title="哈希表的优势和实现">
+      <i class="fa fa-chevron-left"></i> 哈希表的优势和实现
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/01/30/archive/存储器的层次结构/" rel="next" title="存储器的层次结构">
+      存储器的层次结构 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -321,6 +301,28 @@
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -345,14 +347,12 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Echo-Server"><span class="nav-number">1.</span> <span class="nav-text">什么是Echo Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Echo-Server能用来做什么"><span class="nav-number">2.</span> <span class="nav-text">Echo Server能用来做什么</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现思路"><span class="nav-number"></span> <span class="nav-text">实现思路</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实现思路"><span class="nav-number">1.</span> <span class="nav-text">实现思路</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -380,7 +380,7 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -427,18 +427,13 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -482,7 +477,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -494,6 +489,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -520,36 +516,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: 'b08e22be8d38a4683982b34cf48c47ff',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : '04728435b6699d90423cb5eac82cae56',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

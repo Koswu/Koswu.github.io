@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,67 +15,35 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-  <meta name="description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&amp;apos;w&amp;apos;); for val in commonTracks:     val=val[0];     s= val+">
+  <meta name="description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&amp;#39;w&amp;#39;); for val in commonTracks:     val=val[0];     s= val+&amp;#">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第四天-python3字符串问题">
-<meta property="og:url" content="http://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/index.html">
+<meta property="og:url" content="https://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&amp;apos;w&amp;apos;); for val in commonTracks:     val=val[0];     s= val+">
+<meta property="og:description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&amp;#39;w&amp;#39;); for val in commonTracks:     val=val[0];     s= val+&amp;#">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第四天-python3字符串问题">
-<meta name="twitter:description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&amp;apos;w&amp;apos;); for val in commonTracks:     val=val[0];     s= val+">
+<meta name="twitter:description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&amp;#39;w&amp;#39;); for val in commonTracks:     val=val[0];     s= val+&amp;#">
 
-<link rel="canonical" href="http://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/">
+<link rel="canonical" href="https://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -83,16 +51,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -120,16 +85,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -143,11 +116,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -204,10 +174,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -250,17 +220,21 @@
       
         <p>今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。</p>
 <p>有问题的代码如下：</p>
-<pre><code>file=open(&quot;common.txt&quot;,&apos;w&apos;);
+<pre><code>file=open(&quot;common.txt&quot;,&#39;w&#39;);
 for val in commonTracks:
     val=val[0];
-    s= val+&apos;\n&apos;;
-    file.write(s.encode(&quot;UTF-8&quot;));</code></pre><p>运行时，解释器提示write方法接收的不是一个字符串。经过一番排查发现，通过encode转化为的并不是字符串，而是字节流bytes，在python中，bytes是字节流bytes对象，字符串是字符串str对象。</p>
+    s= val+&#39;\n&#39;;
+    file.write(s.encode(&quot;UTF-8&quot;));</code></pre>
+<p>运行时，解释器提示write方法接收的不是一个字符串。经过一番排查发现，通过encode转化为的并不是字符串，而是字节流bytes，在python中，bytes是字节流bytes对象，字符串是字符串str对象。</p>
 <p>我们可以在python下实际运行一下这段代码</p>
 <pre><code>a=&quot;Hello World&quot;;
-print(a.encode(&quot;UTF-8&quot;));</code></pre><p>我们会得到这样的输出：</p>
+print(a.encode(&quot;UTF-8&quot;));</code></pre>
+<p>我们会得到这样的输出：</p>
 <pre><code>&gt;&gt;&gt; print(a.encode(&quot;UTF-8&quot;));
-b&apos;Hello World&apos;</code></pre><p>看起来和普通的字符串只是多了一个b，但这就表示这是一个字节流bytes，所以我们如果要向文件写入字节流的话，就要在open函数里，使用二进制模式，即将原来的代码改为</p>
-<pre><code>file=open(&quot;common.txt&quot;,&apos;wb&apos;);</code></pre><p>便解决了问题。</p>
+b&#39;Hello World&#39;</code></pre>
+<p>看起来和普通的字符串只是多了一个b，但这就表示这是一个字节流bytes，所以我们如果要向文件写入字节流的话，就要在open函数里，使用二进制模式，即将原来的代码改为</p>
+<pre><code>file=open(&quot;common.txt&quot;,&#39;wb&#39;);</code></pre>
+<p>便解决了问题。</p>
 
     </div>
 
@@ -276,7 +250,7 @@ b&apos;Hello World&apos;</code></pre><p>看起来和普通的字符串只是多�
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/" title="学习总结第四天-python3字符串问题">http://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/</a>
+    <a href="https://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/" title="学习总结第四天-python3字符串问题">https://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -289,21 +263,18 @@ b&apos;Hello World&apos;</code></pre><p>看起来和普通的字符串只是多�
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2017/10/15/archive/学习总结第四天-linux下的开机启动脚本/" rel="next" title="学习总结第四天-linux下的开机启动脚本">
-                  <i class="fa fa-chevron-left"></i> 学习总结第四天-linux下的开机启动脚本
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2017/10/17/archive/学习总结第六天/" rel="prev" title="学习总结第六天">
-                  学习总结第六天 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/10/15/archive/学习总结第四天-linux下的开机启动脚本/" rel="prev" title="学习总结第四天-linux下的开机启动脚本">
+      <i class="fa fa-chevron-left"></i> 学习总结第四天-linux下的开机启动脚本
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/10/17/archive/学习总结第六天/" rel="next" title="学习总结第六天">
+      学习总结第六天 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -317,6 +288,28 @@ b&apos;Hello World&apos;</code></pre><p>看起来和普通的字符串只是多�
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -346,8 +339,6 @@ b&apos;Hello World&apos;</code></pre><p>看起来和普通的字符串只是多�
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -375,7 +366,7 @@ b&apos;Hello World&apos;</code></pre><p>看起来和普通的字符串只是多�
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -422,18 +413,13 @@ b&apos;Hello World&apos;</code></pre><p>看起来和普通的字符串只是多�
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -477,7 +463,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -489,6 +475,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -515,36 +502,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: 'b15da6428e685bb80b06d59597f5ab63',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : 'e1beef63dbcbd3763b442bcf58f5e585',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

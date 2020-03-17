@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,69 +15,37 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-  <meta name="description" content="树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。  在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&amp;gt;0）个有限节点组成一个具有层次关系的集合。  节点的度：一个节点含有的子树的">
+  <meta name="description" content="树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。 &amp;gt; 在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&amp;gt;0）个有限节点组成一个具有层次关系的集合。 * 节点的度：一个节点含">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第三十二天——从树结构到堆排序">
-<meta property="og:url" content="http://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/index.html">
+<meta property="og:url" content="https://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。  在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&amp;gt;0）个有限节点组成一个具有层次关系的集合。  节点的度：一个节点含有的子树的">
+<meta property="og:description" content="树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。 &amp;gt; 在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&amp;gt;0）个有限节点组成一个具有层次关系的集合。 * 节点的度：一个节点含">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://koswu.github.io/attachment/img/300px-Binary_tree.svg.png">
+<meta property="og:image" content="https://koswu.github.io/attachment/img/300px-Binary_tree.svg.png">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第三十二天——从树结构到堆排序">
-<meta name="twitter:description" content="树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。  在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&amp;gt;0）个有限节点组成一个具有层次关系的集合。  节点的度：一个节点含有的子树的">
-<meta name="twitter:image" content="http://koswu.github.io/attachment/img/300px-Binary_tree.svg.png">
+<meta name="twitter:description" content="树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。 &amp;gt; 在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&amp;gt;0）个有限节点组成一个具有层次关系的集合。 * 节点的度：一个节点含">
+<meta name="twitter:image" content="https://koswu.github.io/attachment/img/300px-Binary_tree.svg.png">
 
-<link rel="canonical" href="http://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/">
+<link rel="canonical" href="https://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -85,16 +53,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -122,16 +87,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -145,11 +118,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -206,10 +176,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -250,28 +220,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。</p>
-<blockquote>
-<p>在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&gt;0）个有限节点组成一个具有层次关系的集合。</p>
-<ul>
-<li>节点的度：一个节点含有的子树的个数称为该节点的度；</li>
-<li>树的度：一棵树中，最大的节点的度称为树的度；</li>
-<li>叶节点或终端节点：度为零的节点；</li>
-<li>非终端节点或分支节点：度不为零的节点；</li>
-<li>父亲节点或父节点：若一个节点含有子节点，则这个节点称为其子节点的父节点；</li>
-<li>孩子节点或子节点：一个节点含有的子树的根节点称为该节点的子节点；</li>
-<li>兄弟节点：具有相同父节点的节点互称为兄弟节点；</li>
-<li>节点的层次：从根开始定义起，根为第1层，根的子节点为第2层，以此类推；</li>
-<li>深度：对于任意节点n,n的深度为从根到n的唯一路径长，根的深度为0；</li>
-<li>高度：对于任意节点n,n的高度为从n到一片树叶的最长路径长，所有树叶的高度为0；</li>
-<li>堂兄弟节点：父节点在同一层的节点互为堂兄弟；</li>
-<li>节点的祖先：从根到该节点所经分支上的所有节点；</li>
-<li>子孙：以某节点为根的子树中任一节点都称为该节点的子孙。</li>
-<li>森林：由m（m&gt;=0）棵互不相交的树的集合称为森林；</li>
-</ul>
-</blockquote>
-<p>而每个节点最多含有两个子树的树又被称为二叉树，下图为一颗二叉树的结构<br><img src="/attachment/img/300px-Binary_tree.svg.png" alt="由Derrick Coetzee - 自己的作品，公有领域，https://commons.wikimedia.org/w/index.php?curid=488419"></p>
-<p>明白了二叉树以后，我们便可以来实现一种特殊的二叉树——“二叉堆”。<br>想象一下我们堆东西时的情景，大的物体堆在下层，小的堆在上层。二叉堆同理，父节点的键值总是保持固定的序关系于任何一个子节点的键值，且每个节点的左子树和右子树都是一个二叉堆。</p>
+        <p>树结构，或者说树状结构，相信很多人都不陌生，它的名称来自于以树的象征来表现出构造之间的关系，虽然在图象的呈现上，其为一个上下颠倒的树。以下为维基中对于树结构的定义。 &gt; 在计算机科学中，树（英语：tree）是一种抽象数据类型（ADT）或是实作这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&gt;0）个有限节点组成一个具有层次关系的集合。 * 节点的度：一个节点含有的子树的个数称为该节点的度； * 树的度：一棵树中，最大的节点的度称为树的度； * 叶节点或终端节点：度为零的节点； * 非终端节点或分支节点：度不为零的节点； * 父亲节点或父节点：若一个节点含有子节点，则这个节点称为其子节点的父节点； * 孩子节点或子节点：一个节点含有的子树的根节点称为该节点的子节点； * 兄弟节点：具有相同父节点的节点互称为兄弟节点； * 节点的层次：从根开始定义起，根为第1层，根的子节点为第2层，以此类推； * 深度：对于任意节点n,n的深度为从根到n的唯一路径长，根的深度为0； * 高度：对于任意节点n,n的高度为从n到一片树叶的最长路径长，所有树叶的高度为0； * 堂兄弟节点：父节点在同一层的节点互为堂兄弟； * 节点的祖先：从根到该节点所经分支上的所有节点； * 子孙：以某节点为根的子树中任一节点都称为该节点的子孙。 * 森林：由m（m&gt;=0）棵互不相交的树的集合称为森林；</p>
+<p>而每个节点最多含有两个子树的树又被称为二叉树，下图为一颗二叉树的结构 <img src="/attachment/img/300px-Binary_tree.svg.png" alt="由Derrick Coetzee - 自己的作品，公有领域，https://commons.wikimedia.org/w/index.php?curid=488419"></p>
+<p>明白了二叉树以后，我们便可以来实现一种特殊的二叉树——“二叉堆”。 想象一下我们堆东西时的情景，大的物体堆在下层，小的堆在上层。二叉堆同理，父节点的键值总是保持固定的序关系于任何一个子节点的键值，且每个节点的左子树和右子树都是一个二叉堆。</p>
 <p>当父节点的键值总是大于或等于任何一个子节点的键值时为最大堆，相反，当父节点的键值总是小于或等于任何一个子节点的键值时为最小堆。</p>
 <p>二叉堆一般采用数组来实现，并且舍弃了下标为0的值，这样的话便可以满足关系：元素i的子节点为2i和2i+1。可以方便的遍历一个二叉堆。同时我们应该实现两个方法，让二叉堆在从堆顶移除元素和在堆底添加元素后，能够恢复二叉堆原来的性质。</p>
 <p>我们一般将这两个方法命名为sink()和swim()，这个过程可以看作，减少一个元素，就要让最后的元素补上开头的位置，再让这个元素下沉(sink)到合适的位置，增加一个元素，就要在堆的最后插入元素，再将这个元素上浮(swim)到合适的位置。</p>
@@ -423,11 +374,12 @@ int main(int argc, char const *argv[])
   a.insert(234);
   a.insert(2341);
   a.insert(9999);
-  std::cout &lt;&lt; a.delmax() &lt;&lt; &apos; &apos; &lt;&lt; a.delmax() &lt;&lt; std::endl;
-  std::cout &lt;&lt; a.delmax() &lt;&lt; &apos; &apos; &lt;&lt; a.delmax() &lt;&lt; std::endl;
+  std::cout &lt;&lt; a.delmax() &lt;&lt; &#39; &#39; &lt;&lt; a.delmax() &lt;&lt; std::endl;
+  std::cout &lt;&lt; a.delmax() &lt;&lt; &#39; &#39; &lt;&lt; a.delmax() &lt;&lt; std::endl;
   std::cout &lt;&lt; a.delmax() &lt;&lt; std::endl;
   return 0;
-}</code></pre><p>堆排序，在实现了优先队列的基础上，就并不难了，只要数组先构建为有限队列，然后在依次执行出列操作，得到的一组数据就已经排序，同时我们还可以进一步简化，只用sink()方法就可以来构建一个堆，下面是一个堆排序的实现：</p>
+}</code></pre>
+<p>堆排序，在实现了优先队列的基础上，就并不难了，只要数组先构建为有限队列，然后在依次执行出列操作，得到的一组数据就已经排序，同时我们还可以进一步简化，只用sink()方法就可以来构建一个堆，下面是一个堆排序的实现：</p>
 <pre><code>#include &lt;iostream&gt;
 
 template &lt;typename T&gt;void sink(T *datas,int index,int size)
@@ -476,6 +428,7 @@ int main(int argc, char const *argv[])
   }
   return 0;
 }</code></pre>
+
     </div>
 
     
@@ -490,7 +443,7 @@ int main(int argc, char const *argv[])
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/" title="学习总结第三十二天——从树结构到堆排序">http://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/</a>
+    <a href="https://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/" title="学习总结第三十二天——从树结构到堆排序">https://koswu.github.io/2017/12/15/archive/学习总结第三十二天——从树结构到堆排序/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -503,21 +456,18 @@ int main(int argc, char const *argv[])
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/" rel="next" title="学习总结第三十一天——快速排序与union-find算法">
-                  <i class="fa fa-chevron-left"></i> 学习总结第三十一天——快速排序与union-find算法
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2017/12/24/archive/学习总结第三十三天——二进制的表示/" rel="prev" title="学习总结第三十三天——二进制的表示">
-                  学习总结第三十三天——二进制的表示 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/12/07/archive/学习总结第三十一天——快速排序与union-find算法/" rel="prev" title="学习总结第三十一天——快速排序与union-find算法">
+      <i class="fa fa-chevron-left"></i> 学习总结第三十一天——快速排序与union-find算法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/12/24/archive/学习总结第三十三天——二进制的表示/" rel="next" title="学习总结第三十三天——二进制的表示">
+      学习总结第三十三天——二进制的表示 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -531,6 +481,28 @@ int main(int argc, char const *argv[])
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -560,8 +532,6 @@ int main(int argc, char const *argv[])
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -589,7 +559,7 @@ int main(int argc, char const *argv[])
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -636,18 +606,13 @@ int main(int argc, char const *argv[])
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -691,7 +656,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -703,6 +668,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -729,36 +695,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: 'e7aa4b912c063140a88e832310c40265',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : 'c6e09e62d8686f2800fa4285aac1b2a1',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

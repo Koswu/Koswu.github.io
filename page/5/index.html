@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,63 +15,31 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="KosWu &#39;s blog">
-<meta property="og:url" content="http://koswu.github.io/page/5/index.html">
+<meta property="og:url" content="https://koswu.github.io/page/5/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KosWu &#39;s blog">
 
-<link rel="canonical" href="http://koswu.github.io/page/5/">
+<link rel="canonical" href="https://koswu.github.io/page/5/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
-    isPage: false,
-    isArchive: false
+    isHome : true,
+    isPost : false
   };
 </script>
 
@@ -79,16 +47,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -116,16 +81,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -139,11 +112,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -200,10 +170,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/22/archive/学习总结第十一天_C++ 类/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/22/archive/学习总结第十一天_C++ 类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -246,24 +216,26 @@
 
       
           <p>今天对C++的类的基础创建操作进行了学习，但今天让我印象最深刻的还是class与struct的区分</p>
-<p>学过C语言的人对于struct都应该印象深刻，如果没有接触C++的话可能会以为类只能用class来声明，但其实不然。<br>在C++中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。</p>
+<p>学过C语言的人对于struct都应该印象深刻，如果没有接触C++的话可能会以为类只能用class来声明，但其实不然。 在C++中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。</p>
 <p>而struct和class的不同之处就在于struct成员的默认访问权限不同，struct是public，而class是private。换句话来说，下面两种形式的代码是等价的：</p>
-<pre><code>class cla
-{
-  //Nothing
-  private:
-  //Some code
-  public:
-  //Some code
-}</code></pre><p>和</p>
-<pre><code>struct cla
-{
-  //Nothing
-  private:
-  //Some code
-  public:
-  //Some code
-}</code></pre><p>由于class和struct的本质区别只有默认访问权限，所以如果我们自己再次进行定义访问权限的话，就不受到默认的影响了。所以，一般来说，用哪个都可以，但是为了代码的可读性，在定义的东西更接近于类的时候就用class，而接近于一个数据结构的话就用struct。话就用struct。</p>
+<pre><code>    class cla
+    {
+      //Nothing
+      private:
+      //Some code
+      public:
+      //Some code
+    }</code></pre>
+<p>和</p>
+<pre><code>    struct cla
+    {
+      //Nothing
+      private:
+      //Some code
+      public:
+      //Some code
+    }</code></pre>
+<p>由于class和struct的本质区别只有默认访问权限，所以如果我们自己再次进行定义访问权限的话，就不受到默认的影响了。所以，一般来说，用哪个都可以，但是为了代码的可读性，在定义的东西更接近于类的时候就用class，而接近于一个数据结构的话就用struct。话就用struct。</p>
 
       
     </div>
@@ -283,10 +255,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/22/archive/学习总结第十天_git的学习/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/22/archive/学习总结第十天_git的学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -330,7 +302,8 @@
       
           <p>使用github的人都知道git这个版本控制软件，我也不例外，但之前一直处于一个“够用就好”的状态，命令只认识clone add commit和push，今天对git的分支和回滚方面进行了进一步的了解</p>
 <p>git的详细指令可以</p>
-<pre><code>man git</code></pre><p>git的分支是用来标记特定的代码提交，每一个分支通过SHA1sum值来标识，所以对分支进行的操作是轻量级的，所改变的仅仅是SHA1sum值。分支可以合并，但合并后仍然可以在原来的几个分支上进行开发。</p>
+<pre><code>man git</code></pre>
+<p>git的分支是用来标记特定的代码提交，每一个分支通过SHA1sum值来标识，所以对分支进行的操作是轻量级的，所改变的仅仅是SHA1sum值。分支可以合并，但合并后仍然可以在原来的几个分支上进行开发。</p>
 <p>今天还学到的是，最好不要用git pull，而是用git fetch和git merge代替之，因为git pull的问题是它把过程的细节都隐藏了起来，以至于你不用去了解git中各种类型分支的区别和使用方法。当然，多数时候这是没问题的，但一旦代码有问题，你很难找到出错的地方。</p>
 
       
@@ -351,10 +324,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/20/archive/学习总结第九天_vi的复习/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/20/archive/学习总结第九天_vi的复习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -397,7 +370,8 @@
 
       
           <p>今天对vi下的命令进行了一些学习，虽然学了，但是要勤加练习才有用，把vi的常用指令贴在下面，以供日后复习</p>
-<h3 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h3><ul>
+<h3 id="移动光标">移动光标</h3>
+<ul>
 <li>h:向左移动一个字符</li>
 <li>j:向下移动一个字符</li>
 <li>k:向上移动一个字符</li>
@@ -409,12 +383,14 @@
 <li>G:移动到文件的最后一行</li>
 <li>gg: 移动到文件的第一行</li>
 </ul>
-<h3 id="搜索和替换"><a href="#搜索和替换" class="headerlink" title="搜索和替换"></a>搜索和替换</h3><ul>
+<h3 id="搜索和替换">搜索和替换</h3>
+<ul>
 <li>/word:向光标之下寻找一个名称为 word 的字符串</li>
 <li>n1,n2s/word1/word2/g:n1 与 n2 为数字。在第 n1 与 n2 行之间寻找 word1 这个字符串，并将该字符串取代为 word2</li>
 <li>1,$s/word1/word2/gc:从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！且在取代前显示提示字符给用户确认 (confirm) 是否需要取代</li>
 </ul>
-<h3 id="复制、粘贴、删除"><a href="#复制、粘贴、删除" class="headerlink" title="复制、粘贴、删除"></a>复制、粘贴、删除</h3><ul>
+<h3 id="复制粘贴删除">复制、粘贴、删除</h3>
+<ul>
 <li>yy:复制光标所在的那一行</li>
 <li>x :删除光标所在的字符</li>
 <li>dd:删除光标所在的一整行</li>
@@ -423,14 +399,16 @@
 <li>[Ctrl]+r:还原上一个动作</li>
 <li>.:重复上一个动作</li>
 </ul>
-<h3 id="不同方法进入编辑模式"><a href="#不同方法进入编辑模式" class="headerlink" title="不同方法进入编辑模式"></a>不同方法进入编辑模式</h3><ul>
+<h3 id="不同方法进入编辑模式">不同方法进入编辑模式</h3>
+<ul>
 <li>i:插入模式（向前插入）</li>
 <li>a:插入模式（向后插入）</li>
 <li>o：插入模式（下一行插入）</li>
 <li>r:替换模式</li>
 </ul>
 <p>进入编辑模式后按[esc]返回</p>
-<h3 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h3><ul>
+<h3 id="其他操作">其他操作</h3>
+<ul>
 <li>:w:保存</li>
 <li>:q:退出</li>
 </ul>
@@ -454,10 +432,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/19/archive/学习总结第八天_tty1下播放视频（带弹幕）/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/19/archive/学习总结第八天_tty1下播放视频（带弹幕）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -499,19 +477,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="中文命令行"><a href="#中文命令行" class="headerlink" title="中文命令行"></a>中文命令行</h3><p>有一定经验的linux用户都知道，linux下有很多tty，有的是运行纯命令行的tty，当然为了<del>装逼</del>特殊需求，我们可能会用到在命令行下的一些工具，让命令行变得实用，今天我便对这些<del>装13</del>工具进行了一些了解</p>
+          <h3 id="中文命令行">中文命令行</h3>
+<p>有一定经验的linux用户都知道，linux下有很多tty，有的是运行纯命令行的tty，当然为了<del>装逼</del>特殊需求，我们可能会用到在命令行下的一些工具，让命令行变得实用，今天我便对这些<del>装13</del>工具进行了一些了解</p>
 <p>首先是在纯命令行下的中文支持，我们用</p>
-<pre><code>sudo apt install fbterm fctix-fbterm-fronted</code></pre><p>来安装中文命令行和小企鹅拼音输入法,由于我目前使用的ubuntu17.04默认开启,所以不需要手动配置framebuffer</p>
+<pre><code>sudo apt install fbterm fctix-fbterm-fronted</code></pre>
+<p>来安装中文命令行和小企鹅拼音输入法,由于我目前使用的ubuntu17.04默认开启,所以不需要手动配置framebuffer</p>
 <p>为了保证能够正常运行，还需要将自己的用户加入video组</p>
-<pre><code>sudo usermod -a -G video username</code></pre><p>修改权限：</p>
-<pre><code>sudo chmod u+s `which fbterm`</code></pre><p>使用</p>
-<pre><code>fbterm -i fcitx-fbterm</code></pre><p>开启fberm并启用拼音</p>
-<h3 id="播放电影"><a href="#播放电影" class="headerlink" title="播放电影"></a>播放电影</h3><p>安装：</p>
-<pre><code>sudo apt install mplayer</code></pre><p>播放：</p>
-<pre><code>mplayer -vo fbdev2 &lt;xx.avi&gt;</code></pre><p>PS:配合弹幕下载+xml转ass弹幕，你还可以享受在命令行看弹幕视频的感觉，如果想用字符画输出的话，将fbdev2改为aa（黑白）或者caca（彩色）</p>
-<h3 id="截图工具"><a href="#截图工具" class="headerlink" title="截图工具"></a>截图工具</h3><p> 安装：</p>
-<pre><code>sudo apt install fbcat</code></pre><p> 使用：</p>
-<pre><code>fbgrab XX.png</code></pre><h3 id="分屏软件"><a href="#分屏软件" class="headerlink" title="分屏软件"></a>分屏软件</h3><pre><code>sudo apt install tmux</code></pre>
+<pre><code>sudo usermod -a -G video username</code></pre>
+<p>修改权限：</p>
+<pre><code>sudo chmod u+s `which fbterm`</code></pre>
+<p>使用</p>
+<pre><code>fbterm -i fcitx-fbterm</code></pre>
+<p>开启fberm并启用拼音</p>
+<h3 id="播放电影">播放电影</h3>
+<p>安装：</p>
+<pre><code>sudo apt install mplayer</code></pre>
+<p>播放：</p>
+<pre><code>mplayer -vo fbdev2 &lt;xx.avi&gt;</code></pre>
+<p>PS:配合弹幕下载+xml转ass弹幕，你还可以享受在命令行看弹幕视频的感觉，如果想用字符画输出的话，将fbdev2改为aa（黑白）或者caca（彩色）</p>
+<h3 id="截图工具">截图工具</h3>
+<p>安装：</p>
+<pre><code>sudo apt install fbcat</code></pre>
+<p>使用：</p>
+<pre><code>fbgrab XX.png</code></pre>
+<h3 id="分屏软件">分屏软件</h3>
+<pre><code>sudo apt install tmux</code></pre>
+
       
     </div>
 
@@ -530,10 +521,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/17/archive/学习总结第七天-oj的搭建/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/17/archive/学习总结第七天-oj的搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -597,10 +588,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/17/archive/学习总结第六天/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/17/archive/学习总结第六天/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -643,10 +634,12 @@
 
       
           <p>今天比较忙，所以咸鱼了一下，只是对python的matplotlib绘制条形图做了一下了解。</p>
-<p> 首先是用matplotlib绘制条形图，只需要调用pyplot的bar()方法，下面是一个基本使用</p>
+<p>首先是用matplotlib绘制条形图，只需要调用pyplot的bar()方法，下面是一个基本使用</p>
 <pre><code>plt.bar(range(len(data)), data)
-plt.show()</code></pre><p>BTW，x轴的坐标除了可以用range()生成以外，还可以使用numpy库的arange()方法来生成，这个方法与range()类似，但可以产生小数，返回一个数组<br>例如</p>
-<pre><code>numpy.arange(1,4,0.5)</code></pre><p>这个语句返回的就是一个(1,1.5,2,2.5,3,3.5,4)这样的数组一个(1,1.5,2,2.5,3,3.5,4)这样的数组</p>
+plt.show()</code></pre>
+<p>BTW，x轴的坐标除了可以用range()生成以外，还可以使用numpy库的arange()方法来生成，这个方法与range()类似，但可以产生小数，返回一个数组 例如</p>
+<pre><code>numpy.arange(1,4,0.5)</code></pre>
+<p>这个语句返回的就是一个(1,1.5,2,2.5,3,3.5,4)这样的数组一个(1,1.5,2,2.5,3,3.5,4)这样的数组</p>
 
       
     </div>
@@ -666,10 +659,10 @@ plt.show()</code></pre><p>BTW，x轴的坐标除了可以用range()生成以外�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -713,17 +706,21 @@ plt.show()</code></pre><p>BTW，x轴的坐标除了可以用range()生成以外�
       
           <p>今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。</p>
 <p>有问题的代码如下：</p>
-<pre><code>file=open(&quot;common.txt&quot;,&apos;w&apos;);
+<pre><code>file=open(&quot;common.txt&quot;,&#39;w&#39;);
 for val in commonTracks:
     val=val[0];
-    s= val+&apos;\n&apos;;
-    file.write(s.encode(&quot;UTF-8&quot;));</code></pre><p>运行时，解释器提示write方法接收的不是一个字符串。经过一番排查发现，通过encode转化为的并不是字符串，而是字节流bytes，在python中，bytes是字节流bytes对象，字符串是字符串str对象。</p>
+    s= val+&#39;\n&#39;;
+    file.write(s.encode(&quot;UTF-8&quot;));</code></pre>
+<p>运行时，解释器提示write方法接收的不是一个字符串。经过一番排查发现，通过encode转化为的并不是字符串，而是字节流bytes，在python中，bytes是字节流bytes对象，字符串是字符串str对象。</p>
 <p>我们可以在python下实际运行一下这段代码</p>
 <pre><code>a=&quot;Hello World&quot;;
-print(a.encode(&quot;UTF-8&quot;));</code></pre><p>我们会得到这样的输出：</p>
+print(a.encode(&quot;UTF-8&quot;));</code></pre>
+<p>我们会得到这样的输出：</p>
 <pre><code>&gt;&gt;&gt; print(a.encode(&quot;UTF-8&quot;));
-b&apos;Hello World&apos;</code></pre><p>看起来和普通的字符串只是多了一个b，但这就表示这是一个字节流bytes，所以我们如果要向文件写入字节流的话，就要在open函数里，使用二进制模式，即将原来的代码改为</p>
-<pre><code>file=open(&quot;common.txt&quot;,&apos;wb&apos;);</code></pre><p>便解决了问题。</p>
+b&#39;Hello World&#39;</code></pre>
+<p>看起来和普通的字符串只是多了一个b，但这就表示这是一个字节流bytes，所以我们如果要向文件写入字节流的话，就要在open函数里，使用二进制模式，即将原来的代码改为</p>
+<pre><code>file=open(&quot;common.txt&quot;,&#39;wb&#39;);</code></pre>
+<p>便解决了问题。</p>
 
       
     </div>
@@ -743,10 +740,10 @@ b&apos;Hello World&apos;</code></pre><p>看起来和普通的字符串只是多�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/15/archive/学习总结第四天-linux下的开机启动脚本/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/15/archive/学习总结第四天-linux下的开机启动脚本/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -790,7 +787,7 @@ b&apos;Hello World&apos;</code></pre><p>看起来和普通的字符串只是多�
       
           <p>当我们想要让某个程序开机在后台启动的时候，一种维护性较好的办法就是在linux下加入一个开机启动服务。</p>
 <p>今天对于linux下的服务脚本的做了一些了解，环境为ubuntu 17.04</p>
-<p>首先，系统上的每个服务的脚本都保存在/etc/init.c 下，这些文件都是一些sh脚本，可以直接执行。<br>下面是一个是一个init脚本：</p>
+<p>首先，系统上的每个服务的脚本都保存在/etc/init.c 下，这些文件都是一些sh脚本，可以直接执行。 下面是一个是一个init脚本：</p>
 <pre><code>#!/bin/sh                                                         
 ### BEGIN INIT INFO
 # Provides:       kcptun
@@ -819,11 +816,12 @@ case &quot;$1&quot; in
       #sth. to get service status
       ;;
   *)
-      echo &apos;Usage: service myservice {start|status|stop|restart}&apos;
-      echo &apos;&apos;
+      echo &#39;Usage: service myservice {start|status|stop|restart}&#39;
+      echo &#39;&#39;
       exit 1
 esac
-exit 0</code></pre><p>首先是上面的注释部分，第一行是指明解析使用的解释器，然后便是INIT INFO，这里也是必不可少的部分，里面记录了脚本的一些相关信息，具体如下:</p>
+exit 0</code></pre>
+<p>首先是上面的注释部分，第一行是指明解析使用的解释器，然后便是INIT INFO，这里也是必不可少的部分，里面记录了脚本的一些相关信息，具体如下:</p>
 <ul>
 <li>Provides: 服务名称，这个应当和文件名相同</li>
 <li>Required-Start:表示在这个服务启动前需要启动的服务</li>
@@ -838,7 +836,8 @@ exit 0</code></pre><p>首先是上面的注释部分，第一行是指明解析�
 <p>然后将这个文件放到/etc/init.d/下</p>
 <p>在/etc/rc.d 下我们可以看到各个服务在不同运行级别下的启动关系，当然我们并不需要亲自去修改这些文件，系统已经给我们提供了工具来自动修改这些文件，在ubuntu下，这个工具是<code>update-rc.d</code></p>
 <p>我们可以运行</p>
-<pre><code>update-rc.d &lt;yourservice&gt; default</code></pre><p>便可以让系统配置好脚本，在合适的时候启动�动</p>
+<pre><code>update-rc.d &lt;yourservice&gt; default</code></pre>
+<p>便可以让系统配置好脚本，在合适的时候启动�动</p>
 
       
     </div>
@@ -858,10 +857,10 @@ exit 0</code></pre><p>首先是上面的注释部分，第一行是指明解析�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/13/archive/学习总结第三天/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/13/archive/学习总结第三天/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -906,7 +905,8 @@ exit 0</code></pre><p>首先是上面的注释部分，第一行是指明解析�
           <p>今天本要写一个Web Extension，但一个密码框加入图标的方法目前没有什么好的解决方案，所以便暂时放置，转而学习gqrx的使用</p>
 <hr>
 <p>gqrx是linux下的一个开源的软件无线电程序，我配合hackrf硬件，进行了FM和航空无线电的接收实验。</p>
-<h3 id="FM广播接受"><a href="#FM广播接受" class="headerlink" title="FM广播接受"></a>FM广播接受</h3><p>打开gqrx，启动,在Reciver option中进行如下设置：</p>
+<h3 id="fm广播接受">FM广播接受</h3>
+<p>打开gqrx，启动,在Reciver option中进行如下设置：</p>
 <ul>
 <li>Frequency:频率，输入大致要收听的频段</li>
 <li>Mode:这里选择WFM(Mono)以收听调频广播</li>
@@ -915,7 +915,8 @@ exit 0</code></pre><p>首先是上面的注释部分，第一行是指明解析�
 </ul>
 <p>此时应当能听到沙沙声，观察图像，黄色和红色的部分就是有无线信号的地方，拖动红线，就可以切换频道收听了</p>
 <p>图</p>
-<h3 id="航空无线电接收"><a href="#航空无线电接收" class="headerlink" title="航空无线电接收"></a>航空无线电接收</h3><p>航空无线电接收与FM广播也是大同小异，只要把mode调至AM，并调到适合的频率，就可以听到机组与地面的通信了，但是我由于等了半个小时也没收到通信，于是就不贴图了贴图了</p>
+<h3 id="航空无线电接收">航空无线电接收</h3>
+<p>航空无线电接收与FM广播也是大同小异，只要把mode调至AM，并调到适合的频率，就可以听到机组与地面的通信了，但是我由于等了半个小时也没收到通信，于是就不贴图了贴图了</p>
 
       
     </div>
@@ -935,10 +936,10 @@ exit 0</code></pre><p>首先是上面的注释部分，第一行是指明解析�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/12/archive/学习总结第二天_WebExtension结构/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/12/archive/学习总结第二天_WebExtension结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -1019,6 +1020,28 @@ exit 0</code></pre><p>首先是上面的注释部分，第一行是指明解析�
           </div>
           
 
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
         </div>
           
   
@@ -1047,8 +1070,6 @@ exit 0</code></pre><p>首先是上面的注释部分，第一行是指明解析�
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -1076,7 +1097,7 @@ exit 0</code></pre><p>首先是上面的注释部分，第一行是指明解析�
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -1123,18 +1144,13 @@ exit 0</code></pre><p>首先是上面的注释部分，第一行是指明解析�
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -1178,7 +1194,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -1190,6 +1206,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -1216,19 +1233,24 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://koswu.github.io/page/5/',]
+      });
+      });
+  </script>
 
-  
 
-
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

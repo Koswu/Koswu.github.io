@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,69 +15,37 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="今天学习的内容是给自己的网站开启全站HTTPS。如果你是在我的博客阅读这篇文章的话，可能已经注意到，我的博客已经开启了全站HTTPS。虽然只是多少了一个S，但是传输过程区别很大。  为什么要切换到全站HTTPS？  因为HTTP是一种明文传输协议，非常容易被截获和修改，为了避免第三方对我们访问网站造成的影响，所以目前国际上都在推广HTTPS，可见HTTPS取代HTTP将是未来的大势所趋。所以我也不">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第十六天_开启全站HTTPS">
-<meta property="og:url" content="http://koswu.github.io/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/index.html">
+<meta property="og:url" content="https://koswu.github.io/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
 <meta property="og:description" content="今天学习的内容是给自己的网站开启全站HTTPS。如果你是在我的博客阅读这篇文章的话，可能已经注意到，我的博客已经开启了全站HTTPS。虽然只是多少了一个S，但是传输过程区别很大。  为什么要切换到全站HTTPS？  因为HTTP是一种明文传输协议，非常容易被截获和修改，为了避免第三方对我们访问网站造成的影响，所以目前国际上都在推广HTTPS，可见HTTPS取代HTTP将是未来的大势所趋。所以我也不">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://koswu.github.io/attachment/img/https_analsis.png">
+<meta property="og:image" content="https://koswu.github.io/attachment/img/https_analsis.png">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第十六天_开启全站HTTPS">
 <meta name="twitter:description" content="今天学习的内容是给自己的网站开启全站HTTPS。如果你是在我的博客阅读这篇文章的话，可能已经注意到，我的博客已经开启了全站HTTPS。虽然只是多少了一个S，但是传输过程区别很大。  为什么要切换到全站HTTPS？  因为HTTP是一种明文传输协议，非常容易被截获和修改，为了避免第三方对我们访问网站造成的影响，所以目前国际上都在推广HTTPS，可见HTTPS取代HTTP将是未来的大势所趋。所以我也不">
-<meta name="twitter:image" content="http://koswu.github.io/attachment/img/https_analsis.png">
+<meta name="twitter:image" content="https://koswu.github.io/attachment/img/https_analsis.png">
 
-<link rel="canonical" href="http://koswu.github.io/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/">
+<link rel="canonical" href="https://koswu.github.io/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -85,16 +53,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -122,16 +87,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -145,11 +118,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -206,10 +176,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -258,12 +228,13 @@
 <blockquote>
 <p>切换HTTPS的步骤</p>
 </blockquote>
-<p>首先申请一个SSL证书，这里既可以选择收费的也可以选择免费的，我推荐使用<a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s encrypt</a>的免费证书，这个证书可以到官网申请。</p>
+<p>首先申请一个SSL证书，这里既可以选择收费的也可以选择免费的，我推荐使用<a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let's encrypt</a>的免费证书，这个证书可以到官网申请。</p>
 <p>将这个SSL证书部署到你的服务器上，由于我用的是云空间，直接填写证书和私钥就可以了。</p>
 <p>这时就可以通过https访问网站了，但是如果使用HTTP的话，还是能够进入网站，这时我们可以在服务器的Apache配置文件（.htaccess)下对HTTP访问设置301返回，就可以实现强制HTTPS,在文件后加入这几行:</p>
 <pre><code>RewriteBase /
 RewriteCond %{HTTP:KERSSL} !on
-RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre><p>做完这些工作,一般来说已经完成了,但是由于现在用的都是各种建站系统,里面的主题插件什么的难免用到外链HTTP资源.所以我们还需要将这些资源文件移动到自己的主机上.<br>开启浏览器的安全例外,然后在开发者控制台里的”网络”一栏对HTTP请求进行分析(记得禁用缓存),将其中的HTTP外链资源移到本地,再在相应的文件里面修改资源获取地址.就可以真正做到全站HTTPS啦!<br><img src="/attachment/img/https_analsis.png" alt="HTTP资源文件分析"></p>
+RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre>
+<p>做完这些工作,一般来说已经完成了,但是由于现在用的都是各种建站系统,里面的主题插件什么的难免用到外链HTTP资源.所以我们还需要将这些资源文件移动到自己的主机上. 开启浏览器的安全例外,然后在开发者控制台里的"网络"一栏对HTTP请求进行分析(记得禁用缓存),将其中的HTTP外链资源移到本地,再在相应的文件里面修改资源获取地址.就可以真正做到全站HTTPS啦! <img src="/attachment/img/https_analsis.png" alt="HTTP资源文件分析"></p>
 
     </div>
 
@@ -279,7 +250,7 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre><p>�
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/" title="学习总结第十六天_开启全站HTTPS">http://koswu.github.io/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/</a>
+    <a href="https://koswu.github.io/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/" title="学习总结第十六天_开启全站HTTPS">https://koswu.github.io/2017/10/28/archive/学习总结第十六天_开启全站HTTPS/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -292,21 +263,18 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre><p>�
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2017/10/27/archive/学习总结第十五天_github学生包/" rel="next" title="学习总结第十五天_github学生包">
-                  <i class="fa fa-chevron-left"></i> 学习总结第十五天_github学生包
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2017/10/29/archive/学习总结第十七天_类的作用域/" rel="prev" title="学习总结第十七天_类的作用域">
-                  学习总结第十七天_类的作用域 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/10/27/archive/学习总结第十五天_github学生包/" rel="prev" title="学习总结第十五天_github学生包">
+      <i class="fa fa-chevron-left"></i> 学习总结第十五天_github学生包
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/10/29/archive/学习总结第十七天_类的作用域/" rel="next" title="学习总结第十七天_类的作用域">
+      学习总结第十七天_类的作用域 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -320,6 +288,28 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre><p>�
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -349,8 +339,6 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre><p>�
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -378,7 +366,7 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre><p>�
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -425,18 +413,13 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre><p>�
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -480,7 +463,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -492,6 +475,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -518,36 +502,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: '2645a897627609f7a461f970d9c3c84c',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : 'd83a85aa4b5b3f92db709755bb206561',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

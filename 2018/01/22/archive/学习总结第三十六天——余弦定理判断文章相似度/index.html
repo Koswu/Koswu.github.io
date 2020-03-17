@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,67 +15,35 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-  <meta name="description" content="拜读过《数学之美》中的余弦定理应用的相关章节，并学习了符号表的实现以后，一直希望自己能够做一个能够判断文章相似度类似的东西。虽然基础有限，但是仍然取得了不错的效果。分词相关对于我来说数学基础还是有些不够，所以我决定暂时不进行分词，对英文文章这种天生的分词进行处理就好。首先是实现一个符号表，在C++中声明一个模板类，实现如下： 123456789101112131415161718192021222">
+  <meta name="description" content="拜读过《数学之美》中的余弦定理应用的相关章节，并学习了符号表的实现以后，一直希望自己能够做一个能够判断文章相似度类似的东西。虽然基础有限，但是仍然取得了不错的效果。 分词相关对于我来说数学基础还是有些不够，所以我决定暂时不进行分词，对英文文章这种天生的分词进行处理就好。 首先是实现一个符号表，在C++中声明一个模板类，实现如下： 1234567891011121314151617181920212">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第三十六天——余弦定理判断文章相似度">
-<meta property="og:url" content="http://koswu.github.io/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/index.html">
+<meta property="og:url" content="https://koswu.github.io/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="拜读过《数学之美》中的余弦定理应用的相关章节，并学习了符号表的实现以后，一直希望自己能够做一个能够判断文章相似度类似的东西。虽然基础有限，但是仍然取得了不错的效果。分词相关对于我来说数学基础还是有些不够，所以我决定暂时不进行分词，对英文文章这种天生的分词进行处理就好。首先是实现一个符号表，在C++中声明一个模板类，实现如下： 123456789101112131415161718192021222">
+<meta property="og:description" content="拜读过《数学之美》中的余弦定理应用的相关章节，并学习了符号表的实现以后，一直希望自己能够做一个能够判断文章相似度类似的东西。虽然基础有限，但是仍然取得了不错的效果。 分词相关对于我来说数学基础还是有些不够，所以我决定暂时不进行分词，对英文文章这种天生的分词进行处理就好。 首先是实现一个符号表，在C++中声明一个模板类，实现如下： 1234567891011121314151617181920212">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第三十六天——余弦定理判断文章相似度">
-<meta name="twitter:description" content="拜读过《数学之美》中的余弦定理应用的相关章节，并学习了符号表的实现以后，一直希望自己能够做一个能够判断文章相似度类似的东西。虽然基础有限，但是仍然取得了不错的效果。分词相关对于我来说数学基础还是有些不够，所以我决定暂时不进行分词，对英文文章这种天生的分词进行处理就好。首先是实现一个符号表，在C++中声明一个模板类，实现如下： 123456789101112131415161718192021222">
+<meta name="twitter:description" content="拜读过《数学之美》中的余弦定理应用的相关章节，并学习了符号表的实现以后，一直希望自己能够做一个能够判断文章相似度类似的东西。虽然基础有限，但是仍然取得了不错的效果。 分词相关对于我来说数学基础还是有些不够，所以我决定暂时不进行分词，对英文文章这种天生的分词进行处理就好。 首先是实现一个符号表，在C++中声明一个模板类，实现如下： 1234567891011121314151617181920212">
 
-<link rel="canonical" href="http://koswu.github.io/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/">
+<link rel="canonical" href="https://koswu.github.io/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -83,16 +51,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -120,16 +85,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -143,11 +116,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -204,10 +174,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -248,15 +218,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>拜读过《数学之美》中的余弦定理应用的相关章节，并学习了符号表的实现以后，一直希望自己能够做一个能够判断文章相似度类似的东西。虽然基础有限，但是仍然取得了不错的效果。<br>分词相关对于我来说数学基础还是有些不够，所以我决定暂时不进行分词，对英文文章这种天生的分词进行处理就好。<br>首先是实现一个符号表，在C++中声明一个模板类，实现如下：</p>
+        <p>拜读过《数学之美》中的余弦定理应用的相关章节，并学习了符号表的实现以后，一直希望自己能够做一个能够判断文章相似度类似的东西。虽然基础有限，但是仍然取得了不错的效果。 分词相关对于我来说数学基础还是有些不够，所以我决定暂时不进行分词，对英文文章这种天生的分词进行处理就好。 首先是实现一个符号表，在C++中声明一个模板类，实现如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> SILIB_H_</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STLIB_H_</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt; <span class="class"><span class="keyword">class</span> <span class="title">BinarySearchST</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  Key *keys;</span><br><span class="line">  Value *values;</span><br><span class="line">  <span class="keyword">int</span> st_size;</span><br><span class="line">  <span class="keyword">int</span> count;</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  BinarySearchST(<span class="keyword">int</span> capacity);</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">isempty</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function">Value <span class="title">get</span><span class="params">(Key key)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">rank</span><span class="params">(Key key)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">put</span><span class="params">(Key key, Value val)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">(Key key)</span></span>;</span><br><span class="line">  <span class="function">Key <span class="title">min</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function">Key <span class="title">max</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function">Key <span class="title">select</span><span class="params">(<span class="keyword">int</span> k)</span></span>;</span><br><span class="line">  <span class="function">Key <span class="title">ceiling</span><span class="params">(Key key)</span></span>;</span><br><span class="line">  <span class="function">Key <span class="title">floor</span><span class="params">(Key key)</span></span>;</span><br><span class="line">  ~BinarySearchST();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;<span class="keyword">int</span> BinarySearchST&lt;Key,Value&gt;::resize(<span class="keyword">int</span> capacity)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (capacity &lt; count + <span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;<span class="comment">//capacity is too small...</span></span><br><span class="line">  &#125;</span><br><span class="line">  Key *keys_new = <span class="keyword">new</span> Key[capacity];</span><br><span class="line">  Value *values_new = <span class="keyword">new</span> Value[capacity];</span><br><span class="line">  <span class="keyword">if</span> (!keys_new || !values_new)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-2</span>;<span class="comment">//allocate memory error...</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; count;i++)</span><br><span class="line">  &#123;</span><br><span class="line">    keys_new[i] = keys[i];</span><br><span class="line">    values_new[i] = values[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">delete</span>[] keys;</span><br><span class="line">  <span class="keyword">delete</span>[] values;</span><br><span class="line">  keys = keys_new;</span><br><span class="line">  values = values_new;</span><br><span class="line">  st_size = capacity;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;BinarySearchST&lt;Key,Value&gt;::BinarySearchST(<span class="keyword">int</span> capacity):st_size(capacity),count(<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">  keys = <span class="keyword">new</span> Key[capacity];</span><br><span class="line">  values = <span class="keyword">new</span> Value[capacity];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;<span class="keyword">int</span> BinarySearchST&lt;Key,Value&gt;::size()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;<span class="keyword">bool</span> BinarySearchST&lt;Key,Value&gt;::isempty()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> !count;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;Value BinarySearchST&lt;Key,Value&gt;::get(Key key)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (isempty())</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">int</span> i = rank(key);</span><br><span class="line">  <span class="keyword">if</span> (i &lt; count &amp;&amp; keys[i] == key)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> values[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;<span class="keyword">int</span> BinarySearchST&lt;Key,Value&gt;::rank(Key key)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> lo = <span class="number">0</span>, hi = count<span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">while</span> (lo &lt;= hi)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = lo + (hi-lo)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (keys[mid] &gt; key)</span><br><span class="line">    &#123;</span><br><span class="line">      hi = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (keys[mid] &lt; key)</span><br><span class="line">    &#123;</span><br><span class="line">      lo = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> mid;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> lo;<span class="comment">//if not found, return the index of lower than search key.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;<span class="keyword">int</span> BinarySearchST&lt;Key,Value&gt;::put(Key key, Value val)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> i = rank(key);</span><br><span class="line">  <span class="keyword">if</span> (i &lt; count &amp;&amp; keys[i] == key)</span><br><span class="line">  &#123;</span><br><span class="line">    values[i] = val;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (count+<span class="number">1</span> &gt; st_size)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> ret_code=resize(st_size*<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span> (ret_code != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> ret_code;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = count; j &gt; i;j--)</span><br><span class="line">  &#123;</span><br><span class="line">    keys[j] = keys[j<span class="number">-1</span>];</span><br><span class="line">    values[j] = values[j<span class="number">-1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  keys[i] = key;</span><br><span class="line">  values[i] = val;</span><br><span class="line">  count++;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;<span class="keyword">void</span> BinarySearchST&lt;Key,Value&gt;::del(Key key)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> i = rank(key);</span><br><span class="line">  <span class="keyword">if</span> (i &lt; count &amp;&amp; keys[i] == key)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i;j &lt; --count;j++)</span><br><span class="line">    &#123;</span><br><span class="line">      keys[j] = keys[j+<span class="number">1</span>];</span><br><span class="line">      keys[j] = keys[j+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;Key BinarySearchST&lt;Key,Value&gt;::min()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> keys[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;Key BinarySearchST&lt;Key,Value&gt;::max()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> keys[count<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;Key BinarySearchST&lt;Key,Value&gt;::select(<span class="keyword">int</span> k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> keys[k];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;Key BinarySearchST&lt;Key,Value&gt;::ceiling(Key key)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> i = rank(key);</span><br><span class="line">  <span class="keyword">return</span> keys[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;Key BinarySearchST&lt;Key,Value&gt;::<span class="built_in">floor</span>(Key key)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> i = rank(key);</span><br><span class="line">  <span class="keyword">if</span> (keys[i] &gt; <span class="number">0</span> &amp;&amp; keys[i] == key)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> keys[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> keys[i+<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt; BinarySearchST&lt;Key,Value&gt;::~BinarySearchST()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">delete</span>[] keys;</span><br><span class="line">  <span class="keyword">delete</span>[] values;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
 <p>这里统计词频率时，Key为string，Value为int，我们可以设计一个函数，能够将文章读入符号表。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">BinarySearchST&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; *getCountedObj(<span class="built_in">std</span>::ifstream&amp; ifst)</span><br><span class="line">&#123;</span><br><span class="line">  BinarySearchST&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; *st = <span class="keyword">new</span> BinarySearchST&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">while</span> (!ifst.eof())</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">string</span> word;</span><br><span class="line">    ifst &gt;&gt; word;</span><br><span class="line">    <span class="keyword">if</span> (word != <span class="string">""</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      st-&gt;put(word, st-&gt;get(word)+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> st;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这时可以得到两个文章向量，各维的坐标值对应了相应的词频。使用以下函数可以计算出这两个文章向量夹角的余弦值，即文章相似度</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calculateSimialarity</span><span class="params">(BinarySearchST&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; *st1, BinarySearchST&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; *st2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">long</span> <span class="keyword">long</span> product = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">double</span> abs1 = <span class="number">0</span>,abs2 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (i&lt;st1-&gt;size()&amp;&amp;j&lt;st2-&gt;size())</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">string</span> key1 = st1-&gt;select(i);</span><br><span class="line">    <span class="built_in">string</span> key2 = st2-&gt;select(j);</span><br><span class="line">    <span class="keyword">if</span> (key1 &gt; key2)</span><br><span class="line">    &#123;</span><br><span class="line">      abs2 += <span class="built_in">pow</span>(st2-&gt;get(key2), <span class="number">2</span>);</span><br><span class="line">      j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (key1 &lt; key2)</span><br><span class="line">    &#123;</span><br><span class="line">      abs1 +=  <span class="built_in">pow</span>(st1-&gt;get(key1), <span class="number">2</span>);</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      product += st1-&gt;get(key1) * st2-&gt;get(key2);</span><br><span class="line">      abs1 += <span class="built_in">pow</span>(st1-&gt;get(key1), <span class="number">2</span>);</span><br><span class="line">      abs2 += <span class="built_in">pow</span>(st2-&gt;get(key2), <span class="number">2</span>);</span><br><span class="line">      j++;</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  abs1 = <span class="built_in">sqrt</span>(abs1);</span><br><span class="line">  abs2 = <span class="built_in">sqrt</span>(abs2);</span><br><span class="line">  <span class="keyword">double</span> cosed_degree = product/(abs1*abs2);</span><br><span class="line">  <span class="keyword">return</span> cosed_degree;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>这时可以得到两个文章向量，各维的坐标值对应了相应的词频。使用以下函数可以计算出这两个文章向量夹角的余弦值，即文章相似度 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calculateSimialarity</span><span class="params">(BinarySearchST&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; *st1, BinarySearchST&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; *st2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">long</span> <span class="keyword">long</span> product = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">double</span> abs1 = <span class="number">0</span>,abs2 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (i&lt;st1-&gt;size()&amp;&amp;j&lt;st2-&gt;size())</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">string</span> key1 = st1-&gt;select(i);</span><br><span class="line">    <span class="built_in">string</span> key2 = st2-&gt;select(j);</span><br><span class="line">    <span class="keyword">if</span> (key1 &gt; key2)</span><br><span class="line">    &#123;</span><br><span class="line">      abs2 += <span class="built_in">pow</span>(st2-&gt;get(key2), <span class="number">2</span>);</span><br><span class="line">      j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (key1 &lt; key2)</span><br><span class="line">    &#123;</span><br><span class="line">      abs1 +=  <span class="built_in">pow</span>(st1-&gt;get(key1), <span class="number">2</span>);</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      product += st1-&gt;get(key1) * st2-&gt;get(key2);</span><br><span class="line">      abs1 += <span class="built_in">pow</span>(st1-&gt;get(key1), <span class="number">2</span>);</span><br><span class="line">      abs2 += <span class="built_in">pow</span>(st2-&gt;get(key2), <span class="number">2</span>);</span><br><span class="line">      j++;</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  abs1 = <span class="built_in">sqrt</span>(abs1);</span><br><span class="line">  abs2 = <span class="built_in">sqrt</span>(abs2);</span><br><span class="line">  <span class="keyword">double</span> cosed_degree = product/(abs1*abs2);</span><br><span class="line">  <span class="keyword">return</span> cosed_degree;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>使用<a href="https://sherlock-holm.es/ascii/" target="_blank" rel="noopener">这个网站</a>和<a href="https://textfiles.com/stories/" target="_blank" rel="noopener">这个</a>中的小说作为实验，发现同为福尔摩斯的两篇小说基本上相似度在0.9以上，不同题材小说仅有0.6左右的相似度，较好地符合了预期，实验大成功！！</p>
 
     </div>
@@ -273,7 +239,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/" title="学习总结第三十六天——余弦定理判断文章相似度">http://koswu.github.io/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/</a>
+    <a href="https://koswu.github.io/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/" title="学习总结第三十六天——余弦定理判断文章相似度">https://koswu.github.io/2018/01/22/archive/学习总结第三十六天——余弦定理判断文章相似度/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -286,21 +252,18 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2018/01/07/archive/学习总结第三十五天——arch Linux安装/" rel="next" title="学习总结第三十五天——arch Linux安装">
-                  <i class="fa fa-chevron-left"></i> 学习总结第三十五天——arch Linux安装
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2018/01/23/archive/2018寒假计划/" rel="prev" title="2018寒假计划">
-                  2018寒假计划 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/01/07/archive/学习总结第三十五天——arch Linux安装/" rel="prev" title="学习总结第三十五天——arch Linux安装">
+      <i class="fa fa-chevron-left"></i> 学习总结第三十五天——arch Linux安装
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/01/23/archive/2018寒假计划/" rel="next" title="2018寒假计划">
+      2018寒假计划 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -314,6 +277,28 @@
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -343,8 +328,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -372,7 +355,7 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -419,18 +402,13 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -474,7 +452,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -486,6 +464,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -512,36 +491,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: '1ea1674cb50eb7f52ede9e123c220a73',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : 'a6774ae26a99b6410df8ce4ed1f9bce6',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

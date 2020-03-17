@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,48 +15,18 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="最近博客一直断更，一时想不到要写什么比较好。这次趁着刚刚学完红黑树的机会，就开篇文章谈谈红黑树吧。 相信稍微对于数据结构都些了解的人都了解过二叉搜索树，二叉搜索树的优点很明显，就是在树基本平衡的情况下（每个分支的深度都差不多）的情况下，对于树节点的增删改查在对数时间（O(lgN))内就能够完成。但是其缺点也很明显，就是必须要在 平衡 的情况下，才能有这么高的效率，如果树只向一个方向增长（最坏情况）">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="谈谈红黑树（一）">
-<meta property="og:url" content="http://koswu.github.io/2018/03/23/archive/谈谈红黑树（一）/index.html">
+<meta property="og:url" content="https://koswu.github.io/2018/03/23/archive/谈谈红黑树（一）/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
 <meta property="og:description" content="最近博客一直断更，一时想不到要写什么比较好。这次趁着刚刚学完红黑树的机会，就开篇文章谈谈红黑树吧。 相信稍微对于数据结构都些了解的人都了解过二叉搜索树，二叉搜索树的优点很明显，就是在树基本平衡的情况下（每个分支的深度都差不多）的情况下，对于树节点的增删改查在对数时间（O(lgN))内就能够完成。但是其缺点也很明显，就是必须要在 平衡 的情况下，才能有这么高的效率，如果树只向一个方向增长（最坏情况）">
 <meta property="og:locale" content="zh-CN">
@@ -69,17 +39,15 @@
 <meta name="twitter:description" content="最近博客一直断更，一时想不到要写什么比较好。这次趁着刚刚学完红黑树的机会，就开篇文章谈谈红黑树吧。 相信稍微对于数据结构都些了解的人都了解过二叉搜索树，二叉搜索树的优点很明显，就是在树基本平衡的情况下（每个分支的深度都差不多）的情况下，对于树节点的增删改查在对数时间（O(lgN))内就能够完成。但是其缺点也很明显，就是必须要在 平衡 的情况下，才能有这么高的效率，如果树只向一个方向增长（最坏情况）">
 <meta name="twitter:image" content="http://blog.koswu.com/attachment/img/balance_or_not_tree.png">
 
-<link rel="canonical" href="http://koswu.github.io/2018/03/23/archive/谈谈红黑树（一）/">
+<link rel="canonical" href="https://koswu.github.io/2018/03/23/archive/谈谈红黑树（一）/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -87,16 +55,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -124,16 +89,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -147,11 +120,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -208,10 +178,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2018/03/23/archive/谈谈红黑树（一）/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2018/03/23/archive/谈谈红黑树（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -254,13 +224,15 @@
       
         <p>最近博客一直断更，一时想不到要写什么比较好。这次趁着刚刚学完红黑树的机会，就开篇文章谈谈红黑树吧。</p>
 <p>相信稍微对于数据结构都些了解的人都了解过二叉搜索树，二叉搜索树的优点很明显，就是在树基本平衡的情况下（每个分支的深度都差不多）的情况下，对于树节点的增删改查在对数时间（O(lgN))内就能够完成。但是其缺点也很明显，就是必须要在 <strong>平衡</strong> 的情况下，才能有这么高的效率，如果树只向一个方向增长（最坏情况）的话，其效率就变得和线性表一样了，甚至还要低下。</p>
-<p><img src="http://blog.koswu.com/attachment/img/balance_or_not_tree.png" alt="最优情况和最坏情况"></p>
+<figure>
+<img src="http://blog.koswu.com/attachment/img/balance_or_not_tree.png" alt><figcaption>最优情况和最坏情况</figcaption>
+</figure>
 <p>平衡二叉树和不平衡二叉树比较</p>
-<p>于是，就有人想要发明一种能够在最坏情况下仍然拥有对数时间的效率的数据结构，“自平衡二叉查找树”便诞生了。英文名叫做”Balanced tree”,简称B树hhh。说这么多，估计各位心里仍然没有一点B树Orz。其实所谓平衡树，就是在插入，删除的时候，使用一些树的变换手段（一般是旋转），来使树达到平衡的数据结构，其本质仍然是一棵二叉搜索树。</p>
+<p>于是，就有人想要发明一种能够在最坏情况下仍然拥有对数时间的效率的数据结构，“自平衡二叉查找树”便诞生了。英文名叫做"Balanced tree",简称B树hhh。说这么多，估计各位心里仍然没有一点B树Orz。其实所谓平衡树，就是在插入，删除的时候，使用一些树的变换手段（一般是旋转），来使树达到平衡的数据结构，其本质仍然是一棵二叉搜索树。</p>
 <p>最早提出的平衡树是AVL树，但是由于种种原因，其并未得到工业界的广泛使用，具体介绍由于篇幅限制这里就不展开了，有兴趣的读者可以自行搜索。目前工业界最为广泛使用的平衡树,便是本次要介绍的红黑树，但为了让我们更容易实现红黑树，我在此并不直接介绍红黑树，而是效率和红黑树差不多的一种变体——左倾红黑树。</p>
 <p>在介绍红黑树之前，请让我先介绍一种和红黑树等价的数据结构：”2-3树”。这种树是有点像二叉搜索树，但是又有些不同，重点在于其有两种节点，一种节点和二叉树一样，有一个键和两条指向子节点的链接。另外一种就比较厉害了，他有两个键和三条链接，这三条链接分别指向：同时小于两个键的节点，大小在两个键之间的节点，以及同时大于两个键的节点。</p>
-<p>当插入一个键的时候，首先对这个键进行搜索，按照二叉树的方法找到插入的位置，如果要插入的位置在一个2-节点，那就好办了，只要插入这个节点中合适的位置，让这个节点变成3-节点，这样做的话树的平衡性并没有改变。但如果插入的位置已经是一个3-节点的话，事情就变得有些棘手，我们必须在不改变树的平衡性的前提下完成插入操作。<br>我们可以首先将这个键插入3-节点，变成一个临时的4-节点，然后，沿着根的方向，依次分解遇到的4-节点。将4-节点中的处于中间大小的键放到他的父节点中。这样依次进行变换，一直到根节点，如果遇到根节点也变成了4-节点的情况，就可以直接将这个4-节点拆成三个2-节点，这样做的话，树的每条分支增长的速度就是一样的了，因为树由从上向下生长改为了 <em>从下向上</em> 生长。</p>
-<p><img src="http://blog.koswu.com/attachment/img/110px-2-3-4_tree_2-node.png" alt="2-节点"><br><img src="http://blog.koswu.com/attachment/img/120px-2-3-4-tree_3-node.png" alt="3-节点"></p>
+<p>当插入一个键的时候，首先对这个键进行搜索，按照二叉树的方法找到插入的位置，如果要插入的位置在一个2-节点，那就好办了，只要插入这个节点中合适的位置，让这个节点变成3-节点，这样做的话树的平衡性并没有改变。但如果插入的位置已经是一个3-节点的话，事情就变得有些棘手，我们必须在不改变树的平衡性的前提下完成插入操作。 我们可以首先将这个键插入3-节点，变成一个临时的4-节点，然后，沿着根的方向，依次分解遇到的4-节点。将4-节点中的处于中间大小的键放到他的父节点中。这样依次进行变换，一直到根节点，如果遇到根节点也变成了4-节点的情况，就可以直接将这个4-节点拆成三个2-节点，这样做的话，树的每条分支增长的速度就是一样的了，因为树由从上向下生长改为了 <em>从下向上</em> 生长。</p>
+<p><img src="http://blog.koswu.com/attachment/img/110px-2-3-4_tree_2-node.png" alt="2-节点"> <img src="http://blog.koswu.com/attachment/img/120px-2-3-4-tree_3-node.png" alt="3-节点"></p>
 <p>2-节点和3-节点</p>
 
     </div>
@@ -277,7 +249,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2018/03/23/archive/谈谈红黑树（一）/" title="谈谈红黑树（一）">http://koswu.github.io/2018/03/23/archive/谈谈红黑树（一）/</a>
+    <a href="https://koswu.github.io/2018/03/23/archive/谈谈红黑树（一）/" title="谈谈红黑树（一）">https://koswu.github.io/2018/03/23/archive/谈谈红黑树（一）/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -290,21 +262,18 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2018/03/23/archive/谈谈红黑树（二）/" rel="next" title="谈谈红黑树（二）">
-                  <i class="fa fa-chevron-left"></i> 谈谈红黑树（二）
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2018/05/15/archive/GEB读后感/" rel="prev" title="GEB读后感">
-                  GEB读后感 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/03/23/archive/谈谈红黑树（二）/" rel="prev" title="谈谈红黑树（二）">
+      <i class="fa fa-chevron-left"></i> 谈谈红黑树（二）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/05/15/archive/GEB读后感/" rel="next" title="GEB读后感">
+      GEB读后感 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -318,6 +287,28 @@
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -347,8 +338,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -376,7 +365,7 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -423,18 +412,13 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -478,7 +462,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -490,6 +474,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -516,36 +501,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: 'ada018084e3ffb3aef4282b48dd6cc0e',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : '7907643585c02a2ba0748f90fd58aad0',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

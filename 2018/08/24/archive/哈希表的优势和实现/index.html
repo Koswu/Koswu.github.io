@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -15,48 +15,18 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="在对二叉树进行学习之后，相信每个人都会对于其精妙和最坏情况下仍然能保证线性对数级别时间复杂度的增删改查赞叹不已。其用来实现符号表（存储键值对）是一种较为高效的实现。 在没有学习哈希表之前，如果我告诉你，有一种数据结构，可以对键值对做到常数时间级别的增删改查，你一定不会相信。但是哈希表做到了，有这么高效的数据结构怎么能够不对其有了解呢？这次我们就来谈谈哈希表这种数据结构的魅力所在。 要了解哈希表，首">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="哈希表的优势和实现">
-<meta property="og:url" content="http://koswu.github.io/2018/08/24/archive/哈希表的优势和实现/index.html">
+<meta property="og:url" content="https://koswu.github.io/2018/08/24/archive/哈希表的优势和实现/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
 <meta property="og:description" content="在对二叉树进行学习之后，相信每个人都会对于其精妙和最坏情况下仍然能保证线性对数级别时间复杂度的增删改查赞叹不已。其用来实现符号表（存储键值对）是一种较为高效的实现。 在没有学习哈希表之前，如果我告诉你，有一种数据结构，可以对键值对做到常数时间级别的增删改查，你一定不会相信。但是哈希表做到了，有这么高效的数据结构怎么能够不对其有了解呢？这次我们就来谈谈哈希表这种数据结构的魅力所在。 要了解哈希表，首">
 <meta property="og:locale" content="zh-CN">
@@ -65,17 +35,15 @@
 <meta name="twitter:title" content="哈希表的优势和实现">
 <meta name="twitter:description" content="在对二叉树进行学习之后，相信每个人都会对于其精妙和最坏情况下仍然能保证线性对数级别时间复杂度的增删改查赞叹不已。其用来实现符号表（存储键值对）是一种较为高效的实现。 在没有学习哈希表之前，如果我告诉你，有一种数据结构，可以对键值对做到常数时间级别的增删改查，你一定不会相信。但是哈希表做到了，有这么高效的数据结构怎么能够不对其有了解呢？这次我们就来谈谈哈希表这种数据结构的魅力所在。 要了解哈希表，首">
 
-<link rel="canonical" href="http://koswu.github.io/2018/08/24/archive/哈希表的优势和实现/">
+<link rel="canonical" href="https://koswu.github.io/2018/08/24/archive/哈希表的优势和实现/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -83,16 +51,13 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=145864234"></script>
     <script pjax>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '145864234');
       }
     </script>
-
-
 
 
 
@@ -120,16 +85,24 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -143,11 +116,8 @@
       
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -204,10 +174,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://koswu.github.io/2018/08/24/archive/哈希表的优势和实现/">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2018/08/24/archive/哈希表的优势和实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="KosWu">
       <meta itemprop="description" content="">
     </span>
@@ -253,7 +223,7 @@
 <p>要了解哈希表，首先我们得来看一看这个哈希函数是什么东西。函数，其实就是一个映射，将所有在定义域的值映射到值域范围内。有时候我们需要对任意长度的信息，提取出信息的“指纹”，这个指纹在一定程度上反映了信息的内容，但是占用空间大大缩小。此时我们就要设计一个函数，其定义域为信息可能出现的所有空间，而值域则为需要”指纹”的大小。当这个函数可以用来完成上述用途时，这个函数就被称为哈希函数，哈希函数输出的结果被称为哈系值。一些著名的哈希函数有MD5、SHA-1、SHA-2等。</p>
 <p>有了哈希函数，我们就可以利用哈希函数的映射，将任意长度的键映射到一个合理的区间内。试想创建一个数组，数组的下标为键的哈希值。数组的内容即为键值对的值，当我们已知键，要对值进行查找时，只需要对键取哈希，就可以在常数时间内获取到值的内容。</p>
 <p>在哈希表的实现中，我们设计的哈希函数应该考虑的重点有如下几个</p>
-<ol>
+<ol type="1">
 <li>尽可能让输入中的每一位都对输出结果造成影响，减少碰撞的发生</li>
 <li>计算尽量简单，否则哈希函数的计算也会对运行时间造成极大的影响</li>
 <li>输出范围应当尽可能的可控</li>
@@ -263,14 +233,15 @@
 <p>当我们有了哈系函数以后，就可以利用哈希函数类构造哈希表了。首先创建一个很大的数组array，数组的大小即为哈希函数的值域范围，然后在插入键值对时，直接使用array[hash(key)] = value的方式给数组赋值，当需要已知键，想要取出值的时候，同样采用array[hash(key)]即可。</p>
 <p>下面我对哈希表的实现，供参考：</p>
 <hr>
-<h3 id="哈希碰撞的解决方法"><a href="#哈希碰撞的解决方法" class="headerlink" title="哈希碰撞的解决方法"></a>哈希碰撞的解决方法</h3><p>读到这里，你可能已经发现了，哈希函数由于对信息进行了缩短，所以导致了有可能出现碰撞的存在，这就好像出现了两个名字一样的“张三”，当我们说，张三坐在某某位置上时，并不知道到底是哪个张三真正坐在位置上。这里有两种解决方案：拉链法和线性探测法</p>
+<h3 id="哈希碰撞的解决方法">哈希碰撞的解决方法</h3>
+<p>读到这里，你可能已经发现了，哈希函数由于对信息进行了缩短，所以导致了有可能出现碰撞的存在，这就好像出现了两个名字一样的“张三”，当我们说，张三坐在某某位置上时，并不知道到底是哪个张三真正坐在位置上。这里有两种解决方案：拉链法和线性探测法</p>
 <p>拉链法是将具有相同哈希值的函数放到一个链表里（整个哈希表呈现为一个链表的数组），用一个链表的数组来存放所有键值对。这种方法在最坏情况（哈希函数的返回值始终为常数）下会退化成链表。</p>
 <p>而线性探测法则是采用两个数组，一个放键，一个放值，当即将保存的位置已经保存有数据的时候，从该位置开始往下遍历，直到遇到一个空的位置进行插入。这种方法在最坏情况下会退化成为数组。</p>
 <p>两种方案对比，很难说哪种就一定跟高效，具体的实现中应当使用哪一种应该很据不同需求选取。</p>
 <p>下面分别是线性探测和拉链法的哈希表实现</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt; <span class="class"><span class="keyword">class</span> <span class="title">LinearProbingHashST</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">size_t</span> size_;</span><br><span class="line">  <span class="keyword">size_t</span> pair_counts_ = <span class="number">0</span>;</span><br><span class="line">  Key *key_arr_ ;</span><br><span class="line">  Value *value_arr_;</span><br><span class="line">  <span class="keyword">size_t</span> gethash_(Key k);</span><br><span class="line">  <span class="function">Value <span class="title">get_</span> <span class="params">(Key k, <span class="keyword">size_t</span> index)</span></span>;</span><br><span class="line">  <span class="function">Value <span class="title">put_</span> <span class="params">(Key k, Value val, <span class="keyword">size_t</span> index)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">LinearProbingHashST_</span><span class="params">(<span class="keyword">size_t</span> size)</span></span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  LinearProbingHashST (<span class="keyword">size_t</span> size);</span><br><span class="line">  LinearProbingHashST ();</span><br><span class="line">  <span class="keyword">virtual</span> ~LinearProbingHashST ();</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(Key k, Value val)</span></span>;</span><br><span class="line">  <span class="function">Value <span class="title">get</span><span class="params">(Key k)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">erase</span><span class="params">(Key k)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">size_t</span> LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">gethash_(Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> ( <span class="keyword">int</span>(k) &amp; <span class="number">0x7FFFFFFF</span> )% size_;</span><br><span class="line">  <span class="comment">//return 1;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">void</span> LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">LinearProbingHashST_(<span class="keyword">size_t</span> size)</span><br><span class="line">&#123;</span><br><span class="line">  size_ = size;</span><br><span class="line">  key_arr_ = <span class="keyword">new</span> Key[size_];</span><br><span class="line">  value_arr_ = <span class="keyword">new</span> Value[size_]();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">LinearProbingHashST(<span class="keyword">size_t</span> size)</span><br><span class="line">&#123;</span><br><span class="line">  LinearProbingHashST_(size);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">LinearProbingHashST()</span><br><span class="line">&#123;</span><br><span class="line">  LinearProbingHashST_(<span class="number">997</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">~LinearProbingHashST()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">delete</span>[] key_arr_;</span><br><span class="line">  <span class="keyword">delete</span>[] value_arr_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">void</span> LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">put(Key k, Value val)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (pair_counts_+<span class="number">1</span> &gt;= size_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">size_t</span> i;</span><br><span class="line">  <span class="keyword">for</span> (i = gethash_(k);key_arr_[i] != k;i = (i+<span class="number">1</span>) % size_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (key_arr_[i] == (Key)<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      key_arr_[i] = k;</span><br><span class="line">      pair_counts_++;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  value_arr_[i] = val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">Value LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">get(Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> i = gethash_(k);key_arr_[i] != (Key) <span class="literal">NULL</span>;i = (i+<span class="number">1</span>) % size_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (key_arr_[i] == k)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> value_arr_[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (Value) <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">void</span> LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">erase(Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> i = gethash_(k);key_arr_[i] != (Key) <span class="literal">NULL</span>;i = (i + <span class="number">1</span>) % size_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (key_arr_[i] == k)</span><br><span class="line">    &#123;</span><br><span class="line">      key_arr_[i] = (Key) <span class="literal">NULL</span>;</span><br><span class="line">      value_arr_[i] = (Value) <span class="literal">NULL</span>;</span><br><span class="line">      pair_counts_--;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">size_t</span> j = i+<span class="number">1</span>;key_arr_[j] != (Key) <span class="literal">NULL</span>;j = (j+<span class="number">1</span>) % size_)</span><br><span class="line">      &#123;</span><br><span class="line">        Key temp_k = key_arr_[j];</span><br><span class="line">        Value temp_val = value_arr_[j];</span><br><span class="line">        key_arr_[j] = (Key) <span class="literal">NULL</span>;</span><br><span class="line">        value_arr_[j] = (Key)<span class="literal">NULL</span>;</span><br><span class="line">        pair_counts_--;</span><br><span class="line">        put(temp_k, temp_val);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">bool</span> LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">empty()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> pair_counts_ == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;<span class="class"><span class="keyword">class</span> <span class="title">SequentialSearchST</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="comment">//节点</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">  &#123;</span></span><br><span class="line">    Key key;</span><br><span class="line">    Value value;</span><br><span class="line">    Node *next;</span><br><span class="line">    Node (Key k,Value v,Node *n):key(k),value(v),next(n)&#123;&#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">  Node *head_ = <span class="literal">nullptr</span>;</span><br><span class="line">  <span class="function">Node *<span class="title">erase_</span><span class="params">(Node *node, Key k)</span></span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  SequentialSearchST() = <span class="keyword">default</span>;</span><br><span class="line">  <span class="comment">//获取对应键的键值</span></span><br><span class="line">  <span class="function">Value <span class="title">get</span><span class="params">(Key k)</span></span>;</span><br><span class="line">  <span class="comment">//设置指定键的键值，如没有，创建一个新键</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(Key k, Value val)</span></span>;</span><br><span class="line">  <span class="comment">//返回符号表存的元素个数</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">erase</span><span class="params">(Key k)</span></span>;</span><br><span class="line">  <span class="keyword">virtual</span> ~SequentialSearchST();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">typename</span> SequentialSearchST&lt;Key, Value&gt;::Node*</span><br><span class="line">SequentialSearchST&lt;Key,Value&gt;::erase_(Node *node, Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (node == <span class="literal">nullptr</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (node-&gt;key == k)</span><br><span class="line">  &#123;</span><br><span class="line">    Node *next_node = node-&gt;next;</span><br><span class="line">    <span class="keyword">delete</span> node;</span><br><span class="line">    <span class="keyword">return</span> next_node;</span><br><span class="line">  &#125;</span><br><span class="line">  node-&gt;next = erase_(node-&gt;next, k);</span><br><span class="line">  <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">Value SequentialSearchST&lt;Key,Value&gt;::get(Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">for</span> (Node *it = head_; it != <span class="literal">nullptr</span>; it = it-&gt;next)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (k == it-&gt;key)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> it-&gt;value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (Value)<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">void</span> SequentialSearchST&lt;Key,Value&gt;::put(Key k, Value val)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">for</span> (Node *it = <span class="keyword">this</span>-&gt;head_; it!= <span class="literal">nullptr</span>; it = it-&gt;next)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (k == it-&gt;key)</span><br><span class="line">    &#123;</span><br><span class="line">      it-&gt;value = val ;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  head_ = <span class="keyword">new</span> Node(k, val, head_);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">int</span> SequentialSearchST&lt;Key,Value&gt;::size()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(Node *it = head_;it != <span class="literal">nullptr</span>;it = it-&gt;next)</span><br><span class="line">  &#123;</span><br><span class="line">    count++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">SequentialSearchST&lt;Key,Value&gt;::~SequentialSearchST()</span><br><span class="line">&#123;</span><br><span class="line">  Node *it = head_;</span><br><span class="line">  <span class="keyword">while</span> (it != <span class="literal">nullptr</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    Node *del_node = it;</span><br><span class="line">    it = it-&gt;next;</span><br><span class="line">    <span class="keyword">delete</span> del_node;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">bool</span> SequentialSearchST&lt;Key,Value&gt;::empty()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> head_ == <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">void</span> SequentialSearchST&lt;Key,Value&gt;::erase(Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (head_ == <span class="literal">nullptr</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  head_ = erase_(head_, k);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -285,7 +256,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://koswu.github.io/2018/08/24/archive/哈希表的优势和实现/" title="哈希表的优势和实现">http://koswu.github.io/2018/08/24/archive/哈希表的优势和实现/</a>
+    <a href="https://koswu.github.io/2018/08/24/archive/哈希表的优势和实现/" title="哈希表的优势和实现">https://koswu.github.io/2018/08/24/archive/哈希表的优势和实现/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -298,21 +269,18 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2018/08/21/archive/关于纳什均衡的一点想法——由弹丸论破想到的/" rel="next" title="关于纳什均衡的一点想法——由弹丸论破想到的">
-                  <i class="fa fa-chevron-left"></i> 关于纳什均衡的一点想法——由弹丸论破想到的
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2018/12/04/archive/十分钟用Python创建一个Echo Server/" rel="prev" title="十分钟用Python创建一个Echo Server">
-                  十分钟用Python创建一个Echo Server <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/21/archive/关于纳什均衡的一点想法——由弹丸论破想到的/" rel="prev" title="关于纳什均衡的一点想法——由弹丸论破想到的">
+      <i class="fa fa-chevron-left"></i> 关于纳什均衡的一点想法——由弹丸论破想到的
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/12/04/archive/十分钟用Python创建一个Echo Server/" rel="next" title="十分钟用Python创建一个Echo Server">
+      十分钟用Python创建一个Echo Server <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -326,6 +294,28 @@
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -356,8 +346,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="KosWu"
-    src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">KosWu</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -385,7 +373,7 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/KosWu" title="GitHub &rarr; https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/KosWu" title="GitHub → https://github.com/KosWu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -432,18 +420,13 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
@@ -487,7 +470,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -499,6 +482,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -525,36 +509,33 @@ window.addEventListener('pjax:success', () => {
 
 
 
-
-
     <div id="pjax">
-
   
 
   
 
   
 
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: 'aaa1ad8fd77c1eafb5ba',
+      clientID    : 'aaa1ad8fd77c1eafb5ba',
       clientSecret: 'f30b21d54fae7c477edb7cb21b78b79ac5afaa86',
-      repo: 'gitalk',
-      owner: 'Koswu',
-      admin: ['Koswu'],
-      id: '241b5d4c6b4ab6a48e825810435fec5e',
+      repo        : 'gitalk',
+      owner       : 'Koswu',
+      admin       : ['Koswu'],
+      id          : 'f4185e6f272c17192ee4e6e3e26ed905',
         language: '',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
-    </div>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
