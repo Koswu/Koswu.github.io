@@ -170,92 +170,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2018/08/24/archive/哈希表的优势和实现/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KosWu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KosWu 's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/08/24/archive/哈希表的优势和实现/" class="post-title-link" itemprop="url">哈希表的优势和实现</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-08-24 17:26:30" itemprop="dateCreated datePublished" datetime="2018-08-24T17:26:30+08:00">2018-08-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在对二叉树进行学习之后，相信每个人都会对于其精妙和最坏情况下仍然能保证线性对数级别时间复杂度的增删改查赞叹不已。其用来实现符号表（存储键值对）是一种较为高效的实现。</p>
-<p>在没有学习哈希表之前，如果我告诉你，有一种数据结构，可以对键值对做到常数时间级别的增删改查，你一定不会相信。但是哈希表做到了，有这么高效的数据结构怎么能够不对其有了解呢？这次我们就来谈谈哈希表这种数据结构的魅力所在。</p>
-<p>要了解哈希表，首先我们得来看一看这个哈希函数是什么东西。函数，其实就是一个映射，将所有在定义域的值映射到值域范围内。有时候我们需要对任意长度的信息，提取出信息的“指纹”，这个指纹在一定程度上反映了信息的内容，但是占用空间大大缩小。此时我们就要设计一个函数，其定义域为信息可能出现的所有空间，而值域则为需要”指纹”的大小。当这个函数可以用来完成上述用途时，这个函数就被称为哈希函数，哈希函数输出的结果被称为哈系值。一些著名的哈希函数有MD5、SHA-1、SHA-2等。</p>
-<p>有了哈希函数，我们就可以利用哈希函数的映射，将任意长度的键映射到一个合理的区间内。试想创建一个数组，数组的下标为键的哈希值。数组的内容即为键值对的值，当我们已知键，要对值进行查找时，只需要对键取哈希，就可以在常数时间内获取到值的内容。</p>
-<p>在哈希表的实现中，我们设计的哈希函数应该考虑的重点有如下几个</p>
-<ol>
-<li>尽可能让输入中的每一位都对输出结果造成影响，减少碰撞的发生</li>
-<li>计算尽量简单，否则哈希函数的计算也会对运行时间造成极大的影响</li>
-<li>输出范围应当尽可能的可控</li>
-</ol>
-<p>因为2的原因，我们不得不抛弃MD5和SHA这些著名的哈希函数，并且这些函数也很难自己控制输出的数据范围。哈希函数的好坏，决定了哈希表的效率。当然，实现哈希函数的方法不止一种，这里介绍比较常用的一种方法——除留余数法。</p>
-<p>这里其实可以采用一种简单的运算来实现这个哈希函数——模运算。相信学过一点编程语言的朋友都知道，对某个数取模就是除以某个数求余数。假设我们需要0-97的哈希范围，无论多大的数，只需要对97取模，就可以获得一个在0-97之间的数，但是要注意，当我们采用的基数不是素数时，就会导致输出仅仅依赖于输入的后几位数，不满足1的情况发生。所以在使用这种方法作为哈希函数的过程中，应当选择合适的基数。</p>
-<p>当我们有了哈系函数以后，就可以利用哈希函数类构造哈希表了。首先创建一个很大的数组array，数组的大小即为哈希函数的值域范围，然后在插入键值对时，直接使用array[hash(key)] = value的方式给数组赋值，当需要已知键，想要取出值的时候，同样采用array[hash(key)]即可。</p>
-<p>下面我对哈希表的实现，供参考：</p>
-<hr>
-<h3 id="哈希碰撞的解决方法"><a class="markdownIt-Anchor" href="#哈希碰撞的解决方法"></a> 哈希碰撞的解决方法</h3>
-<p>读到这里，你可能已经发现了，哈希函数由于对信息进行了缩短，所以导致了有可能出现碰撞的存在，这就好像出现了两个名字一样的“张三”，当我们说，张三坐在某某位置上时，并不知道到底是哪个张三真正坐在位置上。这里有两种解决方案：拉链法和线性探测法</p>
-<p>拉链法是将具有相同哈希值的函数放到一个链表里（整个哈希表呈现为一个链表的数组），用一个链表的数组来存放所有键值对。这种方法在最坏情况（哈希函数的返回值始终为常数）下会退化成链表。</p>
-<p>而线性探测法则是采用两个数组，一个放键，一个放值，当即将保存的位置已经保存有数据的时候，从该位置开始往下遍历，直到遇到一个空的位置进行插入。这种方法在最坏情况下会退化成为数组。</p>
-<p>两种方案对比，很难说哪种就一定跟高效，具体的实现中应当使用哪一种应该很据不同需求选取。</p>
-<p>下面分别是线性探测和拉链法的哈希表实现</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt; <span class="class"><span class="keyword">class</span> <span class="title">LinearProbingHashST</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">size_t</span> size_;</span><br><span class="line">  <span class="keyword">size_t</span> pair_counts_ = <span class="number">0</span>;</span><br><span class="line">  Key *key_arr_ ;</span><br><span class="line">  Value *value_arr_;</span><br><span class="line">  <span class="keyword">size_t</span> gethash_(Key k);</span><br><span class="line">  <span class="function">Value <span class="title">get_</span> <span class="params">(Key k, <span class="keyword">size_t</span> index)</span></span>;</span><br><span class="line">  <span class="function">Value <span class="title">put_</span> <span class="params">(Key k, Value val, <span class="keyword">size_t</span> index)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">LinearProbingHashST_</span><span class="params">(<span class="keyword">size_t</span> size)</span></span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  LinearProbingHashST (<span class="keyword">size_t</span> size);</span><br><span class="line">  LinearProbingHashST ();</span><br><span class="line">  <span class="keyword">virtual</span> ~LinearProbingHashST ();</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(Key k, Value val)</span></span>;</span><br><span class="line">  <span class="function">Value <span class="title">get</span><span class="params">(Key k)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">erase</span><span class="params">(Key k)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">size_t</span> LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">gethash_(Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> ( <span class="keyword">int</span>(k) &amp; <span class="number">0x7FFFFFFF</span> )% size_;</span><br><span class="line">  <span class="comment">//return 1;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">void</span> LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">LinearProbingHashST_(<span class="keyword">size_t</span> size)</span><br><span class="line">&#123;</span><br><span class="line">  size_ = size;</span><br><span class="line">  key_arr_ = <span class="keyword">new</span> Key[size_];</span><br><span class="line">  value_arr_ = <span class="keyword">new</span> Value[size_]();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">LinearProbingHashST(<span class="keyword">size_t</span> size)</span><br><span class="line">&#123;</span><br><span class="line">  LinearProbingHashST_(size);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">LinearProbingHashST()</span><br><span class="line">&#123;</span><br><span class="line">  LinearProbingHashST_(<span class="number">997</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">~LinearProbingHashST()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">delete</span>[] key_arr_;</span><br><span class="line">  <span class="keyword">delete</span>[] value_arr_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">void</span> LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">put(Key k, Value val)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (pair_counts_+<span class="number">1</span> &gt;= size_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">size_t</span> i;</span><br><span class="line">  <span class="keyword">for</span> (i = gethash_(k);key_arr_[i] != k;i = (i+<span class="number">1</span>) % size_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (key_arr_[i] == (Key)<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      key_arr_[i] = k;</span><br><span class="line">      pair_counts_++;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  value_arr_[i] = val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">Value LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">get(Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> i = gethash_(k);key_arr_[i] != (Key) <span class="literal">NULL</span>;i = (i+<span class="number">1</span>) % size_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (key_arr_[i] == k)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> value_arr_[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (Value) <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">void</span> LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">erase(Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> i = gethash_(k);key_arr_[i] != (Key) <span class="literal">NULL</span>;i = (i + <span class="number">1</span>) % size_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (key_arr_[i] == k)</span><br><span class="line">    &#123;</span><br><span class="line">      key_arr_[i] = (Key) <span class="literal">NULL</span>;</span><br><span class="line">      value_arr_[i] = (Value) <span class="literal">NULL</span>;</span><br><span class="line">      pair_counts_--;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">size_t</span> j = i+<span class="number">1</span>;key_arr_[j] != (Key) <span class="literal">NULL</span>;j = (j+<span class="number">1</span>) % size_)</span><br><span class="line">      &#123;</span><br><span class="line">        Key temp_k = key_arr_[j];</span><br><span class="line">        Value temp_val = value_arr_[j];</span><br><span class="line">        key_arr_[j] = (Key) <span class="literal">NULL</span>;</span><br><span class="line">        value_arr_[j] = (Key)<span class="literal">NULL</span>;</span><br><span class="line">        pair_counts_--;</span><br><span class="line">        put(temp_k, temp_val);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">bool</span> LinearProbingHashST&lt;Key, Value&gt;::</span><br><span class="line">empty()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> pair_counts_ == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;<span class="class"><span class="keyword">class</span> <span class="title">SequentialSearchST</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="comment">//节点</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">  &#123;</span></span><br><span class="line">    Key key;</span><br><span class="line">    Value value;</span><br><span class="line">    Node *next;</span><br><span class="line">    Node (Key k,Value v,Node *n):key(k),value(v),next(n)&#123;&#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">  Node *head_ = <span class="literal">nullptr</span>;</span><br><span class="line">  <span class="function">Node *<span class="title">erase_</span><span class="params">(Node *node, Key k)</span></span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  SequentialSearchST() = <span class="keyword">default</span>;</span><br><span class="line">  <span class="comment">//获取对应键的键值</span></span><br><span class="line">  <span class="function">Value <span class="title">get</span><span class="params">(Key k)</span></span>;</span><br><span class="line">  <span class="comment">//设置指定键的键值，如没有，创建一个新键</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(Key k, Value val)</span></span>;</span><br><span class="line">  <span class="comment">//返回符号表存的元素个数</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">erase</span><span class="params">(Key k)</span></span>;</span><br><span class="line">  <span class="keyword">virtual</span> ~SequentialSearchST();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">typename</span> SequentialSearchST&lt;Key, Value&gt;::Node*</span><br><span class="line">SequentialSearchST&lt;Key,Value&gt;::erase_(Node *node, Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (node == <span class="literal">nullptr</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (node-&gt;key == k)</span><br><span class="line">  &#123;</span><br><span class="line">    Node *next_node = node-&gt;next;</span><br><span class="line">    <span class="keyword">delete</span> node;</span><br><span class="line">    <span class="keyword">return</span> next_node;</span><br><span class="line">  &#125;</span><br><span class="line">  node-&gt;next = erase_(node-&gt;next, k);</span><br><span class="line">  <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">Value SequentialSearchST&lt;Key,Value&gt;::get(Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">for</span> (Node *it = head_; it != <span class="literal">nullptr</span>; it = it-&gt;next)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (k == it-&gt;key)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> it-&gt;value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (Value)<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">void</span> SequentialSearchST&lt;Key,Value&gt;::put(Key k, Value val)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">for</span> (Node *it = <span class="keyword">this</span>-&gt;head_; it!= <span class="literal">nullptr</span>; it = it-&gt;next)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (k == it-&gt;key)</span><br><span class="line">    &#123;</span><br><span class="line">      it-&gt;value = val ;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  head_ = <span class="keyword">new</span> Node(k, val, head_);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">int</span> SequentialSearchST&lt;Key,Value&gt;::size()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(Node *it = head_;it != <span class="literal">nullptr</span>;it = it-&gt;next)</span><br><span class="line">  &#123;</span><br><span class="line">    count++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line">SequentialSearchST&lt;Key,Value&gt;::~SequentialSearchST()</span><br><span class="line">&#123;</span><br><span class="line">  Node *it = head_;</span><br><span class="line">  <span class="keyword">while</span> (it != <span class="literal">nullptr</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    Node *del_node = it;</span><br><span class="line">    it = it-&gt;next;</span><br><span class="line">    <span class="keyword">delete</span> del_node;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">bool</span> SequentialSearchST&lt;Key,Value&gt;::empty()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> head_ == <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</span><br><span class="line"><span class="keyword">void</span> SequentialSearchST&lt;Key,Value&gt;::erase(Key k)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (head_ == <span class="literal">nullptr</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  head_ = erase_(head_, k);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2018/08/21/archive/关于纳什均衡的一点想法——由弹丸论破想到的/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1152,6 +1066,108 @@ menuentry &quot;关机&quot;{
   
   
 
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/12/24/archive/学习总结第三十三天——二进制的表示/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/12/24/archive/学习总结第三十三天——二进制的表示/" class="post-title-link" itemprop="url">学习总结第三十三天——二进制的表示</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-12-24 20:26:48" itemprop="dateCreated datePublished" datetime="2017-12-24T20:26:48+08:00">2017-12-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我们都知道，在计算机中都是使用二进制来表示整数，但是很少有人深入理解计算机具体是怎么去表示的，认为其不重要，然而事实恰恰相反，许多知名的漏洞利用的都是人们不熟悉或者疏忽了计算机里具体执行的运算。所以对于了解二进制数是怎么存储在计算机里是很有必要的。</p>
+<p>一个n位的十进制无符号数,其每个位可以看作一个n维向量中的带有权重的维，而其权重也与位置相关，以1234为例，4的权重为10<sup>0，3的权重为10</sup>1，2的权重为10<sup>2，而1的权重为10</sup>3，其数值即为各维的长度乘以该维的权重之和，即1×10<sup>3+2*10</sup>2+3*10<sup>1+4*10</sup>0=1234。</p>
+<p>二进制无符号数同理，其每一位的权重即为2<sup>n，以1010(2)为例，其可看作一个四维向量，各维的权重从左到右依次是2</sup>3，2<sup>2，2</sup>1，2^0。在计算机中表示二进制数时，是以字节为单位存储的。其有两种存储方式，大端法和小端法，区别在于每个数存储方式是从高地址位还是低地址位存储。如一个数为0x1234，有两个字节，如果在一个16位的机器上，分配两个内存地址分别为0x00和0x01的字节存储，在采用大端法时，内存地址0x00中存储的是0x12,0x11中存储的是0x34;而小端法相反，在0x00中存储的是0x34,0x11中存储的是0x12。这就造成了在不同的机器中，同一段代码可能会有不同的结果。下面这段代码就利用这一点，检测了运行的机器采用的是大端法还是小端法。</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+typedef unsigned char* byte_pointer;
+
+int islittle_indian()
+{
+  int i=0xFF;
+  byte_pointer ptr = (byte_pointer)&amp;i;
+  if ((*ptr) == 0xFF)
+  {
+    return 1;
+  }
+  if ((*ptr) == 0x00)
+  {
+    return 0;
+  }
+  else
+  {
+    return -1;
+  }
+}
+
+int main(int argc, char const *argv[])
+{
+  printf(&quot;%d\n&quot;,islittle_indian());
+  return 0;
+}
+</code></pre>
+<p>这段代码在采用大端法的机器上运行的时候，输出0,在小端法的机器上运行的时候，便会输出1。尽管现在我们身边采用大端法的机器不多了，但是仍然需要了解。</p>
+<p>说了这么多，表示范围仍然在无符号数内，而要扩展到有符号数，就不得不提目前大部分计算机都在采用的有符号数表示方法——补码，许多国内教科书介绍补码时，总是提到将最高位表示符号即原码，原码取反加1就是补码，但是完全没说补码的定义。其实如果了解到无符号数可以看作n维向量这一点，就很好理解补码了。</p>
+<blockquote>
+<p>补码就是将最高位的权重变为负值的表示方式</p>
+</blockquote>
+<p>如1010(2)，如果我们按照无符号数的解读方式去乘相关的权重的话，会得到1<em>2<sup>3+1*2</sup>1=10。而如果我们当成补码去解读的话，就是1</em>(-2<sup>3)+2*2</sup>1 = -6，这也得以说明为什么补码中负数的表示范围要比正数大1。补码有很多优点，如进行减法的运算和加法一样，在正数范围内与无符号数表示方法一样等等。虽然补码很方便，但是也要注意与无符号数混用时，经常会产生难以发现且严重的bug。</p>
+<p>写了这么多，全面了解计算机系统对于写出健壮程序的重要性可见一斑，今后也应当多留心这方面的东西，才能更好地理解自己写出的程序。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
   </div>
 
   
@@ -1222,7 +1238,7 @@ menuentry &quot;关机&quot;{
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
