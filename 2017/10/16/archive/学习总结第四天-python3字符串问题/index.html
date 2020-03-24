@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&amp;#39;w&amp;#39;); for val in commonTracks:     val=val[0];     s= val+&amp;#">
+  <meta name="description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&apos;w&apos;); for val in commonTracks:     val=val[0];     s= val+&apos;\n&apos;;">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第四天-python3字符串问题">
 <meta property="og:url" content="https://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&amp;#39;w&amp;#39;); for val in commonTracks:     val=val[0];     s= val+&amp;#">
+<meta property="og:description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&apos;w&apos;); for val in commonTracks:     val=val[0];     s= val+&apos;\n&apos;;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第四天-python3字符串问题">
-<meta name="twitter:description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&amp;#39;w&amp;#39;); for val in commonTracks:     val=val[0];     s= val+&amp;#">
+<meta name="twitter:description" content="今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。 有问题的代码如下： file=open(&amp;quot;common.txt&amp;quot;,&apos;w&apos;); for val in commonTracks:     val=val[0];     s= val+&apos;\n&apos;;">
 
 <link rel="canonical" href="https://koswu.github.io/2017/10/16/archive/学习总结第四天-python3字符串问题/">
 
@@ -220,20 +220,24 @@
       
         <p>今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。</p>
 <p>有问题的代码如下：</p>
-<pre><code>file=open(&quot;common.txt&quot;,&#39;w&#39;);
+<pre><code>file=open(&quot;common.txt&quot;,'w');
 for val in commonTracks:
     val=val[0];
-    s= val+&#39;\n&#39;;
-    file.write(s.encode(&quot;UTF-8&quot;));</code></pre>
+    s= val+'\n';
+    file.write(s.encode(&quot;UTF-8&quot;));
+</code></pre>
 <p>运行时，解释器提示write方法接收的不是一个字符串。经过一番排查发现，通过encode转化为的并不是字符串，而是字节流bytes，在python中，bytes是字节流bytes对象，字符串是字符串str对象。</p>
 <p>我们可以在python下实际运行一下这段代码</p>
 <pre><code>a=&quot;Hello World&quot;;
-print(a.encode(&quot;UTF-8&quot;));</code></pre>
+print(a.encode(&quot;UTF-8&quot;));
+</code></pre>
 <p>我们会得到这样的输出：</p>
 <pre><code>&gt;&gt;&gt; print(a.encode(&quot;UTF-8&quot;));
-b&#39;Hello World&#39;</code></pre>
+b'Hello World'
+</code></pre>
 <p>看起来和普通的字符串只是多了一个b，但这就表示这是一个字节流bytes，所以我们如果要向文件写入字节流的话，就要在open函数里，使用二进制模式，即将原来的代码改为</p>
-<pre><code>file=open(&quot;common.txt&quot;,&#39;wb&#39;);</code></pre>
+<pre><code>file=open(&quot;common.txt&quot;,'wb');
+</code></pre>
 <p>便解决了问题。</p>
 
     </div>
@@ -347,7 +351,7 @@ b&#39;Hello World&#39;</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -359,7 +363,7 @@ b&#39;Hello World&#39;</code></pre>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

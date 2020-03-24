@@ -230,22 +230,22 @@ int main(int argc, char const *argv[]) {
   char str[INPUT_LENGTH_MAX+1];
   bool last_is_num = false;
   fgets (str,INPUT_LENGTH_MAX,stdin);
-  str[strlen(str)-1] = &#39;\0&#39;;
+  str[strlen(str)-1] = '\0';
   stack *str_len_sta = StackCreate ();
   stack *data_sta = StackCreate();
   stack *opt_sta = StackCreate();
   for (int i=0;i&lt;strlen(str);i++)
   {
     switch (str[i]) {
-      case &#39;+&#39;:
-      case &#39;-&#39;:
-      case &#39;*&#39;:
-      case &#39;/&#39;:
-      case &#39;%&#39;:
+      case '+':
+      case '-':
+      case '*':
+      case '/':
+      case '%':
         StackPush(opt_sta,str[i]);
         last_is_num = false;
       break;
-      case &#39;)&#39;:
+      case ')':
       {
         //分别获取之前串的存储长度
         int b_chars_len = StackPop(str_len_sta);
@@ -254,8 +254,8 @@ int main(int argc, char const *argv[]) {
         int total_len = a_chars_len + b_chars_len + 3;
         //创建数组并保存上两次的串
         char datas[total_len+1];
-        datas[0] = &#39;(&#39;;
-        datas[total_len]=&#39;\0&#39;;
+        datas[0] = '(';
+        datas[total_len]='\0';
         for (int i=total_len-2;i&gt;=2+a_chars_len;i--)//由于是栈，所以从后往前读取
         {
           datas[i] = StackPop(data_sta);
@@ -265,8 +265,8 @@ int main(int argc, char const *argv[]) {
         {
           datas[i] = StackPop(data_sta);
         }
-        datas[total_len-1] = &#39;)&#39;;
-        datas[total_len] = &#39;\0&#39;;
+        datas[total_len-1] = ')';
+        datas[total_len] = '\0';
         //重新存入栈中
         for (int i=0;i&lt;total_len;i++)
         {
@@ -276,16 +276,16 @@ int main(int argc, char const *argv[]) {
         last_is_num = false;
       }
       break;
-      case &#39;0&#39;:
-      case &#39;1&#39;:
-      case &#39;2&#39;:
-      case &#39;3&#39;:
-      case &#39;4&#39;:
-      case &#39;5&#39;:
-      case &#39;6&#39;:
-      case &#39;7&#39;:
-      case &#39;8&#39;:
-      case &#39;9&#39;:
+      case '0':
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
       {
         if (last_is_num==true)
         {
@@ -317,7 +317,7 @@ int main(int argc, char const *argv[]) {
   {
     res_str[i] = StackPop(data_sta);
   }
-  res_str[res_len] = &#39;\0&#39;;
+  res_str[res_len] = '\0';
   puts (res_str);
 
   StackFree(str_len_sta);
@@ -437,7 +437,7 @@ int main(int argc, char const *argv[]) {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -449,7 +449,7 @@ int main(int argc, char const *argv[]) {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

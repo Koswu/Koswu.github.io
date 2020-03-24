@@ -22,19 +22,19 @@
     var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="今天上导论和C语言课的时候，都对于浮点数有讲解，虽然之前已经大概了解浮点数的内容，但是今天对其进行了一些深入的探究，才发现浮点数并没有我想象中那么简单。 浮点数，很多人都只是把他当成一个普通的小数看待，在我之前的理解中，就是用类似科学计数法的方法去表示一个数。今天在通过翻阅wiki，才了解到浮点数的一些定义和奇特的性质，在下面做一些概括： wikipedia是这样描述浮点数的： &amp;gt; 在计算机">
+  <meta name="description" content="今天上导论和C语言课的时候，都对于浮点数有讲解，虽然之前已经大概了解浮点数的内容，但是今天对其进行了一些深入的探究，才发现浮点数并没有我想象中那么简单。 浮点数，很多人都只是把他当成一个普通的小数看待，在我之前的理解中，就是用类似科学计数法的方法去表示一个数。今天在通过翻阅wiki，才了解到浮点数的一些定义和奇特的性质，在下面做一些概括： wikipedia是这样描述浮点数的：  在计算机科学中，">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第十四天_再探浮点数">
 <meta property="og:url" content="https://koswu.github.io/2017/10/25/archive/学习总结第十四天_再探浮点数/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="今天上导论和C语言课的时候，都对于浮点数有讲解，虽然之前已经大概了解浮点数的内容，但是今天对其进行了一些深入的探究，才发现浮点数并没有我想象中那么简单。 浮点数，很多人都只是把他当成一个普通的小数看待，在我之前的理解中，就是用类似科学计数法的方法去表示一个数。今天在通过翻阅wiki，才了解到浮点数的一些定义和奇特的性质，在下面做一些概括： wikipedia是这样描述浮点数的： &amp;gt; 在计算机">
+<meta property="og:description" content="今天上导论和C语言课的时候，都对于浮点数有讲解，虽然之前已经大概了解浮点数的内容，但是今天对其进行了一些深入的探究，才发现浮点数并没有我想象中那么简单。 浮点数，很多人都只是把他当成一个普通的小数看待，在我之前的理解中，就是用类似科学计数法的方法去表示一个数。今天在通过翻阅wiki，才了解到浮点数的一些定义和奇特的性质，在下面做一些概括： wikipedia是这样描述浮点数的：  在计算机科学中，">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/7/75/General_floating_point_frac.svg">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第十四天_再探浮点数">
-<meta name="twitter:description" content="今天上导论和C语言课的时候，都对于浮点数有讲解，虽然之前已经大概了解浮点数的内容，但是今天对其进行了一些深入的探究，才发现浮点数并没有我想象中那么简单。 浮点数，很多人都只是把他当成一个普通的小数看待，在我之前的理解中，就是用类似科学计数法的方法去表示一个数。今天在通过翻阅wiki，才了解到浮点数的一些定义和奇特的性质，在下面做一些概括： wikipedia是这样描述浮点数的： &amp;gt; 在计算机">
+<meta name="twitter:description" content="今天上导论和C语言课的时候，都对于浮点数有讲解，虽然之前已经大概了解浮点数的内容，但是今天对其进行了一些深入的探究，才发现浮点数并没有我想象中那么简单。 浮点数，很多人都只是把他当成一个普通的小数看待，在我之前的理解中，就是用类似科学计数法的方法去表示一个数。今天在通过翻阅wiki，才了解到浮点数的一些定义和奇特的性质，在下面做一些概括： wikipedia是这样描述浮点数的：  在计算机科学中，">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/7/75/General_floating_point_frac.svg">
 
 <link rel="canonical" href="https://koswu.github.io/2017/10/25/archive/学习总结第十四天_再探浮点数/">
@@ -222,17 +222,30 @@
       
         <p>今天上导论和C语言课的时候，都对于浮点数有讲解，虽然之前已经大概了解浮点数的内容，但是今天对其进行了一些深入的探究，才发现浮点数并没有我想象中那么简单。</p>
 <p>浮点数，很多人都只是把他当成一个普通的小数看待，在我之前的理解中，就是用类似科学计数法的方法去表示一个数。今天在通过翻阅wiki，才了解到浮点数的一些定义和奇特的性质，在下面做一些概括：</p>
-<p>wikipedia是这样描述浮点数的： &gt; 在计算机科学中，浮点（英语：floating point，缩写为FP）是一种对于实数的近似值数值表现法，由一个有效数字（即尾数）加上幂数来表示，通常是乘以某个基数的整数次指数得到。以这种表示法表示的数值，称为浮点数（floating-point number）。利用浮点进行运算，称为浮点计算，这种运算通常伴随着因为无法精确表示而进行的近似或舍入。位（bit）是衡量浮点数所需存储空间的单位，通常为32位或64位，分别被叫作单精度和双精度。有一些计算机提供更大的浮点数，一个浮点数a由两个数m和e来表示：a = m * b^e</p>
+<p>wikipedia是这样描述浮点数的：</p>
+<blockquote>
+<p>在计算机科学中，浮点（英语：floating point，缩写为FP）是一种对于实数的近似值数值表现法，由一个有效数字（即尾数）加上幂数来表示，通常是乘以某个基数的整数次指数得到。以这种表示法表示的数值，称为浮点数（floating-point number）。利用浮点进行运算，称为浮点计算，这种运算通常伴随着因为无法精确表示而进行的近似或舍入。位（bit）是衡量浮点数所需存储空间的单位，通常为32位或64位，分别被叫作单精度和双精度。有一些计算机提供更大的浮点数，一个浮点数a由两个数m和e来表示：a = m * b^e</p>
+</blockquote>
 <p>举个例子，1.2345这个数的十进制的浮点数表示方法就是12345*10^-4，这个时候我们称10是十进制浮点数的基底，我们要保存这个浮点数，只需要将12345和-4保存下来，就相当于保存了这个数。而二进制的浮点数与这个类似，只是将基底为10换为基底为2罢了。</p>
 <p>需要特别说明的是，浮点数并不能精确表达所有实数，所以浮点数往往并不能精确计算。比如，二进制的浮点数中就不能精确的保存0.1这个十进制数，0.1的平方既不是准确的0.01，也不是最接近0.01的可表达的数。单精度（24比特）浮点数表示0.1的结果为</p>
 <blockquote>
 <p>e=-4,m= 110011001100110011001101 (2)</p>
 </blockquote>
-<p>即 &gt;0.100000001490116119384765625</p>
-<p>此数的平方是 &gt;0.010000000298023226097399174250313080847263336181640625</p>
-<p>但最接近0.01的可表达的数是 &gt;0.009999999776482582092285156250</p>
+<p>即</p>
+<blockquote>
+<p>0.100000001490116119384765625</p>
+</blockquote>
+<p>此数的平方是</p>
+<blockquote>
+<p>0.010000000298023226097399174250313080847263336181640625</p>
+</blockquote>
+<p>但最接近0.01的可表达的数是</p>
+<blockquote>
+<p>0.009999999776482582092285156250</p>
+</blockquote>
 <p>所以我们在对于精度有特殊要求的时候应当避开使用浮点数。BTW，浮点加法和乘法不匹配结合律和分配律。</p>
-<p>说到浮点数，就不得不提一下目前浮点数的标准IEEE 754，IEEE 754的全称叫做“电气电子工程师学会二进制浮点数算术标准”，在六七十年代，各家厂商使用的浮点数标准是不同的，所以当时的各厂商的计算机之间的兼容性很差。为了改善这个情况，IEEE（电气电子工程师学会（英语：Institute of Electrical and Electronics Engineers，简称为IEEE，是一个建立于1963年1月1日的国际性电子技术与电子工程师协会，亦是世界上最大的专业技术组织之一，制定了许多国际标准）这个组织的浮点数专业小组于七十年代末期开始酝酿浮点数的标准。在1980年，英特尔公司推出了单片的8087浮点数协处理器，其浮点数表示法及定义的运算具有足够的合理性、先进性，于是被IEEE采用作为浮点数的标准，于1985年发布。 <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/General_floating_point_frac.svg" alt="浮点数的表示图"></p>
+<p>说到浮点数，就不得不提一下目前浮点数的标准IEEE 754，IEEE 754的全称叫做“电气电子工程师学会二进制浮点数算术标准”，在六七十年代，各家厂商使用的浮点数标准是不同的，所以当时的各厂商的计算机之间的兼容性很差。为了改善这个情况，IEEE（电气电子工程师学会（英语：Institute of Electrical and Electronics Engineers，简称为IEEE，是一个建立于1963年1月1日的国际性电子技术与电子工程师协会，亦是世界上最大的专业技术组织之一，制定了许多国际标准）这个组织的浮点数专业小组于七十年代末期开始酝酿浮点数的标准。在1980年，英特尔公司推出了单片的8087浮点数协处理器，其浮点数表示法及定义的运算具有足够的合理性、先进性，于是被IEEE采用作为浮点数的标准，于1985年发布。<br>
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/75/General_floating_point_frac.svg" alt="浮点数的表示图"></p>
 <p>如果有兴趣的话，可以到<a href="https://zh.wikipedia.org/wiki/IEEE_754" target="_blank" rel="noopener">这里</a>详细了解IEEE 754的具体定义<del>，原谅我懒Orz</del></p>
 
     </div>
@@ -346,7 +359,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -358,7 +371,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -30,12 +30,13 @@
 <meta property="og:site_name" content="KosWu &#39;s blog">
 <meta property="og:description" content="现实中很多东西都可以看成一场博弈，但很多时候并没有那么理想化罢了，  最近咸鱼了一把， 把PSV翻出来，稍微玩了一下《弹丸论破》系列的最新作《新弹丸论破V3:大家的自相残杀新学期》  弹丸论破V3的宣传图">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://commons.moegirl.org/thumb.php?f=New_Danganronpa_V3_Mainvisual1.jpg&width=400">
 <meta property="og:image" content="https://blog.koswu.com/attachment/img/dilemma.jpg">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于纳什均衡的一点想法——由弹丸论破想到的">
 <meta name="twitter:description" content="现实中很多东西都可以看成一场博弈，但很多时候并没有那么理想化罢了，  最近咸鱼了一把， 把PSV翻出来，稍微玩了一下《弹丸论破》系列的最新作《新弹丸论破V3:大家的自相残杀新学期》  弹丸论破V3的宣传图">
-<meta name="twitter:image" content="https://blog.koswu.com/attachment/img/dilemma.jpg">
+<meta name="twitter:image" content="https://commons.moegirl.org/thumb.php?f=New_Danganronpa_V3_Mainvisual1.jpg&width=400">
 
 <link rel="canonical" href="https://koswu.github.io/2018/08/21/archive/关于纳什均衡的一点想法——由弹丸论破想到的/">
 
@@ -223,19 +224,22 @@
         <blockquote>
 <p>现实中很多东西都可以看成一场博弈，但很多时候并没有那么理想化罢了，</p>
 </blockquote>
-<p>最近咸鱼了一把， 把PSV翻出来，稍微玩了一下《弹丸论破》系列的最新作《新弹丸论破V3:大家的自相残杀新学期》 <embed src="https://commons.moegirl.org/thumb.php?f=New_Danganronpa_V3_Mainvisual1.jpg&amp;width=400"></p>
+<p>最近咸鱼了一把， 把PSV翻出来，稍微玩了一下《弹丸论破》系列的最新作《新弹丸论破V3:大家的自相残杀新学期》<br>
+<img src="https://commons.moegirl.org/thumb.php?f=New_Danganronpa_V3_Mainvisual1.jpg&amp;width=400" alt="弹丸论破"></p>
 <p><em>弹丸论破V3的宣传图</em></p>
 <a id="more"></a>
 <p>作为一个经久不衰的IP，这个系列在推理游戏界也算是有一席之地了（先不提这玩意儿的动画），通过把各种游戏类型混合到一起，也算是开创出了一种独特的玩法。（笑）</p>
 <p>弹丸论破正传系列虽然剧情不同，但是核心内容都是一样的，就是反派要求主角一行自相残杀，并且虽然全体合作是最优解，但是只有一方合作的情景下，合作者又会受到惩罚。这似乎有点囚徒困境的意思，但是又跟囚徒困境有所不同。</p>
 <p>当然，剧情中的所谓“自相残杀”的内容远远不能只用某种理想化模型来解释（否则小高和刚也不用做了），完整的对于游戏剧情本身的博弈类型的讨论已经超出本文的内容范围，在这种例子中，虽然很多事情可以看做是一场博弈，但是要能够在各种错综复杂的关系中找出博弈模型，确实一件很困难的事情。例如就现实中囚徒招供来说，由于囚徒还要考虑后续的打击报复等等因素，所以很难出现囚徒困境那种局面。</p>
 <p>这次我主要想谈一谈的内容还是有关静态和动态博弈中出现多个纳什均衡解的事情。考虑如下情景，两个人隔着一堵墙被分别关在两间房屋里，每个人都带着不可拆卸的致死型电击器，房间中有一个按钮，分别控制对方的电击器。按下按钮后实时放电（动态）和等一段时间后再放电（静态）</p>
-<figure>
-<img src="https://blog.koswu.com/attachment/img/dilemma.jpg" alt><figcaption>困境</figcaption>
-</figure>
+<p><img src="https://blog.koswu.com/attachment/img/dilemma.jpg" alt="困境"></p>
 <p><em>另一种困境（图很丑，见谅）</em></p>
 <p>现在问题在于，两个人怎样的策略才能达到最优呢。我们先来看一看这个情景的支付矩阵</p>
-<p>||支付矩阵|| | :--: | :--: | | :--: | | (A,B) | A合作 | A不合作 | | B合作 | (0, 0) | (0, -10) | | B不合作 | (-10 , 0) | (-10, -10) |</p>
+<p>||支付矩阵||<br>
+|  :–: | :–: | | :–: |<br>
+| (A,B) | A合作 | A不合作 |<br>
+| B合作 | (0, 0) | (0, -10) |<br>
+| B不合作 | (-10 , 0) |  (-10, -10) |</p>
 <p>可以看到，每个人无论是否选择合作还是不合作，对于自己没有任何影响，只是对于对方有影响。无论哪一种结果，都是纳什均衡解。在静态情景下，由于两个人可以通过交涉，来消除对方的疑虑，由于自己选择不合作并没有任何好处，所以在这种情况下，双方更容易趋向于合作。</p>
 <p>但是在动态情景下，形势最大的逆转了，由于提前按下按钮可以让对方立即死亡，从而间接避免自己的死亡，也就是说，两个人同时不合作这一种情况基本消失了的时候，此时两个人更可能趋向于用最快的速度按下按钮，最终达到你死我活的局面。</p>
 <p>可见，虽然是博弈，但是也存在对于博弈论来说无能为力的情景。当存在多个解都是纳什均衡解的时候，能不能达到帕累托最优状态，人与人之间的“沟通”，以及动态和静态博弈的影响，就会显得无比重要。</p>
@@ -352,7 +356,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -364,7 +368,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

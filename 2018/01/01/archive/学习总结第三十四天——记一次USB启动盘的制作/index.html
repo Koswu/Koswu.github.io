@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。  初拟需求 当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系  Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的电">
+  <meta name="description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。   初拟需求 当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系  Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第三十四天——记一次USB启动盘的制作">
 <meta property="og:url" content="https://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。  初拟需求 当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系  Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的电">
+<meta property="og:description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。   初拟需求 当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系  Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第三十四天——记一次USB启动盘的制作">
-<meta name="twitter:description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。  初拟需求 当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系  Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的电">
+<meta name="twitter:description" content="由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。   初拟需求 当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统  Win系  Windows XP (给各种可能遇到的老的电脑装机) Win 7 x64(给可能遇到兼容性问题的">
 
 <link rel="canonical" href="https://koswu.github.io/2018/01/01/archive/学习总结第三十四天——记一次USB启动盘的制作/">
 
@@ -220,7 +220,7 @@
       
         <p>由于最近突然有换系统的想法，于是打算直接做一个启动盘以应付将来的各种装机需求，说起来简单做起来难，在几天摸爬滚打后终于完成了，在这里记录一下过程供参考。</p>
 <hr>
-<h2 id="初拟需求">初拟需求</h2>
+<h2 id="初拟需求"><a class="markdownIt-Anchor" href="#初拟需求"></a> 初拟需求</h2>
 <p>当然是越大越全越好啊，手头有一个32G的U盘，理论上应该能够装挺多系统的，会用到的都塞进去最好，下面是可能会用到的系统</p>
 <ul>
 <li>Win系
@@ -228,25 +228,47 @@
 <li>Windows XP (给各种可能遇到的老的电脑装机)</li>
 <li>Win 7 x64(给可能遇到兼容性问题的电脑装机)</li>
 <li>Win 10 x64(新电脑装机)</li>
-</ul></li>
+</ul>
+</li>
 <li>Linux系
 <ul>
 <li>Arch Linux (即将给我的电脑换上的系统)</li>
 <li>CentOS (学习服务器运维可能会装到)</li>
 <li>Ubuntu (Linux新手必备)</li>
 <li>Kali Linux (安全工具可能用到，最好直接是Live CD)</li>
-</ul></li>
 </ul>
-<h2 id="思路">思路</h2>
+</li>
+</ul>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
 <p>首先排除目前市面上常见的各种XX装机盘制作工具，这种工具制作出来的质量不说，里面有没有挂恶意程序也是未知的，所以一切最好采用开源工具和官方原版镜像制作。初拟采用grub2装入u盘做引导，然后提供选项进行选择进入。利用grub2的iso载入能力，将不同的镜像放到iso/目录里面。</p>
-<h2 id="操作与重改需求">操作与重改需求</h2>
+<h2 id="操作与重改需求"><a class="markdownIt-Anchor" href="#操作与重改需求"></a> 操作与重改需求</h2>
 <p>操作过程中，发现grub对于win系没法直接载入iso，因为实质上grub是将kernel内核读入内存以后，再对内核传递参数告诉后面应该从iso去读。但是win毕竟不是linux，目前网上的解决方案里面要么只能支持老版本的winNT，要么需要将整个iso先读入内存，这对小内存机器极不友好。同时，Debian对于读入iso引导的方式支持性也很差。并且Cent OS完整版占用太大，对于兼容性好的FAT32放不下。</p>
-<p>解决方案：因为不常用去掉CentOS和Debian系的Kali，win可以采用分区+合盘的方案，将U盘借助工具分区为主分区(FAT32)和win分区(NTFS)，将win镜像解压到win分区里，并且将几个win的wim文件参照网上的教程合并为一个esd文件。xp的安装方式也和win7以后不一样，所以排除。 这时还剩下的系统有： * Win系 * <del>Windows XP</del> * Win 7 x64 * Win 10 x64 * Linux系 * Arch Linux * <del>CentOS</del> * Ubuntu * <del>Kali Linux</del></p>
-<p>实际制作： 首先将U盘分区，然后将grub安装到u盘上</p>
+<p>解决方案：因为不常用去掉CentOS和Debian系的Kali，win可以采用分区+合盘的方案，将U盘借助工具分区为主分区(FAT32)和win分区(NTFS)，将win镜像解压到win分区里，并且将几个win的wim文件参照网上的教程合并为一个esd文件。xp的安装方式也和win7以后不一样，所以排除。<br>
+这时还剩下的系统有：</p>
+<ul>
+<li>Win系
+<ul>
+<li><s>Windows XP</s></li>
+<li>Win 7 x64</li>
+<li>Win 10 x64</li>
+</ul>
+</li>
+<li>Linux系
+<ul>
+<li>Arch Linux</li>
+<li><s>CentOS</s></li>
+<li>Ubuntu</li>
+<li><s>Kali Linux</s></li>
+</ul>
+</li>
+</ul>
+<p>实际制作：<br>
+首先将U盘分区，然后将grub安装到u盘上</p>
 <pre><code>sudo mkdir /mnt/usb
 sudo mount /dev/sdY /mnt/usb #挂载U盘
 sudo grub-install --target=i386-pc --boot-directory=/mnt/usb/boot --recheck /dev/sdY #安装BIOS支持
-sudo grub-insatall --target=x86_64-efi --efi-directory=/mnt/usb --boot-directory=/mnt/usb/boot #安装UEFI支持</code></pre>
+sudo grub-insatall --target=x86_64-efi --efi-directory=/mnt/usb --boot-directory=/mnt/usb/boot #安装UEFI支持
+</code></pre>
 <p>然后是grub.cfg配置文件</p>
 <pre><code>#加载模块
 insmod cat
@@ -258,7 +280,7 @@ insmod fat
 insmod part_msdos
 insmod loopback
 insmod iso9660
-if [ ${grub_platform} == &#39;efi&#39; ]
+if [ ${grub_platform} == 'efi' ]
 then
 insmod efi_gop
 insmod efi_uga
@@ -286,7 +308,7 @@ set locale_dir=${prefix}/locale
 set lang=zh_CN
 
 #设置背景图片
-set root=&#39;hd0,1&#39;
+set root='hd0,1'
 insmod jpeg
 background_image /boot/grub/images/anime1.jpg
 #设置未选中项颜色
@@ -302,14 +324,14 @@ search --set -f /iso
 
 menuentry &quot;安装WINDOWS&quot; {
 search --set -f /bootmgr#搜索根目录下有bootmgr的磁盘设定为root分区
-if [ ${grub_platform} == &#39;efi&#39; ]#efi采用链式引导
+if [ ${grub_platform} == 'efi' ]#efi采用链式引导
 then
 insmod chain
-#echo &quot;it&#39;s efi&quot;
+#echo &quot;it's efi&quot;
 chainloader /efi/boot/bootx64.efi
 else#传统BIOS采用ntldr引导
 insmod ntldr
-#echo &quot;it&#39;s not efi&quot;
+#echo &quot;it's not efi&quot;
 ntldr /bootmgr
 fi
 }
@@ -337,8 +359,10 @@ reboot
 menuentry &quot;关机&quot;{
   echo &quot;Shuting down....&quot;
   halt
-}</code></pre>
-<p>再将相关的iso放在主分区的/iso文件夹中，并将windows合盘后的镜像写入次分区。 制作大成功！</p>
+}
+</code></pre>
+<p>再将相关的iso放在主分区的/iso文件夹中，并将windows合盘后的镜像写入次分区。<br>
+制作大成功！</p>
 
     </div>
 
@@ -438,7 +462,7 @@ menuentry &quot;关机&quot;{
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初拟需求"><span class="nav-number">1.</span> <span class="nav-text">初拟需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作与重改需求"><span class="nav-number">3.</span> <span class="nav-text">操作与重改需求</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初拟需求"><span class="nav-number">1.</span> <span class="nav-text"> 初拟需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text"> 思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作与重改需求"><span class="nav-number">3.</span> <span class="nav-text"> 操作与重改需求</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -452,7 +476,7 @@ menuentry &quot;关机&quot;{
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -464,7 +488,7 @@ menuentry &quot;关机&quot;{
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

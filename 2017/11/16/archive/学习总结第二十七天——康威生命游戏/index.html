@@ -220,7 +220,11 @@
       
         <p>看了那么多天的算法，今天转变下心情，学习用python写了一个康威生命游戏（conway Game of Life)。</p>
 <hr>
-<p>记得第一次接触到“康威生命游戏”是因为一部番《<a href="http://bangumi.tv/subject/118783" target="_blank" rel="noopener">すべてがFになる THE PERFECT INSIDER</a>》,作品用了很多计算机相关的事物，其中片尾曲的动态演化的康威生命游戏让我记忆犹新。其实所谓生命游戏，不过就是一些点在几条规则下进行演化罢了，但是能从简短的几条规则进行演化为如此复杂的系统着实令人感到有趣。也许这个简单的数学游戏，也隐藏着很深刻的哲学意义。其表明了复杂的结构可以由简单的规则推进。下图为我运行一个”高斯帕斯卡机枪”的截图 <a href="/attachment/img/conway.png">!img</a> 代码如下： #!/usr/bin/python3 #-<em>-coding:utf-8-</em>-</p>
+<p>记得第一次接触到“康威生命游戏”是因为一部番《<a href="http://bangumi.tv/subject/118783" target="_blank" rel="noopener">すべてがFになる THE PERFECT INSIDER</a>》,作品用了很多计算机相关的事物，其中片尾曲的动态演化的康威生命游戏让我记忆犹新。其实所谓生命游戏，不过就是一些点在几条规则下进行演化罢了，但是能从简短的几条规则进行演化为如此复杂的系统着实令人感到有趣。也许这个简单的数学游戏，也隐藏着很深刻的哲学意义。其表明了复杂的结构可以由简单的规则推进。下图为我运行一个”高斯帕斯卡机枪”的截图<br>
+<a href="/attachment/img/conway.png">!img</a><br>
+代码如下：<br>
+#!/usr/bin/python3<br>
+#-<em>-coding:utf-8-</em>-</p>
 <pre><code>import argparse
 import numpy as np
 import matplotlib.pyplot as plt
@@ -296,16 +300,16 @@ def update(frameNum, img, grid, N):
 
 def main():
     #构造参数解析器
-    parser = argparse.ArgumentParser(description=&quot;Running for Conway&#39;s Game of Life simulation&quot;)
+    parser = argparse.ArgumentParser(description=&quot;Running for Conway's Game of Life simulation&quot;)
     #创建互斥参数组
     group = parser.add_mutually_exclusive_group()
     #解析参数
-    parser.add_argument(&#39;--grid-size&#39;, dest=&#39;N&#39;, type=int, required=False)
-    parser.add_argument(&#39;--mov-file&#39;, dest=&#39;movfile&#39;, required=False)
-    group.add_argument(&#39;--pattern-file&#39;, dest=&#39;patternfile&#39;, required=False)
-    parser.add_argument(&#39;--interval&#39;, dest=&#39;interval&#39;, required=False)
-    group.add_argument(&#39;--glider&#39;, action=&#39;store_true&#39;, required=False)
-    group.add_argument(&#39;--gosper&#39;, action=&#39;store_true&#39;, required=False)
+    parser.add_argument('--grid-size', dest='N', type=int, required=False)
+    parser.add_argument('--mov-file', dest='movfile', required=False)
+    group.add_argument('--pattern-file', dest='patternfile', required=False)
+    parser.add_argument('--interval', dest='interval', required=False)
+    group.add_argument('--glider', action='store_true', required=False)
+    group.add_argument('--gosper', action='store_true', required=False)
     args = parser.parse_args()
     #设置模拟大小
     N = 100
@@ -332,16 +336,16 @@ def main():
         grid = randomGrid(N)
     #设置动画
     fig, ax = plt.subplots()
-    img = ax.imshow(grid, interpolation=&#39;nearest&#39;)
+    img = ax.imshow(grid, interpolation='nearest')
     ani = animation.FuncAnimation(fig, update,
                                   fargs=(img, grid, N, ),
                                   frames=10,
                                   interval=updateInterval,
                                   save_count=100)
     if args.movfile:
-        ani.save(args.movfile, fps=30, extra_args=[&#39;-vcodec&#39;, &#39;libx264&#39;])
+        ani.save(args.movfile, fps=30, extra_args=['-vcodec', 'libx264'])
     plt.show()
-if __name__ == &#39;__main__&#39;:
+if __name__ == '__main__':
     main()</code></pre>
 
     </div>
@@ -455,7 +459,7 @@ if __name__ == &#39;__main__&#39;:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -467,7 +471,7 @@ if __name__ == &#39;__main__&#39;:
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

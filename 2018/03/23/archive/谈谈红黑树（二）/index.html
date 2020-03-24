@@ -223,11 +223,10 @@
         <p>了解了2- 3-树的插入操作后，便可以正式开始介绍左倾红黑树了。2-3 树好是好，但是由于其是用两种不同类型的节点构成的，实现起来不方便。我们可以用一个方法巧妙的替代2-3树中的3节点，就是用两个普通的2-节点，通过一种特殊的链接——红链接来连接起来，来表示一个3-节点。</p>
 <p>当然，要表示出这个红链接，需要给每个节点加入一个额外的属性——颜色，红黑树中每个节点都是两种颜色中的一种——黑色和红色。节点的颜色表示指向该节点的链接颜色。根节点与其他节点不同，其始终为黑色。大家应当注意到，左倾红黑树的“左倾”意味着只能够存在向左的红连接，而不能存在向右的链接。</p>
 <p>在红黑树中，为了在保证树的平衡性的同时，还能够保证红链接的合法性，我们采用一个balance函数，其调用rotate_left(左旋)和rotate_right(右旋)以及flip_color_black方法来实现这些变换。flip_color_black和flip_color_red的作用在于将一个子节点全为红色的节点染红，并将其子节点染黑，以及上述操作的反向。其实现已经在文后的代码中给出，这里不再细说。关于树的旋转变换，参见下图。</p>
-<figure>
-<img src="https://blog.koswu.com/attachment/img/Tree_rotation.png" alt><figcaption>树旋转</figcaption>
-</figure>
+<p><img src="https://blog.koswu.com/attachment/img/Tree_rotation.png" alt="树旋转"></p>
 <p>树的插入操作和2-3树类似，首先找到插入位置，插入，然后沿查找路径向上依次执行balance方法（参见实现中的put方法）</p>
-<p>再来说说删除最小键，可以在向左遍历的过程中，让红黑树暂时变得“不严谨”，也就是说，暂时允许等价的4-节点出现。并且需要做一个变换，保证当前查找的位置一定是3-节点或者是4-节点，这样当查找到底部的时候，就可以保证当前节点不是2-节点，实现中使用flip_color_red和树的旋转操作来实现，此时只需要直接从树中删去最小节点，然后沿着路径向上调用balance方法恢复树的性质。这里要注意的是，如有需要，我们可以临时改变根节点的颜色为红色，这样就能保证在变换中，父节点的颜色一定是红色。 删除最大键与最小键同理，但因为子节点在右边，需要做一些额外的变换，这里留给读者去思考，实现见代码。</p>
+<p>再来说说删除最小键，可以在向左遍历的过程中，让红黑树暂时变得“不严谨”，也就是说，暂时允许等价的4-节点出现。并且需要做一个变换，保证当前查找的位置一定是3-节点或者是4-节点，这样当查找到底部的时候，就可以保证当前节点不是2-节点，实现中使用flip_color_red和树的旋转操作来实现，此时只需要直接从树中删去最小节点，然后沿着路径向上调用balance方法恢复树的性质。这里要注意的是，如有需要，我们可以临时改变根节点的颜色为红色，这样就能保证在变换中，父节点的颜色一定是红色。<br>
+删除最大键与最小键同理，但因为子节点在右边，需要做一些额外的变换，这里留给读者去思考，实现见代码。</p>
 <p>现在遇到了最难的操作——删除指定键，但有了前面删除最大最小键的铺垫，问题也就迎刃而解了。与删除最大最小键时类似，沿着查找路径进行4-节点变换，当找到需要删除的键时，可以分为三种情况：</p>
 <ul>
 <li>没有子节点</li>
@@ -241,7 +240,8 @@
 <li>同时拥有左右节点</li>
 </ul>
 <p>此时需要使用类似二叉搜索树中的方法，将该节点与他的右分支中的最小节点交换，此时又将问题转换成了一个删除右分支中的最小键的问题。</p>
-<p>最后附上我的实现代码： [gist https://gist.github.com/Koswu/3383ec7242a997dae163c9af922b1a56]</p>
+<p>最后附上我的实现代码：<br>
+[gist <a href="https://gist.github.com/Koswu/3383ec7242a997dae163c9af922b1a56" target="_blank" rel="noopener">https://gist.github.com/Koswu/3383ec7242a997dae163c9af922b1a56</a>]</p>
 
     </div>
 
@@ -354,7 +354,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -366,7 +366,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

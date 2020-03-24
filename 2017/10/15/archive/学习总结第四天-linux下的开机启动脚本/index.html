@@ -220,7 +220,8 @@
       
         <p>当我们想要让某个程序开机在后台启动的时候，一种维护性较好的办法就是在linux下加入一个开机启动服务。</p>
 <p>今天对于linux下的服务脚本的做了一些了解，环境为ubuntu 17.04</p>
-<p>首先，系统上的每个服务的脚本都保存在/etc/init.c 下，这些文件都是一些sh脚本，可以直接执行。 下面是一个是一个init脚本：</p>
+<p>首先，系统上的每个服务的脚本都保存在/etc/init.c 下，这些文件都是一些sh脚本，可以直接执行。<br>
+下面是一个是一个init脚本：</p>
 <pre><code>#!/bin/sh                                                         
 ### BEGIN INIT INFO
 # Provides:       kcptun
@@ -249,11 +250,12 @@ case &quot;$1&quot; in
       #sth. to get service status
       ;;
   *)
-      echo &#39;Usage: service myservice {start|status|stop|restart}&#39;
-      echo &#39;&#39;
+      echo 'Usage: service myservice {start|status|stop|restart}'
+      echo ''
       exit 1
 esac
-exit 0</code></pre>
+exit 0
+</code></pre>
 <p>首先是上面的注释部分，第一行是指明解析使用的解释器，然后便是INIT INFO，这里也是必不可少的部分，里面记录了脚本的一些相关信息，具体如下:</p>
 <ul>
 <li>Provides: 服务名称，这个应当和文件名相同</li>
@@ -269,7 +271,8 @@ exit 0</code></pre>
 <p>然后将这个文件放到/etc/init.d/下</p>
 <p>在/etc/rc.d 下我们可以看到各个服务在不同运行级别下的启动关系，当然我们并不需要亲自去修改这些文件，系统已经给我们提供了工具来自动修改这些文件，在ubuntu下，这个工具是<code>update-rc.d</code></p>
 <p>我们可以运行</p>
-<pre><code>update-rc.d &lt;yourservice&gt; default</code></pre>
+<pre><code>update-rc.d &lt;yourservice&gt; default
+</code></pre>
 <p>便可以让系统配置好脚本，在合适的时候启动�动</p>
 
     </div>
@@ -383,7 +386,7 @@ exit 0</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -395,7 +398,7 @@ exit 0</code></pre>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

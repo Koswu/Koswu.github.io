@@ -220,72 +220,100 @@
       
         <p>想入坑<a href="https://wiki.archlinux.org/index.php/Arch_Linux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)" title="Arch" target="_blank" rel="noopener">Arch</a>好久了，但是有很多次都因为在解决引导的时候就卡了，最后一直没能装上。经过上次制作启动盘的经验，对于grub有了更多的了解。这次再次尝试安装，虽然经历了一些挫折，但还是成功了。下面是具体的安装过程。</p>
 <p>首先用u盘引导系统，接下来就进入了arch的Live CD模式（雾）。这也是arch linux最劝退的一步，很多人看到装个系统都要命令行，就退了.。其实用命令行装系统才能真正在装系统的同时学习到知识。</p>
-<h2 id="同步时间">同步时间</h2>
+<h2 id="同步时间"><a class="markdownIt-Anchor" href="#同步时间"></a> 同步时间</h2>
 <p>由于arch采用网络安装的方式，所以先让计算机连接上网络，并执行</p>
-<pre><code>timedatectl set-ntp true</code></pre>
-<h2 id="硬盘分区">硬盘分区</h2>
+<pre><code>timedatectl set-ntp true
+</code></pre>
+<h2 id="硬盘分区"><a class="markdownIt-Anchor" href="#硬盘分区"></a> 硬盘分区</h2>
 <p>对硬盘进行分区</p>
-<pre><code>fdisk /dev/sdY</code></pre>
-<p>需要注意的是，如果电脑为UEFI引导的，需要将硬盘设置为GPT分区，否则为传统MBR模式。由于我装双系统，所以就只分了一个分区作为根目录，一个分区作为交换分区。 交换分区记得将分区的类型设置为82,这样可以让systemd自动发现并挂载。</p>
+<pre><code>fdisk /dev/sdY
+</code></pre>
+<p>需要注意的是，如果电脑为UEFI引导的，需要将硬盘设置为GPT分区，否则为传统MBR模式。由于我装双系统，所以就只分了一个分区作为根目录，一个分区作为交换分区。<br>
+交换分区记得将分区的类型设置为82,这样可以让systemd自动发现并挂载。</p>
 <p>格式化交换分区</p>
-<pre><code>mkswap /sdYM</code></pre>
+<pre><code>mkswap /sdYM
+</code></pre>
 <p>格式化主分区</p>
-<pre><code>mkfs.ext4 /sdYN</code></pre>
+<pre><code>mkfs.ext4 /sdYN
+</code></pre>
 <p>将主分区挂载至/mnt，将EFI分区挂载至/mnt/boot</p>
 <pre><code>mount /dev/sdYN /mnt #挂载主分区
 mkdir /mnt/boot
-mount /dev/sda1 /mnt/boot #挂载EFI分区</code></pre>
+mount /dev/sda1 /mnt/boot #挂载EFI分区
+</code></pre>
 <p>安装系统文件</p>
-<pre><code>pacstrap /mnt base base-devel</code></pre>
+<pre><code>pacstrap /mnt base base-devel
+</code></pre>
 <p>生成fstab文件并检查</p>
 <pre><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
-cat /mnt/etc/fstab</code></pre>
+cat /mnt/etc/fstab
+</code></pre>
 <p>添加swap分区的UUID到fstab</p>
-<pre><code>echo &quot;#/dev/sdYM swap \n UUID=`lsblk -no UUID /dev/sdYM` none swap defaults 0 0&quot; &gt;&gt; /mnt/etc/fstab</code></pre>
+<pre><code>echo &quot;#/dev/sdYM swap \n UUID=`lsblk -no UUID /dev/sdYM` none swap defaults 0 0&quot; &gt;&gt; /mnt/etc/fstab
+</code></pre>
 <p>chroot到新的系统目录，由于普通的chroot容器有一些问题，所以我们采用专门开发的arch-chroot</p>
-<pre><code>arch-chroot /mnt</code></pre>
+<pre><code>arch-chroot /mnt
+</code></pre>
 <p>设置时区</p>
 <pre><code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-hwclock --systohc --utc</code></pre>
+hwclock --systohc --utc
+</code></pre>
 <p>设置本地化信息，打开/etc/locale.gen，取消以下几行的注释</p>
 <pre><code>en_US.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
-zh_TW.UTF-8 UTF-8</code></pre>
+zh_TW.UTF-8 UTF-8
+</code></pre>
 <p>运行</p>
-<pre><code>locale-gen</code></pre>
+<pre><code>locale-gen
+</code></pre>
 <p>以生成本地化配置文件</p>
 <p>在hosts中设置localhost，如果不设置也行，但会造成firefox打开慢等问题</p>
 <pre><code>#在/etc/hosts中加入
-127.0.0.1     localhost</code></pre>
+127.0.0.1     localhost
+</code></pre>
 <p>设置root密码</p>
-<pre><code>passwd</code></pre>
+<pre><code>passwd
+</code></pre>
 <p>如果使用intel处理器，安装intel-ucode以启用微码更新</p>
-<pre><code>pacman -S intel-ucode</code></pre>
+<pre><code>pacman -S intel-ucode
+</code></pre>
 <hr>
 <p>下面进入第二阶段，安装开机引导</p>
 <p>安装grub</p>
 <pre><code>pacman -S grub
-grub-insatll --efi-directory=/boot</code></pre>
-<p>配置grub pacman os-prober mkdir /mnt/windows mount /dev/sda2 /mnt/windows#挂载其他系统的磁盘 grub-mkconfig -o /boot/grub/gurb.cfg</p>
+grub-insatll --efi-directory=/boot
+</code></pre>
+<p>配置grub<br>
+pacman os-prober<br>
+mkdir /mnt/windows<br>
+mount /dev/sda2 /mnt/windows#挂载其他系统的磁盘<br>
+grub-mkconfig -o /boot/grub/gurb.cfg</p>
 <p>至此就可以正常进入系统了，重启</p>
 <pre><code>exit
 umount -R /mnt
-reboot</code></pre>
+reboot
+</code></pre>
 <p>如果仍然进入windows的话，在windows借助一些工具，如bootice来修改UEFI启动顺序，将arch放到第一个。</p>
 <hr>
 <p>第三阶段，安装GNOME桌面</p>
 <p>首先解决显卡驱动的问题,以英特尔和英伟达双显卡驱动为例，安装相关驱动和humblebee——实现显卡交火的工具</p>
-<pre><code>sudo pacman -S humblebee mesa xf86-video-intel nvidia primus</code></pre>
+<pre><code>sudo pacman -S humblebee mesa xf86-video-intel nvidia primus
+</code></pre>
 <p>安装后系统命令将默认用集成显卡运行，如果需要使用独显运行，使用</p>
-<pre><code>primusrun 命令</code></pre>
+<pre><code>primusrun 命令
+</code></pre>
 <p>曾经linux下主流的显示协议是X11，现在GNOME已经切换到了效率更高的Wayland，直接安装gnome软件组来获取所有套件</p>
-<pre><code>sudo pacman -S gnome</code></pre>
+<pre><code>sudo pacman -S gnome
+</code></pre>
 <p>如果需要其他的gnome软件包的话运行</p>
-<pre><code>sudo pacman -S gnome-extra</code></pre>
+<pre><code>sudo pacman -S gnome-extra
+</code></pre>
 <p>开启gdm</p>
-<pre><code>systemctl enable gdm</code></pre>
+<pre><code>systemctl enable gdm
+</code></pre>
 <p>重启系统，就这样，基本的arch linux就安装好了</p>
-<p>贴一张安装好的截图： <a href="/attachment/img/arch_screen.png">!安装后</a></p>
+<p>贴一张安装好的截图：<br>
+<a href="/attachment/img/arch_screen.png">!安装后</a></p>
 
     </div>
 
@@ -385,7 +413,7 @@ reboot</code></pre>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#同步时间"><span class="nav-number">1.</span> <span class="nav-text">同步时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬盘分区"><span class="nav-number">2.</span> <span class="nav-text">硬盘分区</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#同步时间"><span class="nav-number">1.</span> <span class="nav-text"> 同步时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬盘分区"><span class="nav-number">2.</span> <span class="nav-text"> 硬盘分区</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -399,7 +427,7 @@ reboot</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -411,7 +439,7 @@ reboot</code></pre>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

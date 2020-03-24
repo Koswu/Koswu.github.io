@@ -170,6 +170,389 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/11/11/archive/学习总结第二十三天——链表与动态数组的性能探讨/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/11/archive/学习总结第二十三天——链表与动态数组的性能探讨/" class="post-title-link" itemprop="url">学习总结第二十三天——链表与动态数组的性能探讨</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-11 00:00:10" itemprop="dateCreated datePublished" datetime="2017-11-11T00:00:10+08:00">2017-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天在C语言中实现了一个基于链表的栈，由于链表不需要像动态数组那样拷贝值，理论上来说在经常插入和删除较多数据时，其性能应该优于动态数组。但是在我的实际操作中发现，用链表实现的栈要比动态数组的实现低效很多。</p>
+<p>经过一番查找后发现，链表拖慢的原因是频繁的malloc和free的开销太大，所以在实际使用中，很少有这样直接对链表的使用，而是采用内存池的策略。所谓内存池的策略，就是自己一次分配一块大内存空间，然后自己实现类似malloc和free的函数，从而达到减少对malloc和free的调用。实际的高级语言中，大部分时候都是使用动态数组而不是使用链表的的，如Java里的ArrayList，C++里的vector。or。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/11/08/archive/学习总结第二十二天——栈的实现以及简易计算器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/08/archive/学习总结第二十二天——栈的实现以及简易计算器/" class="post-title-link" itemprop="url">学习总结第二十二天——栈的实现以及简易计算器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-08 22:25:00" itemprop="dateCreated datePublished" datetime="2017-11-08T22:25:00+08:00">2017-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本来昨天的计划是研究背包，栈，队列的，但是没想到实际研究起来光一个栈都那么花时间。今天写了一个栈的动态数组实现API，这个API我实现了两种版本，第一种是使用了固定长度的数组来存储，很不方便，使用时必须指定大小，并且经常会有空间浪费或者栈满的需求。使用了动态数组的方法，就能实现栈的高可用性。在栈的元素较少时将栈减小，元素满时扩大。下面是第一种实现和一个测试用例：</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct
+{
+  int * sta;
+  int maxSize;
+  int nowSize;
+  } stack;
+//API声明
+stack* StackCreate(int size);
+int StackPop (stack * sta);
+bool StackPush (stack *sta,int i);
+int StackSize (stack *sta);
+bool StackIsEmpty (stack *sta);
+bool StackIsFull (stack *sta);//
+void StackFree (stack *sta);
+//测试用例
+int main(int argc, char const *argv[]) {
+  stack *st=StackCreate(100);
+  for (int i=0;!StackIsFull(st);i++)
+  {
+    StackPush(st,i);
+  }
+  while (!StackIsEmpty(st)) {
+    printf(&quot;%d &quot;,StackPop(st));
+  }
+  StackFree(st);
+  return 0;
+}
+//API实现
+stack* StackCreate(int size)
+{
+  stack *temp=malloc(sizeof(stack));
+  if (size&lt;1)
+  return NULL;
+  temp-&gt;sta=(int *)malloc(sizeof(int)*size);
+  temp-&gt;maxSize=size;
+  temp-&gt;nowSize=0;
+  return temp;
+}
+
+int StackPop(stack * sta)
+{
+  if (StackIsEmpty(sta))
+  return -1;
+  else
+  return sta-&gt;sta[--sta-&gt;nowSize];
+}
+
+bool StackPush (stack *sta,int i)
+{
+  if (StackIsFull(sta))
+  return false;
+  else
+  sta-&gt;sta[sta-&gt;nowSize++]=i;
+  return true;
+}
+int StackSize (stack *sta)
+{
+  return sta-&gt;nowSize;
+}
+bool StackIsEmpty (stack *sta)
+{
+  return sta-&gt;nowSize==0;
+}
+bool StackIsFull (stack *sta)
+{
+  return sta-&gt;nowSize==sta-&gt;maxSize;
+}
+void StackFree(stack *sta) {
+  free(sta-&gt;sta);
+  free(sta);
+}
+</code></pre>
+<p>第二种实现我将其打包成了一个库，下面是具体代码：</p>
+<blockquote>
+<p>stacklib.h<br>
+#ifndef STACK<br>
+#include &lt;stdio.h&gt;<br>
+#include &lt;stdbool.h&gt;<br>
+#include &lt;stdlib.h&gt;<br>
+#define STACK 0<br>
+#endif<br>
+#ifndef STACK_INIT_SIZE<br>
+#define STACK_INIT_SIZE 3<br>
+#endif<br>
+typedef struct<br>
+{<br>
+int * sta;<br>
+int maxSize;<br>
+int nowSize;<br>
+} stack;<br>
+stack* StackCreate(void);<br>
+int StackPop (stack * sta);<br>
+void StackPush (stack *sta,int i);<br>
+int StackNowSize (stack *sta);<br>
+int StackMaxSize (stack *sta);<br>
+bool StackIsEmpty (stack *sta);<br>
+//bool StackIsFull (stack *sta);<br>
+void StackFree (stack *sta);</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>stacklib.c<br>
+#include “stacklib.h”<br>
+stack* StackCreate (void)<br>
+{<br>
+stack *temp=malloc(sizeof(stack));<br>
+temp-&gt;sta=(int *)malloc(sizeof(int)*STACK_INIT_SIZE);<br>
+temp-&gt;maxSize=STACK_INIT_SIZE;<br>
+temp-&gt;nowSize=0;<br>
+return temp-&gt;sta<mark>NULL?NULL:temp;<br>
+}<br>
+bool StackReSize(stack * sta,int size)<br>
+{<br>
+if (size&lt;=0)<br>
+return false;<br>
+int *temp=malloc(sizeof(int)*size);<br>
+if (temp</mark>NULL)<br>
+return false;<br>
+for (int i=0;i<sta->nowSize;i++)<br>
+{<br>
+temp[i]=sta-&gt;sta[i];<br>
+}<br>
+free (sta-&gt;sta);<br>
+sta-&gt;sta=temp;<br>
+sta-&gt;maxSize=size;<br>
+return true;<br>
+}<br>
+int StackPop(stack * sta)<br>
+{<br>
+if (StackIsEmpty(sta))<br>
+return -1;<br>
+int i=sta-&gt;sta[–sta-&gt;nowSize];<br>
+if (sta-&gt;maxSize/4&gt;=sta-&gt;nowSize)//空间过剩时，减少数组容量<br>
+{<br>
+StackReSize(sta,sta-&gt;maxSize/2);<br>
+}<br>
+return i;<br>
+}<br>
+void StackPush (stack <em>sta,int i)<br>
+{<br>
+if (sta-&gt;nowSize==sta-&gt;maxSize)//空间不够时，扩充数组容量<br>
+{<br>
+StackReSize(sta,sta-&gt;maxSize</em>2);<br>
+}<br>
+sta-&gt;sta[sta-&gt;nowSize++]=i;<br>
+}<br>
+int StackNowSize (stack *sta)<br>
+{<br>
+return sta-&gt;nowSize;<br>
+}<br>
+bool StackIsEmpty (stack *sta)<br>
+{<br>
+return sta-&gt;nowSize==0;<br>
+}<br>
+void StackFree(stack *sta)<br>
+{<br>
+free(sta-&gt;sta);<br>
+free(sta);<br>
+}<br>
+int StackMaxSize(stack *sta)<br>
+{<br>
+return sta-&gt;maxSize;<br>
+}</sta-></p>
+</blockquote>
+<p>最后，我运用栈来做了一个小计算器，可惜目前还不能实现判断运算的先后顺序，只能人为在每个运算后添加括号进行运算，比如5<em>2必须要输入(5</em>2)才能计算，代码如下：<br>
+#include “stacklib.h”<br>
+#ifndef READ_SIZE<br>
+#define READ_SIZE 30<br>
+#endif<br>
+int main(int argc, char const <em>argv[]) {<br>
+char ch[READ_SIZE];<br>
+fgets (ch,READ_SIZE,stdin);<br>
+stack <em>numSta=StackCreate();//数字栈<br>
+stack <em>chSta=StackCreate();//操作符栈<br>
+bool lastIsNum=false;//标志位，判断上个读取的字符是否是数字<br>
+for (int i=0;ch[i]!=’\0’&amp;&amp;ch[i]!=’\n’;i++)<br>
+{<br>
+switch (ch[i])<br>
+{<br>
+//若为操作符，压入操作符栈<br>
+case ‘+’:<br>
+case ‘-’:<br>
+case '</em>’:<br>
+case ‘/’:<br>
+case ‘%’:<br>
+lastIsNum=false;<br>
+StackPush(chSta,(int)ch[i]);<br>
+break;<br>
+case ‘)’😕/右括号表示前面是一个运算，进行运算<br>
+{<br>
+char op=StackPop(chSta);//取出操作符<br>
+int val=StackPop(numSta);//取出右操作数<br>
+switch (op)<br>
+{<br>
+case ‘+’:<br>
+val+=StackPop(numSta);<br>
+break;<br>
+case ‘-’:<br>
+val=StackPop(numSta)-val;<br>
+break;<br>
+case '</em>’:<br>
+val</em>=StackPop(numSta);<br>
+break;<br>
+case ‘/’:<br>
+val=StackPop(numSta)/val;<br>
+break;<br>
+case ‘%’:<br>
+val=StackPop(numSta)%val;<br>
+break;<br>
+default:<br>
+break;<br>
+}<br>
+StackPush(numSta,val);<br>
+lastIsNum=false;<br>
+}<br>
+break;<br>
+case ‘(’😕/左括号直接丢弃<br>
+lastIsNum=false;<br>
+break;<br>
+default:<br>
+if (ch[i]&gt;47&amp;&amp;ch[i]&lt;58)//判断是否为数字<br>
+{<br>
+if (lastIsNum==true)<br>
+{<br>
+int temp=StackPop(numSta);<br>
+temp=temp*10+(ch[i]-48);<br>
+StackPush(numSta,temp);<br>
+}<br>
+else<br>
+{<br>
+StackPush(numSta,ch[i]-48);<br>
+}<br>
+lastIsNum=true;<br>
+}<br>
+else//未预期的符号<br>
+{<br>
+printf(“Error\n” );<br>
+exit(-1);<br>
+}<br>
+break;<br>
+}<br>
+}<br>
+printf(&quot;%d\n&quot;,StackPop(numSta));<br>
+StackFree(numSta);<br>
+StackFree(chSta);<br>
+return 0;<br>
+}turn 0;<br>
+}</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/11/08/archive/学习总结第二十一天——互质的判断/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -228,7 +611,8 @@
     return isPrime(p%q,q);
   else
   return isPrime(p,q%p);
-}</code></pre>
+}
+</code></pre>
 <p>明天学习背包，队列和栈，打算学写一个能够直接读取式子的计算器。</p>
 
       
@@ -294,7 +678,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天了解了算法的鼻祖——欧几里得算法（辗转相除法），虽然这个算法是一个挺简单的算法，但是还是花了不少时间去弄懂，也算是体现出了我在算法上的不足。 算法如下：</p>
+          <p>今天了解了算法的鼻祖——欧几里得算法（辗转相除法），虽然这个算法是一个挺简单的算法，但是还是花了不少时间去弄懂，也算是体现出了我在算法上的不足。<br>
+算法如下：</p>
 <pre><code>    int gcd (int p,int q)
     {
       printf(&quot;p=%d,q=%d\n&quot;,p,q);
@@ -306,7 +691,8 @@
       return gcd(p%q,q);
       else
       return gcd(p,q%p);
-    }</code></pre>
+    }
+</code></pre>
 <p>BTW，今天读了数学之美，又认识到了很多数学工具在解决实际问题的重要性，特别是概率论，让我受益匪浅。比如，语义识别最有效的方法不是词法分析，而是概率模型。</p>
 
       
@@ -517,9 +903,11 @@
           <p>今天基本上都在和DigitalOcean和AWS的客服周旋。。。所以没学什么，稍微了解了一下C++类的作用域。</p>
 <p>每个类都会定义它自己的作用域。在类的作用域外，普通的数据和函数成员只能由对象，引用或者指针使用成员运算符访问。</p>
 <p>如在Screen类中使用</p>
-<pre><code>using pos=int;</code></pre>
+<pre><code>using pos=int;
+</code></pre>
 <p>的话，在外部就需要用</p>
-<pre><code>Screen::pos i;</code></pre>
+<pre><code>Screen::pos i;
+</code></pre>
 <p>来声明变量</p>
 
       
@@ -593,13 +981,16 @@
 <blockquote>
 <p>切换HTTPS的步骤</p>
 </blockquote>
-<p>首先申请一个SSL证书，这里既可以选择收费的也可以选择免费的，我推荐使用<a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let's encrypt</a>的免费证书，这个证书可以到官网申请。</p>
+<p>首先申请一个SSL证书，这里既可以选择收费的也可以选择免费的，我推荐使用<a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s encrypt</a>的免费证书，这个证书可以到官网申请。</p>
 <p>将这个SSL证书部署到你的服务器上，由于我用的是云空间，直接填写证书和私钥就可以了。</p>
 <p>这时就可以通过https访问网站了，但是如果使用HTTP的话，还是能够进入网站，这时我们可以在服务器的Apache配置文件（.htaccess)下对HTTP访问设置301返回，就可以实现强制HTTPS,在文件后加入这几行:</p>
 <pre><code>RewriteBase /
 RewriteCond %{HTTP:KERSSL} !on
-RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre>
-<p>做完这些工作,一般来说已经完成了,但是由于现在用的都是各种建站系统,里面的主题插件什么的难免用到外链HTTP资源.所以我们还需要将这些资源文件移动到自己的主机上. 开启浏览器的安全例外,然后在开发者控制台里的"网络"一栏对HTTP请求进行分析(记得禁用缓存),将其中的HTTP外链资源移到本地,再在相应的文件里面修改资源获取地址.就可以真正做到全站HTTPS啦! <img src="/attachment/img/https_analsis.png" alt="HTTP资源文件分析"></p>
+RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+</code></pre>
+<p>做完这些工作,一般来说已经完成了,但是由于现在用的都是各种建站系统,里面的主题插件什么的难免用到外链HTTP资源.所以我们还需要将这些资源文件移动到自己的主机上.<br>
+开启浏览器的安全例外,然后在开发者控制台里的&quot;网络&quot;一栏对HTTP请求进行分析(记得禁用缓存),将其中的HTTP外链资源移到本地,再在相应的文件里面修改资源获取地址.就可以真正做到全站HTTPS啦!<br>
+<img src="/attachment/img/https_analsis.png" alt="HTTP资源文件分析"></p>
 
       
     </div>
@@ -672,7 +1063,7 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre>
 <blockquote>
 <p>怎么通过认证？</p>
 </blockquote>
-<p>Github提供了两种认证方式，一是edu邮箱认证，二是证件认证。作为天朝的学校，基本上是没有edu邮箱的，而即使有edu.cn的邮箱，通过率也很低。所以一般我们使用证件认证。打开github学生包页面，点击"Get your pack"按钮，然后下面会有提示让你进行登陆github账户和学生认证，只要上传你的学生证或者录取通知书就可以了。</p>
+<p>Github提供了两种认证方式，一是edu邮箱认证，二是证件认证。作为天朝的学校，基本上是没有edu邮箱的，而即使有edu.cn的邮箱，通过率也很低。所以一般我们使用证件认证。打开github学生包页面，点击&quot;Get your pack&quot;按钮，然后下面会有提示让你进行登陆github账户和学生认证，只要上传你的学生证或者录取通知书就可以了。</p>
 <blockquote>
 <p>领取的学生包都有什么？</p>
 </blockquote>
@@ -699,7 +1090,8 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre>
 <li>Unreal Engine:大名顶顶的虚幻引擎，可以用来学学游戏制作</li>
 </ul>
 <blockquote>
-<p>应该怎样使用？ 以上的这些东西，累计价值可能已经达到了上千刀，但是作为学生，我们没有精力也没有必要去全部都使用，而是选择自己感兴趣的，需要的东西去学习。</p>
+<p>应该怎样使用？<br>
+以上的这些东西，累计价值可能已经达到了上千刀，但是作为学生，我们没有精力也没有必要去全部都使用，而是选择自己感兴趣的，需要的东西去学习。</p>
 </blockquote>
 <p>最后，且用且珍惜，不要在让这些资源再次因为滥用而减少了。�了。</p>
 
@@ -768,192 +1160,31 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre>
       
           <p>今天上导论和C语言课的时候，都对于浮点数有讲解，虽然之前已经大概了解浮点数的内容，但是今天对其进行了一些深入的探究，才发现浮点数并没有我想象中那么简单。</p>
 <p>浮点数，很多人都只是把他当成一个普通的小数看待，在我之前的理解中，就是用类似科学计数法的方法去表示一个数。今天在通过翻阅wiki，才了解到浮点数的一些定义和奇特的性质，在下面做一些概括：</p>
-<p>wikipedia是这样描述浮点数的： &gt; 在计算机科学中，浮点（英语：floating point，缩写为FP）是一种对于实数的近似值数值表现法，由一个有效数字（即尾数）加上幂数来表示，通常是乘以某个基数的整数次指数得到。以这种表示法表示的数值，称为浮点数（floating-point number）。利用浮点进行运算，称为浮点计算，这种运算通常伴随着因为无法精确表示而进行的近似或舍入。位（bit）是衡量浮点数所需存储空间的单位，通常为32位或64位，分别被叫作单精度和双精度。有一些计算机提供更大的浮点数，一个浮点数a由两个数m和e来表示：a = m * b^e</p>
+<p>wikipedia是这样描述浮点数的：</p>
+<blockquote>
+<p>在计算机科学中，浮点（英语：floating point，缩写为FP）是一种对于实数的近似值数值表现法，由一个有效数字（即尾数）加上幂数来表示，通常是乘以某个基数的整数次指数得到。以这种表示法表示的数值，称为浮点数（floating-point number）。利用浮点进行运算，称为浮点计算，这种运算通常伴随着因为无法精确表示而进行的近似或舍入。位（bit）是衡量浮点数所需存储空间的单位，通常为32位或64位，分别被叫作单精度和双精度。有一些计算机提供更大的浮点数，一个浮点数a由两个数m和e来表示：a = m * b^e</p>
+</blockquote>
 <p>举个例子，1.2345这个数的十进制的浮点数表示方法就是12345*10^-4，这个时候我们称10是十进制浮点数的基底，我们要保存这个浮点数，只需要将12345和-4保存下来，就相当于保存了这个数。而二进制的浮点数与这个类似，只是将基底为10换为基底为2罢了。</p>
 <p>需要特别说明的是，浮点数并不能精确表达所有实数，所以浮点数往往并不能精确计算。比如，二进制的浮点数中就不能精确的保存0.1这个十进制数，0.1的平方既不是准确的0.01，也不是最接近0.01的可表达的数。单精度（24比特）浮点数表示0.1的结果为</p>
 <blockquote>
 <p>e=-4,m= 110011001100110011001101 (2)</p>
 </blockquote>
-<p>即 &gt;0.100000001490116119384765625</p>
-<p>此数的平方是 &gt;0.010000000298023226097399174250313080847263336181640625</p>
-<p>但最接近0.01的可表达的数是 &gt;0.009999999776482582092285156250</p>
+<p>即</p>
+<blockquote>
+<p>0.100000001490116119384765625</p>
+</blockquote>
+<p>此数的平方是</p>
+<blockquote>
+<p>0.010000000298023226097399174250313080847263336181640625</p>
+</blockquote>
+<p>但最接近0.01的可表达的数是</p>
+<blockquote>
+<p>0.009999999776482582092285156250</p>
+</blockquote>
 <p>所以我们在对于精度有特殊要求的时候应当避开使用浮点数。BTW，浮点加法和乘法不匹配结合律和分配律。</p>
-<p>说到浮点数，就不得不提一下目前浮点数的标准IEEE 754，IEEE 754的全称叫做“电气电子工程师学会二进制浮点数算术标准”，在六七十年代，各家厂商使用的浮点数标准是不同的，所以当时的各厂商的计算机之间的兼容性很差。为了改善这个情况，IEEE（电气电子工程师学会（英语：Institute of Electrical and Electronics Engineers，简称为IEEE，是一个建立于1963年1月1日的国际性电子技术与电子工程师协会，亦是世界上最大的专业技术组织之一，制定了许多国际标准）这个组织的浮点数专业小组于七十年代末期开始酝酿浮点数的标准。在1980年，英特尔公司推出了单片的8087浮点数协处理器，其浮点数表示法及定义的运算具有足够的合理性、先进性，于是被IEEE采用作为浮点数的标准，于1985年发布。 <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/General_floating_point_frac.svg" alt="浮点数的表示图"></p>
+<p>说到浮点数，就不得不提一下目前浮点数的标准IEEE 754，IEEE 754的全称叫做“电气电子工程师学会二进制浮点数算术标准”，在六七十年代，各家厂商使用的浮点数标准是不同的，所以当时的各厂商的计算机之间的兼容性很差。为了改善这个情况，IEEE（电气电子工程师学会（英语：Institute of Electrical and Electronics Engineers，简称为IEEE，是一个建立于1963年1月1日的国际性电子技术与电子工程师协会，亦是世界上最大的专业技术组织之一，制定了许多国际标准）这个组织的浮点数专业小组于七十年代末期开始酝酿浮点数的标准。在1980年，英特尔公司推出了单片的8087浮点数协处理器，其浮点数表示法及定义的运算具有足够的合理性、先进性，于是被IEEE采用作为浮点数的标准，于1985年发布。<br>
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/75/General_floating_point_frac.svg" alt="浮点数的表示图"></p>
 <p>如果有兴趣的话，可以到<a href="https://zh.wikipedia.org/wiki/IEEE_754" target="_blank" rel="noopener">这里</a>详细了解IEEE 754的具体定义<del>，原谅我懒Orz</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/25/archive/学习总结第十三天_类的私有功能函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KosWu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KosWu 's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/10/25/archive/学习总结第十三天_类的私有功能函数/" class="post-title-link" itemprop="url">学习总结第十三天_类的私有功能函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-10-25 16:11:28" itemprop="dateCreated datePublished" datetime="2017-10-25T16:11:28+08:00">2017-10-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天继续对C++类进行了学习，对于类的功能函数有了新的认识</p>
-<p>一般来说，类的功能函数应该声明为公共的，但是有时候不同，比如在这种情况</p>
-<pre><code>  public:
-  Screen&amp; display count (std::ostream &amp;os)
-  {
-    //Some code
-    return *this;
-  }</code></pre>
-<p>这是一个类内的函数，其作用是输出类中的信息到指定的输出流中。这个函数实际对于类的成员变量并没有修改，所以我们一般会将其声明中加入count来保护，但是由于加入了count后，this是一个常量引用，所以无法正确返回，必须修改成这样。</p>
-<pre><code>  public:
-  count Screen&amp; display count (std::ostream &amp;os)
-  {
-    //Some code
-    return *this;
-  }</code></pre>
-<p>但是，这样的话由于返回的对象是一个count，就无法再进行其他写入操作了，比如这样：</p>
-<pre><code>  myscr.display(os).write(&#39; &#39;);</code></pre>
-<p>我们如果又不想放弃count的保护特性的话，便可以这样处理:</p>
-<pre><code>  public:
-  Screen&amp; display(std::ostream &amp;os)
-  {
-    do_display(os);
-    return *this;
-  }
-  const Screen &amp;display (std::ostream &amp;os) const
-  {
-    do_display(os);
-    return *this;
-  }
-  private:
-  void do_display (std::ostream &amp;os) const
-  {
-      //Some code
-  }</code></pre>
-<p>这样做，可以在public中对display这个函数进行重载以适应不同的调用情况，同时，用一个私有成员函数进行进行代码复用，这样就可以避开将来修改时可能引入的许多bug。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/23/archive/学习总结第十二天_观《浪潮之巅》——风险投资/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KosWu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KosWu 's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/10/23/archive/学习总结第十二天_观《浪潮之巅》——风险投资/" class="post-title-link" itemprop="url">学习总结第十二天_观《浪潮之巅》——风险投资</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-10-23 21:44:22" itemprop="dateCreated datePublished" datetime="2017-10-23T21:44:22+08:00">2017-10-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天的课和作业比较多，没有进行额外技术方面的学习。但在零碎时间里用kindle看了《浪潮之巅》的“幕后的英雄——风险投资”这一章，对目前的IT的风投创业过程有了一定的了解，整体大致如下： &gt; 风险投资是一种新型的投资方式，既不需要抵押，也不需要偿还，如果成功，风投资本家可以获得几倍、几十倍甚至上百倍的回报，如果不成功，钱也就打水漂了。</p>
-<ol type="1">
-<li>创业者有一个好点子，认为这种技术很有前景，于是及时申请专利（关键，涉及知识产权）</li>
-<li>继续对这项技术对于原有技术的提高的数量级进行模拟测试（关键，将决定技术是革新性的还是革命性的）</li>
-<li>模拟将来可能的应用情景，补充相应的专利</li>
-<li>自己或者让合伙人一起制定一个商业计划描述商业情景（关键）</li>
-<li>找到对自己项目中意的天使投资人，让其对自己进行天使投资（PS：天使投资人，就是专门针对初创公司，进行项目评估并投资的一群人，这轮投资叫做天使轮）</li>
-<li>进行股权分配，继续运营，直到形成一定规模，需要更多资金注入时，找到风险投资公司，进行第N轮的投资，最终选择合适的时机上市</li>
-</ol>
-<p>（由于进行了多轮投资，此时创始人手中的股权已经被稀释得差不多了，一般来讲，一个创始人在公司上市时还拥有10%的股份就很不错了）</p>
-<p>这还只是非常简化的版本，实际创立一个公司要比上面的步骤复杂的多，可见创立一个公司，看起来容易，其实要做好的话，并不是拥有技术就能成功的。而一般来说，创始人到最后基本上已经不能控制公司了。创业水深，进入之前一定要做好十足的功课啊！前一定要做好十足的功课啊！</p>
 
       
     </div>
@@ -1039,7 +1270,7 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1051,7 +1282,7 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

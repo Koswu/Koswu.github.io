@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="使用github的人都知道git这个版本控制软件，我也不例外，但之前一直处于一个“够用就好”的状态，命令只认识clone add commit和push，今天对git的分支和回滚方面进行了进一步的了解 git的详细指令可以 man git git的分支是用来标记特定的代码提交，每一个分支通过SHA1sum值来标识，所以对分支进行的操作是轻量级的，所改变的仅仅是SHA1sum值。分支可以合并，但合并">
+  <meta name="description" content="使用github的人都知道git这个版本控制软件，我也不例外，但之前一直处于一个“够用就好”的状态，命令只认识clone add commit和push，今天对git的分支和回滚方面进行了进一步的了解 git的详细指令可以 man git  git的分支是用来标记特定的代码提交，每一个分支通过SHA1sum值来标识，所以对分支进行的操作是轻量级的，所改变的仅仅是SHA1sum值。分支可以合并，但合">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第十天_git的学习">
 <meta property="og:url" content="https://koswu.github.io/2017/10/22/archive/学习总结第十天_git的学习/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="使用github的人都知道git这个版本控制软件，我也不例外，但之前一直处于一个“够用就好”的状态，命令只认识clone add commit和push，今天对git的分支和回滚方面进行了进一步的了解 git的详细指令可以 man git git的分支是用来标记特定的代码提交，每一个分支通过SHA1sum值来标识，所以对分支进行的操作是轻量级的，所改变的仅仅是SHA1sum值。分支可以合并，但合并">
+<meta property="og:description" content="使用github的人都知道git这个版本控制软件，我也不例外，但之前一直处于一个“够用就好”的状态，命令只认识clone add commit和push，今天对git的分支和回滚方面进行了进一步的了解 git的详细指令可以 man git  git的分支是用来标记特定的代码提交，每一个分支通过SHA1sum值来标识，所以对分支进行的操作是轻量级的，所改变的仅仅是SHA1sum值。分支可以合并，但合">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第十天_git的学习">
-<meta name="twitter:description" content="使用github的人都知道git这个版本控制软件，我也不例外，但之前一直处于一个“够用就好”的状态，命令只认识clone add commit和push，今天对git的分支和回滚方面进行了进一步的了解 git的详细指令可以 man git git的分支是用来标记特定的代码提交，每一个分支通过SHA1sum值来标识，所以对分支进行的操作是轻量级的，所改变的仅仅是SHA1sum值。分支可以合并，但合并">
+<meta name="twitter:description" content="使用github的人都知道git这个版本控制软件，我也不例外，但之前一直处于一个“够用就好”的状态，命令只认识clone add commit和push，今天对git的分支和回滚方面进行了进一步的了解 git的详细指令可以 man git  git的分支是用来标记特定的代码提交，每一个分支通过SHA1sum值来标识，所以对分支进行的操作是轻量级的，所改变的仅仅是SHA1sum值。分支可以合并，但合">
 
 <link rel="canonical" href="https://koswu.github.io/2017/10/22/archive/学习总结第十天_git的学习/">
 
@@ -220,7 +220,8 @@
       
         <p>使用github的人都知道git这个版本控制软件，我也不例外，但之前一直处于一个“够用就好”的状态，命令只认识clone add commit和push，今天对git的分支和回滚方面进行了进一步的了解</p>
 <p>git的详细指令可以</p>
-<pre><code>man git</code></pre>
+<pre><code>man git
+</code></pre>
 <p>git的分支是用来标记特定的代码提交，每一个分支通过SHA1sum值来标识，所以对分支进行的操作是轻量级的，所改变的仅仅是SHA1sum值。分支可以合并，但合并后仍然可以在原来的几个分支上进行开发。</p>
 <p>今天还学到的是，最好不要用git pull，而是用git fetch和git merge代替之，因为git pull的问题是它把过程的细节都隐藏了起来，以至于你不用去了解git中各种类型分支的区别和使用方法。当然，多数时候这是没问题的，但一旦代码有问题，你很难找到出错的地方。</p>
 
@@ -335,7 +336,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -347,7 +348,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

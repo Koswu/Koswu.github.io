@@ -293,13 +293,184 @@ bool StackIsFull (stack *sta)
 void StackFree(stack *sta) {
   free(sta-&gt;sta);
   free(sta);
-}</code></pre>
-<p>第二种实现我将其打包成了一个库，下面是具体代码： &gt;stacklib.h #ifndef STACK #include &lt;stdio.h&gt; #include &lt;stdbool.h&gt; #include &lt;stdlib.h&gt; #define STACK 0 #endif #ifndef STACK_INIT_SIZE #define STACK_INIT_SIZE 3 #endif typedef struct { int * sta; int maxSize; int nowSize; } stack; stack* StackCreate(void); int StackPop (stack * sta); void StackPush (stack <em>sta,int i); int StackNowSize (stack </em>sta); int StackMaxSize (stack <em>sta); bool StackIsEmpty (stack </em>sta); //bool StackIsFull (stack <em>sta); void StackFree (stack </em>sta);</p>
+}
+</code></pre>
+<p>第二种实现我将其打包成了一个库，下面是具体代码：</p>
+<blockquote>
+<p>stacklib.h<br>
+#ifndef STACK<br>
+#include &lt;stdio.h&gt;<br>
+#include &lt;stdbool.h&gt;<br>
+#include &lt;stdlib.h&gt;<br>
+#define STACK 0<br>
+#endif<br>
+#ifndef STACK_INIT_SIZE<br>
+#define STACK_INIT_SIZE 3<br>
+#endif<br>
+typedef struct<br>
+{<br>
+int * sta;<br>
+int maxSize;<br>
+int nowSize;<br>
+} stack;<br>
+stack* StackCreate(void);<br>
+int StackPop (stack * sta);<br>
+void StackPush (stack *sta,int i);<br>
+int StackNowSize (stack *sta);<br>
+int StackMaxSize (stack *sta);<br>
+bool StackIsEmpty (stack *sta);<br>
+//bool StackIsFull (stack *sta);<br>
+void StackFree (stack *sta);</p>
+</blockquote>
 <hr>
 <blockquote>
-<p>stacklib.c #include "stacklib.h" stack* StackCreate (void) { stack <em>temp=malloc(sizeof(stack)); temp-&gt;sta=(int </em>)malloc(sizeof(int)<em>STACK_INIT_SIZE); temp-&gt;maxSize=STACK_INIT_SIZE; temp-&gt;nowSize=0; return temp-&gt;sta==NULL?NULL:temp; } bool StackReSize(stack </em> sta,int size) { if (size&lt;=0) return false; int <em>temp=malloc(sizeof(int)</em>size); if (temp==NULL) return false; for (int i=0;i<sta->nowSize;i++) { temp[i]=sta-&gt;sta[i]; } free (sta-&gt;sta); sta-&gt;sta=temp; sta-&gt;maxSize=size; return true; } int StackPop(stack * sta) { if (StackIsEmpty(sta)) return -1; int i=sta-&gt;sta[--sta-&gt;nowSize]; if (sta-&gt;maxSize/4&gt;=sta-&gt;nowSize)//空间过剩时，减少数组容量 { StackReSize(sta,sta-&gt;maxSize/2); } return i; } void StackPush (stack <em>sta,int i) { if (sta-&gt;nowSize==sta-&gt;maxSize)//空间不够时，扩充数组容量 { StackReSize(sta,sta-&gt;maxSize</em>2); } sta-&gt;sta[sta-&gt;nowSize++]=i; } int StackNowSize (stack <em>sta) { return sta-&gt;nowSize; } bool StackIsEmpty (stack </em>sta) { return sta-&gt;nowSize==0; } void StackFree(stack <em>sta) { free(sta-&gt;sta); free(sta); } int StackMaxSize(stack </em>sta) { return sta-&gt;maxSize; }</sta-></p>
+<p>stacklib.c<br>
+#include “stacklib.h”<br>
+stack* StackCreate (void)<br>
+{<br>
+stack *temp=malloc(sizeof(stack));<br>
+temp-&gt;sta=(int *)malloc(sizeof(int)*STACK_INIT_SIZE);<br>
+temp-&gt;maxSize=STACK_INIT_SIZE;<br>
+temp-&gt;nowSize=0;<br>
+return temp-&gt;sta<mark>NULL?NULL:temp;<br>
+}<br>
+bool StackReSize(stack * sta,int size)<br>
+{<br>
+if (size&lt;=0)<br>
+return false;<br>
+int *temp=malloc(sizeof(int)*size);<br>
+if (temp</mark>NULL)<br>
+return false;<br>
+for (int i=0;i<sta->nowSize;i++)<br>
+{<br>
+temp[i]=sta-&gt;sta[i];<br>
+}<br>
+free (sta-&gt;sta);<br>
+sta-&gt;sta=temp;<br>
+sta-&gt;maxSize=size;<br>
+return true;<br>
+}<br>
+int StackPop(stack * sta)<br>
+{<br>
+if (StackIsEmpty(sta))<br>
+return -1;<br>
+int i=sta-&gt;sta[–sta-&gt;nowSize];<br>
+if (sta-&gt;maxSize/4&gt;=sta-&gt;nowSize)//空间过剩时，减少数组容量<br>
+{<br>
+StackReSize(sta,sta-&gt;maxSize/2);<br>
+}<br>
+return i;<br>
+}<br>
+void StackPush (stack <em>sta,int i)<br>
+{<br>
+if (sta-&gt;nowSize==sta-&gt;maxSize)//空间不够时，扩充数组容量<br>
+{<br>
+StackReSize(sta,sta-&gt;maxSize</em>2);<br>
+}<br>
+sta-&gt;sta[sta-&gt;nowSize++]=i;<br>
+}<br>
+int StackNowSize (stack *sta)<br>
+{<br>
+return sta-&gt;nowSize;<br>
+}<br>
+bool StackIsEmpty (stack *sta)<br>
+{<br>
+return sta-&gt;nowSize==0;<br>
+}<br>
+void StackFree(stack *sta)<br>
+{<br>
+free(sta-&gt;sta);<br>
+free(sta);<br>
+}<br>
+int StackMaxSize(stack *sta)<br>
+{<br>
+return sta-&gt;maxSize;<br>
+}</sta-></p>
 </blockquote>
-<p>最后，我运用栈来做了一个小计算器，可惜目前还不能实现判断运算的先后顺序，只能人为在每个运算后添加括号进行运算，比如5<em>2必须要输入(5</em>2)才能计算，代码如下： #include "stacklib.h" #ifndef READ_SIZE #define READ_SIZE 30 #endif int main(int argc, char const <em>argv[]) { char ch[READ_SIZE]; fgets (ch,READ_SIZE,stdin); stack </em>numSta=StackCreate();//数字栈 stack <em>chSta=StackCreate();//操作符栈 bool lastIsNum=false;//标志位，判断上个读取的字符是否是数字 for (int i=0;ch[i]!='\0'&amp;&amp;ch[i]!='';i++) { switch (ch[i]) { //若为操作符，压入操作符栈 case '+': case '-': case '</em>': case '/': case '%': lastIsNum=false; StackPush(chSta,(int)ch[i]); break; case ')'://右括号表示前面是一个运算，进行运算 { char op=StackPop(chSta);//取出操作符 int val=StackPop(numSta);//取出右操作数 switch (op) { case '+': val+=StackPop(numSta); break; case '-': val=StackPop(numSta)-val; break; case '<em>': val</em>=StackPop(numSta); break; case '/': val=StackPop(numSta)/val; break; case '%': val=StackPop(numSta)%val; break; default: break; } StackPush(numSta,val); lastIsNum=false; } break; case '('://左括号直接丢弃 lastIsNum=false; break; default: if (ch[i]&gt;47&amp;&amp;ch[i]&lt;58)//判断是否为数字 { if (lastIsNum==true) { int temp=StackPop(numSta); temp=temp*10+(ch[i]-48); StackPush(numSta,temp); } else { StackPush(numSta,ch[i]-48); } lastIsNum=true; } else//未预期的符号 { printf("Error" ); exit(-1); } break; } } printf("%d",StackPop(numSta)); StackFree(numSta); StackFree(chSta); return 0; }turn 0; }</p>
+<p>最后，我运用栈来做了一个小计算器，可惜目前还不能实现判断运算的先后顺序，只能人为在每个运算后添加括号进行运算，比如5<em>2必须要输入(5</em>2)才能计算，代码如下：<br>
+#include “stacklib.h”<br>
+#ifndef READ_SIZE<br>
+#define READ_SIZE 30<br>
+#endif<br>
+int main(int argc, char const <em>argv[]) {<br>
+char ch[READ_SIZE];<br>
+fgets (ch,READ_SIZE,stdin);<br>
+stack <em>numSta=StackCreate();//数字栈<br>
+stack <em>chSta=StackCreate();//操作符栈<br>
+bool lastIsNum=false;//标志位，判断上个读取的字符是否是数字<br>
+for (int i=0;ch[i]!=’\0’&amp;&amp;ch[i]!=’\n’;i++)<br>
+{<br>
+switch (ch[i])<br>
+{<br>
+//若为操作符，压入操作符栈<br>
+case ‘+’:<br>
+case ‘-’:<br>
+case '</em>’:<br>
+case ‘/’:<br>
+case ‘%’:<br>
+lastIsNum=false;<br>
+StackPush(chSta,(int)ch[i]);<br>
+break;<br>
+case ‘)’😕/右括号表示前面是一个运算，进行运算<br>
+{<br>
+char op=StackPop(chSta);//取出操作符<br>
+int val=StackPop(numSta);//取出右操作数<br>
+switch (op)<br>
+{<br>
+case ‘+’:<br>
+val+=StackPop(numSta);<br>
+break;<br>
+case ‘-’:<br>
+val=StackPop(numSta)-val;<br>
+break;<br>
+case '</em>’:<br>
+val</em>=StackPop(numSta);<br>
+break;<br>
+case ‘/’:<br>
+val=StackPop(numSta)/val;<br>
+break;<br>
+case ‘%’:<br>
+val=StackPop(numSta)%val;<br>
+break;<br>
+default:<br>
+break;<br>
+}<br>
+StackPush(numSta,val);<br>
+lastIsNum=false;<br>
+}<br>
+break;<br>
+case ‘(’😕/左括号直接丢弃<br>
+lastIsNum=false;<br>
+break;<br>
+default:<br>
+if (ch[i]&gt;47&amp;&amp;ch[i]&lt;58)//判断是否为数字<br>
+{<br>
+if (lastIsNum==true)<br>
+{<br>
+int temp=StackPop(numSta);<br>
+temp=temp*10+(ch[i]-48);<br>
+StackPush(numSta,temp);<br>
+}<br>
+else<br>
+{<br>
+StackPush(numSta,ch[i]-48);<br>
+}<br>
+lastIsNum=true;<br>
+}<br>
+else//未预期的符号<br>
+{<br>
+printf(“Error\n” );<br>
+exit(-1);<br>
+}<br>
+break;<br>
+}<br>
+}<br>
+printf(&quot;%d\n&quot;,StackPop(numSta));<br>
+StackFree(numSta);<br>
+StackFree(chSta);<br>
+return 0;<br>
+}turn 0;<br>
+}</p>
 
     </div>
 
@@ -412,7 +583,7 @@ void StackFree(stack *sta) {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -424,7 +595,7 @@ void StackFree(stack *sta) {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

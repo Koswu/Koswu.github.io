@@ -170,6 +170,187 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/25/archive/学习总结第十三天_类的私有功能函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/25/archive/学习总结第十三天_类的私有功能函数/" class="post-title-link" itemprop="url">学习总结第十三天_类的私有功能函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-25 16:11:28" itemprop="dateCreated datePublished" datetime="2017-10-25T16:11:28+08:00">2017-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天继续对C++类进行了学习，对于类的功能函数有了新的认识</p>
+<p>一般来说，类的功能函数应该声明为公共的，但是有时候不同，比如在这种情况</p>
+<pre><code>  public:
+  Screen&amp; display count (std::ostream &amp;os)
+  {
+    //Some code
+    return *this;
+  }
+</code></pre>
+<p>这是一个类内的函数，其作用是输出类中的信息到指定的输出流中。这个函数实际对于类的成员变量并没有修改，所以我们一般会将其声明中加入count来保护，但是由于加入了count后，this是一个常量引用，所以无法正确返回，必须修改成这样。</p>
+<pre><code>  public:
+  count Screen&amp; display count (std::ostream &amp;os)
+  {
+    //Some code
+    return *this;
+  }
+</code></pre>
+<p>但是，这样的话由于返回的对象是一个count，就无法再进行其他写入操作了，比如这样：</p>
+<pre><code>  myscr.display(os).write(' ');
+</code></pre>
+<p>我们如果又不想放弃count的保护特性的话，便可以这样处理:</p>
+<pre><code>  public:
+  Screen&amp; display(std::ostream &amp;os)
+  {
+    do_display(os);
+    return *this;
+  }
+  const Screen &amp;display (std::ostream &amp;os) const
+  {
+    do_display(os);
+    return *this;
+  }
+  private:
+  void do_display (std::ostream &amp;os) const
+  {
+      //Some code
+  }
+</code></pre>
+<p>这样做，可以在public中对display这个函数进行重载以适应不同的调用情况，同时，用一个私有成员函数进行进行代码复用，这样就可以避开将来修改时可能引入的许多bug。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/23/archive/学习总结第十二天_观《浪潮之巅》——风险投资/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KosWu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KosWu 's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/23/archive/学习总结第十二天_观《浪潮之巅》——风险投资/" class="post-title-link" itemprop="url">学习总结第十二天_观《浪潮之巅》——风险投资</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-23 21:44:22" itemprop="dateCreated datePublished" datetime="2017-10-23T21:44:22+08:00">2017-10-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天的课和作业比较多，没有进行额外技术方面的学习。但在零碎时间里用kindle看了《浪潮之巅》的“幕后的英雄——风险投资”这一章，对目前的IT的风投创业过程有了一定的了解，整体大致如下：</p>
+<blockquote>
+<p>风险投资是一种新型的投资方式，既不需要抵押，也不需要偿还，如果成功，风投资本家可以获得几倍、几十倍甚至上百倍的回报，如果不成功，钱也就打水漂了。</p>
+</blockquote>
+<ol>
+<li>创业者有一个好点子，认为这种技术很有前景，于是及时申请专利（关键，涉及知识产权）</li>
+<li>继续对这项技术对于原有技术的提高的数量级进行模拟测试（关键，将决定技术是革新性的还是革命性的）</li>
+<li>模拟将来可能的应用情景，补充相应的专利</li>
+<li>自己或者让合伙人一起制定一个商业计划描述商业情景（关键）</li>
+<li>找到对自己项目中意的天使投资人，让其对自己进行天使投资（PS：天使投资人，就是专门针对初创公司，进行项目评估并投资的一群人，这轮投资叫做天使轮）</li>
+<li>进行股权分配，继续运营，直到形成一定规模，需要更多资金注入时，找到风险投资公司，进行第N轮的投资，最终选择合适的时机上市</li>
+</ol>
+<p>（由于进行了多轮投资，此时创始人手中的股权已经被稀释得差不多了，一般来讲，一个创始人在公司上市时还拥有10%的股份就很不错了）</p>
+<p>这还只是非常简化的版本，实际创立一个公司要比上面的步骤复杂的多，可见创立一个公司，看起来容易，其实要做好的话，并不是拥有技术就能成功的。而一般来说，创始人到最后基本上已经不能控制公司了。创业水深，进入之前一定要做好十足的功课啊！前一定要做好十足的功课啊！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/22/archive/学习总结第十一天_C++ 类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -216,7 +397,8 @@
 
       
           <p>今天对C++的类的基础创建操作进行了学习，但今天让我印象最深刻的还是class与struct的区分</p>
-<p>学过C语言的人对于struct都应该印象深刻，如果没有接触C++的话可能会以为类只能用class来声明，但其实不然。 在C++中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。</p>
+<p>学过C语言的人对于struct都应该印象深刻，如果没有接触C<ins>的话可能会以为类只能用class来声明，但其实不然。<br>
+在C</ins>中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。</p>
 <p>而struct和class的不同之处就在于struct成员的默认访问权限不同，struct是public，而class是private。换句话来说，下面两种形式的代码是等价的：</p>
 <pre><code>    class cla
     {
@@ -225,7 +407,8 @@
       //Some code
       public:
       //Some code
-    }</code></pre>
+    }
+</code></pre>
 <p>和</p>
 <pre><code>    struct cla
     {
@@ -234,7 +417,8 @@
       //Some code
       public:
       //Some code
-    }</code></pre>
+    }
+</code></pre>
 <p>由于class和struct的本质区别只有默认访问权限，所以如果我们自己再次进行定义访问权限的话，就不受到默认的影响了。所以，一般来说，用哪个都可以，但是为了代码的可读性，在定义的东西更接近于类的时候就用class，而接近于一个数据结构的话就用struct。话就用struct。</p>
 
       
@@ -302,7 +486,8 @@
       
           <p>使用github的人都知道git这个版本控制软件，我也不例外，但之前一直处于一个“够用就好”的状态，命令只认识clone add commit和push，今天对git的分支和回滚方面进行了进一步的了解</p>
 <p>git的详细指令可以</p>
-<pre><code>man git</code></pre>
+<pre><code>man git
+</code></pre>
 <p>git的分支是用来标记特定的代码提交，每一个分支通过SHA1sum值来标识，所以对分支进行的操作是轻量级的，所改变的仅仅是SHA1sum值。分支可以合并，但合并后仍然可以在原来的几个分支上进行开发。</p>
 <p>今天还学到的是，最好不要用git pull，而是用git fetch和git merge代替之，因为git pull的问题是它把过程的细节都隐藏了起来，以至于你不用去了解git中各种类型分支的区别和使用方法。当然，多数时候这是没问题的，但一旦代码有问题，你很难找到出错的地方。</p>
 
@@ -370,7 +555,7 @@
 
       
           <p>今天对vi下的命令进行了一些学习，虽然学了，但是要勤加练习才有用，把vi的常用指令贴在下面，以供日后复习</p>
-<h3 id="移动光标">移动光标</h3>
+<h3 id="移动光标"><a class="markdownIt-Anchor" href="#移动光标"></a> 移动光标</h3>
 <ul>
 <li>h:向左移动一个字符</li>
 <li>j:向下移动一个字符</li>
@@ -383,13 +568,13 @@
 <li>G:移动到文件的最后一行</li>
 <li>gg: 移动到文件的第一行</li>
 </ul>
-<h3 id="搜索和替换">搜索和替换</h3>
+<h3 id="搜索和替换"><a class="markdownIt-Anchor" href="#搜索和替换"></a> 搜索和替换</h3>
 <ul>
 <li>/word:向光标之下寻找一个名称为 word 的字符串</li>
 <li>n1,n2s/word1/word2/g:n1 与 n2 为数字。在第 n1 与 n2 行之间寻找 word1 这个字符串，并将该字符串取代为 word2</li>
 <li>1,$s/word1/word2/gc:从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！且在取代前显示提示字符给用户确认 (confirm) 是否需要取代</li>
 </ul>
-<h3 id="复制粘贴删除">复制、粘贴、删除</h3>
+<h3 id="复制-粘贴-删除"><a class="markdownIt-Anchor" href="#复制-粘贴-删除"></a> 复制、粘贴、删除</h3>
 <ul>
 <li>yy:复制光标所在的那一行</li>
 <li>x :删除光标所在的字符</li>
@@ -399,7 +584,7 @@
 <li>[Ctrl]+r:还原上一个动作</li>
 <li>.:重复上一个动作</li>
 </ul>
-<h3 id="不同方法进入编辑模式">不同方法进入编辑模式</h3>
+<h3 id="不同方法进入编辑模式"><a class="markdownIt-Anchor" href="#不同方法进入编辑模式"></a> 不同方法进入编辑模式</h3>
 <ul>
 <li>i:插入模式（向前插入）</li>
 <li>a:插入模式（向后插入）</li>
@@ -407,7 +592,7 @@
 <li>r:替换模式</li>
 </ul>
 <p>进入编辑模式后按[esc]返回</p>
-<h3 id="其他操作">其他操作</h3>
+<h3 id="其他操作"><a class="markdownIt-Anchor" href="#其他操作"></a> 其他操作</h3>
 <ul>
 <li>:w:保存</li>
 <li>:q:退出</li>
@@ -477,30 +662,38 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="中文命令行">中文命令行</h3>
+          <h3 id="中文命令行"><a class="markdownIt-Anchor" href="#中文命令行"></a> 中文命令行</h3>
 <p>有一定经验的linux用户都知道，linux下有很多tty，有的是运行纯命令行的tty，当然为了<del>装逼</del>特殊需求，我们可能会用到在命令行下的一些工具，让命令行变得实用，今天我便对这些<del>装13</del>工具进行了一些了解</p>
 <p>首先是在纯命令行下的中文支持，我们用</p>
-<pre><code>sudo apt install fbterm fctix-fbterm-fronted</code></pre>
+<pre><code>sudo apt install fbterm fctix-fbterm-fronted
+</code></pre>
 <p>来安装中文命令行和小企鹅拼音输入法,由于我目前使用的ubuntu17.04默认开启,所以不需要手动配置framebuffer</p>
 <p>为了保证能够正常运行，还需要将自己的用户加入video组</p>
-<pre><code>sudo usermod -a -G video username</code></pre>
+<pre><code>sudo usermod -a -G video username
+</code></pre>
 <p>修改权限：</p>
-<pre><code>sudo chmod u+s `which fbterm`</code></pre>
+<pre><code>sudo chmod u+s `which fbterm`
+</code></pre>
 <p>使用</p>
-<pre><code>fbterm -i fcitx-fbterm</code></pre>
+<pre><code>fbterm -i fcitx-fbterm
+</code></pre>
 <p>开启fberm并启用拼音</p>
-<h3 id="播放电影">播放电影</h3>
+<h3 id="播放电影"><a class="markdownIt-Anchor" href="#播放电影"></a> 播放电影</h3>
 <p>安装：</p>
-<pre><code>sudo apt install mplayer</code></pre>
+<pre><code>sudo apt install mplayer
+</code></pre>
 <p>播放：</p>
-<pre><code>mplayer -vo fbdev2 &lt;xx.avi&gt;</code></pre>
+<pre><code>mplayer -vo fbdev2 &lt;xx.avi&gt;
+</code></pre>
 <p>PS:配合弹幕下载+xml转ass弹幕，你还可以享受在命令行看弹幕视频的感觉，如果想用字符画输出的话，将fbdev2改为aa（黑白）或者caca（彩色）</p>
-<h3 id="截图工具">截图工具</h3>
+<h3 id="截图工具"><a class="markdownIt-Anchor" href="#截图工具"></a> 截图工具</h3>
 <p>安装：</p>
-<pre><code>sudo apt install fbcat</code></pre>
+<pre><code>sudo apt install fbcat
+</code></pre>
 <p>使用：</p>
-<pre><code>fbgrab XX.png</code></pre>
-<h3 id="分屏软件">分屏软件</h3>
+<pre><code>fbgrab XX.png
+</code></pre>
+<h3 id="分屏软件"><a class="markdownIt-Anchor" href="#分屏软件"></a> 分屏软件</h3>
 <pre><code>sudo apt install tmux</code></pre>
 
       
@@ -636,9 +829,12 @@
           <p>今天比较忙，所以咸鱼了一下，只是对python的matplotlib绘制条形图做了一下了解。</p>
 <p>首先是用matplotlib绘制条形图，只需要调用pyplot的bar()方法，下面是一个基本使用</p>
 <pre><code>plt.bar(range(len(data)), data)
-plt.show()</code></pre>
-<p>BTW，x轴的坐标除了可以用range()生成以外，还可以使用numpy库的arange()方法来生成，这个方法与range()类似，但可以产生小数，返回一个数组 例如</p>
-<pre><code>numpy.arange(1,4,0.5)</code></pre>
+plt.show()
+</code></pre>
+<p>BTW，x轴的坐标除了可以用range()生成以外，还可以使用numpy库的arange()方法来生成，这个方法与range()类似，但可以产生小数，返回一个数组<br>
+例如</p>
+<pre><code>numpy.arange(1,4,0.5)
+</code></pre>
 <p>这个语句返回的就是一个(1,1.5,2,2.5,3,3.5,4)这样的数组一个(1,1.5,2,2.5,3,3.5,4)这样的数组</p>
 
       
@@ -706,20 +902,24 @@ plt.show()</code></pre>
       
           <p>今天对着《Python极客项目编程》上的第一个例子进行学习，了解了plistlib,matplotlib,numpy库的一些使用，但是在运行过程中出现了一些问题，在此做下记录。</p>
 <p>有问题的代码如下：</p>
-<pre><code>file=open(&quot;common.txt&quot;,&#39;w&#39;);
+<pre><code>file=open(&quot;common.txt&quot;,'w');
 for val in commonTracks:
     val=val[0];
-    s= val+&#39;\n&#39;;
-    file.write(s.encode(&quot;UTF-8&quot;));</code></pre>
+    s= val+'\n';
+    file.write(s.encode(&quot;UTF-8&quot;));
+</code></pre>
 <p>运行时，解释器提示write方法接收的不是一个字符串。经过一番排查发现，通过encode转化为的并不是字符串，而是字节流bytes，在python中，bytes是字节流bytes对象，字符串是字符串str对象。</p>
 <p>我们可以在python下实际运行一下这段代码</p>
 <pre><code>a=&quot;Hello World&quot;;
-print(a.encode(&quot;UTF-8&quot;));</code></pre>
+print(a.encode(&quot;UTF-8&quot;));
+</code></pre>
 <p>我们会得到这样的输出：</p>
 <pre><code>&gt;&gt;&gt; print(a.encode(&quot;UTF-8&quot;));
-b&#39;Hello World&#39;</code></pre>
+b'Hello World'
+</code></pre>
 <p>看起来和普通的字符串只是多了一个b，但这就表示这是一个字节流bytes，所以我们如果要向文件写入字节流的话，就要在open函数里，使用二进制模式，即将原来的代码改为</p>
-<pre><code>file=open(&quot;common.txt&quot;,&#39;wb&#39;);</code></pre>
+<pre><code>file=open(&quot;common.txt&quot;,'wb');
+</code></pre>
 <p>便解决了问题。</p>
 
       
@@ -787,7 +987,8 @@ b&#39;Hello World&#39;</code></pre>
       
           <p>当我们想要让某个程序开机在后台启动的时候，一种维护性较好的办法就是在linux下加入一个开机启动服务。</p>
 <p>今天对于linux下的服务脚本的做了一些了解，环境为ubuntu 17.04</p>
-<p>首先，系统上的每个服务的脚本都保存在/etc/init.c 下，这些文件都是一些sh脚本，可以直接执行。 下面是一个是一个init脚本：</p>
+<p>首先，系统上的每个服务的脚本都保存在/etc/init.c 下，这些文件都是一些sh脚本，可以直接执行。<br>
+下面是一个是一个init脚本：</p>
 <pre><code>#!/bin/sh                                                         
 ### BEGIN INIT INFO
 # Provides:       kcptun
@@ -816,11 +1017,12 @@ case &quot;$1&quot; in
       #sth. to get service status
       ;;
   *)
-      echo &#39;Usage: service myservice {start|status|stop|restart}&#39;
-      echo &#39;&#39;
+      echo 'Usage: service myservice {start|status|stop|restart}'
+      echo ''
       exit 1
 esac
-exit 0</code></pre>
+exit 0
+</code></pre>
 <p>首先是上面的注释部分，第一行是指明解析使用的解释器，然后便是INIT INFO，这里也是必不可少的部分，里面记录了脚本的一些相关信息，具体如下:</p>
 <ul>
 <li>Provides: 服务名称，这个应当和文件名相同</li>
@@ -836,163 +1038,9 @@ exit 0</code></pre>
 <p>然后将这个文件放到/etc/init.d/下</p>
 <p>在/etc/rc.d 下我们可以看到各个服务在不同运行级别下的启动关系，当然我们并不需要亲自去修改这些文件，系统已经给我们提供了工具来自动修改这些文件，在ubuntu下，这个工具是<code>update-rc.d</code></p>
 <p>我们可以运行</p>
-<pre><code>update-rc.d &lt;yourservice&gt; default</code></pre>
+<pre><code>update-rc.d &lt;yourservice&gt; default
+</code></pre>
 <p>便可以让系统配置好脚本，在合适的时候启动�动</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/13/archive/学习总结第三天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KosWu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KosWu 's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/10/13/archive/学习总结第三天/" class="post-title-link" itemprop="url">学习总结第三天</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-10-13 23:48:46" itemprop="dateCreated datePublished" datetime="2017-10-13T23:48:46+08:00">2017-10-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天本要写一个Web Extension，但一个密码框加入图标的方法目前没有什么好的解决方案，所以便暂时放置，转而学习gqrx的使用</p>
-<hr>
-<p>gqrx是linux下的一个开源的软件无线电程序，我配合hackrf硬件，进行了FM和航空无线电的接收实验。</p>
-<h3 id="fm广播接受">FM广播接受</h3>
-<p>打开gqrx，启动,在Reciver option中进行如下设置：</p>
-<ul>
-<li>Frequency:频率，输入大致要收听的频段</li>
-<li>Mode:这里选择WFM(Mono)以收听调频广播</li>
-<li>AGC: Fast</li>
-<li>Squelch:这个值在能听清的情况下越小消除噪音效果越好</li>
-</ul>
-<p>此时应当能听到沙沙声，观察图像，黄色和红色的部分就是有无线信号的地方，拖动红线，就可以切换频道收听了</p>
-<p>图</p>
-<h3 id="航空无线电接收">航空无线电接收</h3>
-<p>航空无线电接收与FM广播也是大同小异，只要把mode调至AM，并调到适合的频率，就可以听到机组与地面的通信了，但是我由于等了半个小时也没收到通信，于是就不贴图了贴图了</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://koswu.github.io/2017/10/12/archive/学习总结第二天_WebExtension结构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KosWu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KosWu 's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/10/12/archive/学习总结第二天_WebExtension结构/" class="post-title-link" itemprop="url">学习总结第二天_WebExtension结构</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-10-12 23:28:10" itemprop="dateCreated datePublished" datetime="2017-10-12T23:28:10+08:00">2017-10-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-04 11:50:02" itemprop="dateModified" datetime="2020-03-04T11:50:02+08:00">2020-03-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>WebExtension实质上和android app一样，是一个特殊的zip压缩包，今天大致了解了一下这个特殊的包里可能出现的文件。</p>
-<p>每个WebExtension都有一个关键的文件：manifest.json</p>
-<p>这是浏览器在解析插件时读取的第一个文件，这个文件中定义了这个插件应该包含的其他文件，可以指向以下类型的文件</p>
-<ul>
-<li>background pages: 字面意思，一个在后台运行的页面，执行一个长时间运行的逻辑</li>
-<li>content scripts: 与网页进行交互,这类是可以插入到网页中的js脚本</li>
-<li>browser action files: 在工具栏中添加按钮所需要的文件</li>
-<li>page action files: 在地址栏添加按钮所需文件</li>
-<li>options pages: 为用户定义一个可浏览的UI界面，可以改变插件的设置</li>
-<li>web-accessible resources: 使打包好的内容可用于网页与目录脚本</li>
-</ul>
-<p>总共的这些就构成了WebExtension的结构，只要认识到这些，就能够方便对插件进行修改</p>
 
       
     </div>
@@ -1078,7 +1126,7 @@ exit 0</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1090,7 +1138,7 @@ exit 0</code></pre>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="今天对C++的类的基础创建操作进行了学习，但今天让我印象最深刻的还是class与struct的区分 学过C语言的人对于struct都应该印象深刻，如果没有接触C++的话可能会以为类只能用class来声明，但其实不然。 在C++中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。 而struct和class的不同之处就在于struct成员的默认访问权限不同，struct是pub">
+  <meta name="description" content="今天对C++的类的基础创建操作进行了学习，但今天让我印象最深刻的还是class与struct的区分 学过C语言的人对于struct都应该印象深刻，如果没有接触C的话可能会以为类只能用class来声明，但其实不然。 在C中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。 而struct和class的不同之处就在于struct成员的默认访问权限不同，struct是public，">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习总结第十一天_C++ 类">
 <meta property="og:url" content="https://koswu.github.io/2017/10/22/archive/学习总结第十一天_C++ 类/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="今天对C++的类的基础创建操作进行了学习，但今天让我印象最深刻的还是class与struct的区分 学过C语言的人对于struct都应该印象深刻，如果没有接触C++的话可能会以为类只能用class来声明，但其实不然。 在C++中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。 而struct和class的不同之处就在于struct成员的默认访问权限不同，struct是pub">
+<meta property="og:description" content="今天对C++的类的基础创建操作进行了学习，但今天让我印象最深刻的还是class与struct的区分 学过C语言的人对于struct都应该印象深刻，如果没有接触C的话可能会以为类只能用class来声明，但其实不然。 在C中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。 而struct和class的不同之处就在于struct成员的默认访问权限不同，struct是public，">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习总结第十一天_C++ 类">
-<meta name="twitter:description" content="今天对C++的类的基础创建操作进行了学习，但今天让我印象最深刻的还是class与struct的区分 学过C语言的人对于struct都应该印象深刻，如果没有接触C++的话可能会以为类只能用class来声明，但其实不然。 在C++中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。 而struct和class的不同之处就在于struct成员的默认访问权限不同，struct是pub">
+<meta name="twitter:description" content="今天对C++的类的基础创建操作进行了学习，但今天让我印象最深刻的还是class与struct的区分 学过C语言的人对于struct都应该印象深刻，如果没有接触C的话可能会以为类只能用class来声明，但其实不然。 在C中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。 而struct和class的不同之处就在于struct成员的默认访问权限不同，struct是public，">
 
 <link rel="canonical" href="https://koswu.github.io/2017/10/22/archive/学习总结第十一天_C++ 类/">
 
@@ -219,7 +219,8 @@
 
       
         <p>今天对C++的类的基础创建操作进行了学习，但今天让我印象最深刻的还是class与struct的区分</p>
-<p>学过C语言的人对于struct都应该印象深刻，如果没有接触C++的话可能会以为类只能用class来声明，但其实不然。 在C++中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。</p>
+<p>学过C语言的人对于struct都应该印象深刻，如果没有接触C<ins>的话可能会以为类只能用class来声明，但其实不然。<br>
+在C</ins>中，struct的用法被进行了扩充，struct也是可以起到声明类的功能。</p>
 <p>而struct和class的不同之处就在于struct成员的默认访问权限不同，struct是public，而class是private。换句话来说，下面两种形式的代码是等价的：</p>
 <pre><code>    class cla
     {
@@ -228,7 +229,8 @@
       //Some code
       public:
       //Some code
-    }</code></pre>
+    }
+</code></pre>
 <p>和</p>
 <pre><code>    struct cla
     {
@@ -237,7 +239,8 @@
       //Some code
       public:
       //Some code
-    }</code></pre>
+    }
+</code></pre>
 <p>由于class和struct的本质区别只有默认访问权限，所以如果我们自己再次进行定义访问权限的话，就不受到默认的影响了。所以，一般来说，用哪个都可以，但是为了代码的可读性，在定义的东西更接近于类的时候就用class，而接近于一个数据结构的话就用struct。话就用struct。</p>
 
     </div>
@@ -351,7 +354,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -363,7 +366,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"koswu.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）       ## 什么是Echo Server   Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）   ## Echo Serv">
+  <meta name="description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）   什么是Echo Server Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）  Echo Server能用来做什么 Echo">
 <meta name="keywords" content="blog, koswu, 博客, 技术, 编程, 算法, 安全, hack, 极客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="十分钟用Python创建一个Echo Server">
 <meta property="og:url" content="https://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/index.html">
 <meta property="og:site_name" content="KosWu &#39;s blog">
-<meta property="og:description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）       ## 什么是Echo Server   Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）   ## Echo Serv">
+<meta property="og:description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）   什么是Echo Server Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）  Echo Server能用来做什么 Echo">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-04T03:50:02.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="十分钟用Python创建一个Echo Server">
-<meta name="twitter:description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）       ## 什么是Echo Server   Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）   ## Echo Serv">
+<meta name="twitter:description" content="近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）   什么是Echo Server Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）  Echo Server能用来做什么 Echo">
 
 <link rel="canonical" href="https://koswu.github.io/2018/12/04/archive/十分钟用Python创建一个Echo Server/">
 
@@ -219,26 +219,13 @@
 
       
         <p>近日想玩一下网络编程方面，但是实在不想用C去写笨重的代码，于是就使用python写了一个简单的TCP Echo Server。代码很少，标题虽然写了十分钟，但是我自己磕磕碰碰还是折腾了一天（标题党了）</p>
-<table style="width:43%;">
-<colgroup>
-<col style="width: 43%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">## 什么是Echo Server</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">## Echo Server能用来做什么</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Echo Server是最容易实现的网络服务之一，可以用来学习Socket编程的一些基本知识，还可以用来检测客户端与服务器之间的连通性，丢包率，连接速度和传输速度。</td>
-</tr>
-</tbody>
-</table>
-<h1 id="实现思路">实现思路</h1>
+<hr>
+<h2 id="什么是echo-server"><a class="markdownIt-Anchor" href="#什么是echo-server"></a> 什么是Echo Server</h2>
+<p>Echo Server一般是运行在7端口的一项服务，其一大特点就是会返回从客户端接收到的消息。（通俗来说就是复读机）</p>
+<h2 id="echo-server能用来做什么"><a class="markdownIt-Anchor" href="#echo-server能用来做什么"></a> Echo Server能用来做什么</h2>
+<p>Echo Server是最容易实现的网络服务之一，可以用来学习Socket编程的一些基本知识，还可以用来检测客户端与服务器之间的连通性，丢包率，连接速度和传输速度。</p>
+<hr>
+<h1 id="实现思路"><a class="markdownIt-Anchor" href="#实现思路"></a> 实现思路</h1>
 <p>一开始我觉得应该挺容易的，快速的从网上找到了一些相关的代码，采用Ctrl C V大法，但是却发现有很多问题，最终还是自己动手才写出一个像样的东西。</p>
 <p>首先第一步，我们得监听一个端口，调用python的socket模块，让其绑定在一个端口，监听TCP连接。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用IPV4和TCP连接，监听端口程序</span></span><br><span class="line">tcpSocket = socket.Socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">tcpSocket.bind((HOST, PORT))</span><br></pre></td></tr></table></figure>
@@ -247,7 +234,9 @@
 <p>最后我们只要在线程处理逻辑中，编写相关的回显逻辑，就可以了。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  data = clientSocket.recv(BUFSIZE)</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  clientSocket.send(data)</span><br><span class="line">clientSocket.close()</span><br></pre></td></tr></table></figure>
 <p>当然上面为了演示，对实际代码做了很多精简，完整的代码在下面（需要科学上网）:</p>
-<p><a href="https://gist.github.com/Koswu/f813aaf201212310733829b27c7db384" target="_blank" rel="noopener">服务端</a> <a href="https://gist.github.com/Koswu/470cf2cfe924321cc7c10419f722157f" target="_blank" rel="noopener">客户端</a> (客户端为一个类似nc的小程序)</p>
+<p><a href="https://gist.github.com/Koswu/f813aaf201212310733829b27c7db384" target="_blank" rel="noopener">服务端</a><br>
+<a href="https://gist.github.com/Koswu/470cf2cfe924321cc7c10419f722157f" target="_blank" rel="noopener">客户端</a><br>
+(客户端为一个类似nc的小程序)</p>
 
     </div>
 
@@ -347,7 +336,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实现思路"><span class="nav-number">1.</span> <span class="nav-text">实现思路</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是echo-server"><span class="nav-number">1.</span> <span class="nav-text"> 什么是Echo Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo-server能用来做什么"><span class="nav-number">2.</span> <span class="nav-text"> Echo Server能用来做什么</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现思路"><span class="nav-number"></span> <span class="nav-text"> 实现思路</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -361,7 +350,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -373,7 +362,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

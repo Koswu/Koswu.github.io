@@ -228,13 +228,16 @@
 <blockquote>
 <p>切换HTTPS的步骤</p>
 </blockquote>
-<p>首先申请一个SSL证书，这里既可以选择收费的也可以选择免费的，我推荐使用<a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let's encrypt</a>的免费证书，这个证书可以到官网申请。</p>
+<p>首先申请一个SSL证书，这里既可以选择收费的也可以选择免费的，我推荐使用<a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s encrypt</a>的免费证书，这个证书可以到官网申请。</p>
 <p>将这个SSL证书部署到你的服务器上，由于我用的是云空间，直接填写证书和私钥就可以了。</p>
 <p>这时就可以通过https访问网站了，但是如果使用HTTP的话，还是能够进入网站，这时我们可以在服务器的Apache配置文件（.htaccess)下对HTTP访问设置301返回，就可以实现强制HTTPS,在文件后加入这几行:</p>
 <pre><code>RewriteBase /
 RewriteCond %{HTTP:KERSSL} !on
-RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre>
-<p>做完这些工作,一般来说已经完成了,但是由于现在用的都是各种建站系统,里面的主题插件什么的难免用到外链HTTP资源.所以我们还需要将这些资源文件移动到自己的主机上. 开启浏览器的安全例外,然后在开发者控制台里的"网络"一栏对HTTP请求进行分析(记得禁用缓存),将其中的HTTP外链资源移到本地,再在相应的文件里面修改资源获取地址.就可以真正做到全站HTTPS啦! <img src="/attachment/img/https_analsis.png" alt="HTTP资源文件分析"></p>
+RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+</code></pre>
+<p>做完这些工作,一般来说已经完成了,但是由于现在用的都是各种建站系统,里面的主题插件什么的难免用到外链HTTP资源.所以我们还需要将这些资源文件移动到自己的主机上.<br>
+开启浏览器的安全例外,然后在开发者控制台里的&quot;网络&quot;一栏对HTTP请求进行分析(记得禁用缓存),将其中的HTTP外链资源移到本地,再在相应的文件里面修改资源获取地址.就可以真正做到全站HTTPS啦!<br>
+<img src="/attachment/img/https_analsis.png" alt="HTTP资源文件分析"></p>
 
     </div>
 
@@ -347,7 +350,7 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -359,7 +362,7 @@ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</code></pre>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

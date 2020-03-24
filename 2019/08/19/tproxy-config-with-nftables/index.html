@@ -235,23 +235,30 @@
 <a id="more"></a>
 <p>首先要准备一个透明代理客户端，如ss_redir，在PROXY_PORT进行监听。然后针对TCP和UDP设置不同的规则。</p>
 <hr>
-<h2 id="tcp部分">TCP部分</h2>
-<p>TCP是比较容易进行转发的，只需要在nftables里面进行设置forward就行了。 为了让配置文件看起来更直观，首先将需要绕过不走代理的ip（本地地址、远程代理服务器的地址等）放到一个文件里，这里以/etc/whitelist.ips为例子，文件结构如下所示。</p>
+<h2 id="tcp部分"><a class="markdownIt-Anchor" href="#tcp部分"></a> TCP部分</h2>
+<p>TCP是比较容易进行转发的，只需要在nftables里面进行设置forward就行了。<br>
+为了让配置文件看起来更直观，首先将需要绕过不走代理的ip（本地地址、远程代理服务器的地址等）放到一个文件里，这里以/etc/whitelist.ips为例子，文件结构如下所示。</p>
 <p>PS:这里非常重要，必须配置对，否则会形成环路循环转发</p>
-<p><code>/etc/whitelist.ips</code> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">define whitelist = &#123;</span><br><span class="line">    127.0.0.1/24,</span><br><span class="line">    192.168.0.0/16,</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>/etc/whitelist.ips</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">define whitelist = &#123;</span><br><span class="line">    127.0.0.1/24,</span><br><span class="line">    192.168.0.0/16,</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意这里不要出现有交集的ip区间，否则会报错。</p>
 <p>然后开始编辑nftables的配置文件（使用<code>nft</code>命令时，当priority为负值时会出错，遇到这种情况时需要直接编辑/etc/nftables.conf以后使用<code>nft flush ruleset &amp;&amp; nft -f /etc/nftables.conf</code>导入配置文件。</p>
 <p>首先在配置文件开头插入这一句，导入白名单文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include &quot;/etc/whitelist.ips&quot;</span><br></pre></td></tr></table></figure>
 <p>然后对应iptables的nat表，配置文件添加如下的一个nat表：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">table ip nat &#123;</span><br><span class="line">    set whitelistset &#123;</span><br><span class="line">        type ipv4_addr</span><br><span class="line">        flag interval</span><br><span class="line">        elements = $whitelist</span><br><span class="line">    &#125;</span><br><span class="line">    chain proxy &#123;</span><br><span class="line">        ip daddr @whitelist return</span><br><span class="line">        ip protocol tcp redirect to :[PROXY_PORT]</span><br><span class="line">    &#125;</span><br><span class="line">    chain output &#123;</span><br><span class="line">        type nat hook output priority filter; policy accept;</span><br><span class="line">        jump proxy</span><br><span class="line">    &#125;</span><br><span class="line">    chain prerouting &#123;</span><br><span class="line">        type nat hook output prerouting priority dstnat; policy accept;</span><br><span class="line">        jump proxy</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面的PROXY_PORT换成你实际的透明代理的端口，可以看到这样会将这台机器上产生的流量（由output链控制）和经过这台机器路由的流量（比如这台机器是路由器，由prerouting链控制）转发到本地的PROXY_PORT端口。 在linux中，代理程序可以通过调用一些内核提供的API来获取TCP包转发前的目的地址和端口，这样的话直接转发给透明代理就可以很好的处理。但是UDP不能这样做，内核并不允许获取原来的这些信息。所以对于UDP，我们就需要用到另外一种方法。</p>
+<p>上面的PROXY_PORT换成你实际的透明代理的端口，可以看到这样会将这台机器上产生的流量（由output链控制）和经过这台机器路由的流量（比如这台机器是路由器，由prerouting链控制）转发到本地的PROXY_PORT端口。<br>
+在linux中，代理程序可以通过调用一些内核提供的API来获取TCP包转发前的目的地址和端口，这样的话直接转发给透明代理就可以很好的处理。但是UDP不能这样做，内核并不允许获取原来的这些信息。所以对于UDP，我们就需要用到另外一种方法。</p>
 <hr>
-<h2 id="udp部分">UDP部分</h2>
-<p>UDP的透明代理，需要借助一个内核模块，叫做TPROXY，他可以在不改变数据包的目的地址的情况下进行路由转发，nftables中可以调用这个模块，在很多iptables配置的文章中也已经介绍过，这里不再展开做介绍。 同样的，编辑/etc/nftables.conf，对应iptables中的mangle表，添加如下配置的一个表：</p>
+<h2 id="udp部分"><a class="markdownIt-Anchor" href="#udp部分"></a> UDP部分</h2>
+<p>UDP的透明代理，需要借助一个内核模块，叫做TPROXY，他可以在不改变数据包的目的地址的情况下进行路由转发，nftables中可以调用这个模块，在很多iptables配置的文章中也已经介绍过，这里不再展开做介绍。<br>
+同样的，编辑/etc/nftables.conf，对应iptables中的mangle表，添加如下配置的一个表：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">table ip mangle&#123;</span><br><span class="line">    set whitelistset &#123;</span><br><span class="line">        type ipv4_addr</span><br><span class="line">        flags interval</span><br><span class="line">        elements = $whitelist</span><br><span class="line">    &#125;</span><br><span class="line">    chain output &#123;</span><br><span class="line">        type route hook output priority mangle;policy accept;</span><br><span class="line">        ip daddr @whitelistset return</span><br><span class="line">        ip protocol udp mark set 0x233</span><br><span class="line">    &#125;</span><br><span class="line">    chain prerouting &#123;</span><br><span class="line">        type filter hook prerouting priority mangle; policy accept;</span><br><span class="line">        ip daddr @whitelistset return</span><br><span class="line">        ip protocol udp tproxy to 127.0.0.1:PROXY_PORT</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面我们做的，在mangle表中创建了两条链，output链的type为route，这里的route就是对应了iptables的mangle表，但是route type只能hook output点，所以prerouting链的type就变成了filter。 由于TPROXY只能在prerouting链处理，在nftables的流向图中（文后附），output链之后，还跟了一个reroute的流程，要触发这个reroute，我们就需要给数据包头部打上标签（任意一个数值，这里是0x233）。这样在reroute阶段，系统会检测到数据包的头部发生了改变，于是数据包被打到prerouting的地方重新进行路由。 而在prerouting阶段，被reroute的数据包和经过本机路由的数据包一起，如过目的地址不在白名单中，就tproxy打到透明代理去。整个过程非常清晰明了。</p>
-<p>PS：在网上的许多教程中，都提到需要进行这样的两条操作 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip rule add fwmark 0x233 lookup 100</span><br><span class="line">ip route add local 0.0.0.0/0 dev lo table 100</span><br></pre></td></tr></table></figure></p>
+<p>上面我们做的，在mangle表中创建了两条链，output链的type为route，这里的route就是对应了iptables的mangle表，但是route type只能hook output点，所以prerouting链的type就变成了filter。<br>
+由于TPROXY只能在prerouting链处理，在nftables的流向图中（文后附），output链之后，还跟了一个reroute的流程，要触发这个reroute，我们就需要给数据包头部打上标签（任意一个数值，这里是0x233）。这样在reroute阶段，系统会检测到数据包的头部发生了改变，于是数据包被打到prerouting的地方重新进行路由。<br>
+而在prerouting阶段，被reroute的数据包和经过本机路由的数据包一起，如过目的地址不在白名单中，就tproxy打到透明代理去。整个过程非常清晰明了。</p>
+<p>PS：在网上的许多教程中，都提到需要进行这样的两条操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip rule add fwmark 0x233 lookup 100</span><br><span class="line">ip route add local 0.0.0.0/0 dev lo table 100</span><br></pre></td></tr></table></figure>
 <p>其作用是将标记为0x233，并且目标为本地地址的数据包经过回环网口送出，但是经过本人实际测试，加和不加并没有什么区别，我认为即使不配置，默认情况系统也应该已经能够知道这条规则，所以并不需要添加。如果有不对的地方，希望读者不吝赐教。</p>
 <img src="/2019/08/19/tproxy-config-with-nftables/nf-packet-flow.svg" title="附nftables流向图">
 
@@ -360,7 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp部分"><span class="nav-number">1.</span> <span class="nav-text">TCP部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#udp部分"><span class="nav-number">2.</span> <span class="nav-text">UDP部分</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp部分"><span class="nav-number">1.</span> <span class="nav-text"> TCP部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#udp部分"><span class="nav-number">2.</span> <span class="nav-text"> UDP部分</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -374,7 +381,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -386,7 +393,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
